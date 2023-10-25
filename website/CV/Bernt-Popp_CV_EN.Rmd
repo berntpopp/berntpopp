@@ -8,8 +8,8 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
-bibliography: [../bp_first-or-last.bib]
-csl: ../apa.csl
+bibliography: [../bib/bp_first-or-last.bib]
+csl: ../bib/apa.csl
 ---
 
 Aside
@@ -52,7 +52,7 @@ Dr. med. Bernt Popp {#title}
 
 ### Curriculum Vitae
 
-As a physician and scientist I am currently working at the University Hospital Leipzig and at the BIH at the Charité Berlin.
+As a physician and scientist I am currently working at the BIH at Charité Berlin and at Labor Berlin — Charité Vivantes GmbH.
 
 From a human genetics perspective, my scientific interests are in rare diseases of neuronal development, rare tumors and the kidney.
 I particularly enjoy working bioinformatically on the analysis of data from high-throughput sequencing and on the curation of genetic diseases, variants and genes.

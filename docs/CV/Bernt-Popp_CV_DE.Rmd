@@ -8,8 +8,8 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
-bibliography: [../bp_first-or-last.bib]
-csl: ../apa.csl
+bibliography: [../bib/bp_first-or-last.bib]
+csl: ../bib/apa.csl
 ---
 
 Aside
@@ -51,7 +51,7 @@ Dr. med. Bernt Popp {#title}
 
 ### Curriculum Vitae
 
-Als Arzt und Wissenschaftler bin ich derzeit am Universitätsklinikum Leipzig und am BIH am Charité tätig.
+Als Arzt und Wissenschaftler bin ich derzeit am BIH der Charité Berlin und bei Labor Berlin — Charité Vivantes GmbH tätig.
 
 Mein wissenschaftliches Interesse gilt aus humangenetischer Sicht den seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumore und der Niere.
 Dabei arbeite ich besonders gerne bioinformatisch an der Analyse von Daten aus der Hochdurchsatzsequenzierung sowie zur Kuratierung von genetischen Erkrankungen, Varianten und Genen.
@@ -210,7 +210,7 @@ Nürnberg, Deutschland
 Publikationen {data-icon=book data-concise=true}
 --------------------------------------------------------------------------------
 
-Nur ert- oder Letztautorschaften (inklusive geteilter Autorschaften) sind aufgeführt.
+Nur Erst- oder Letztautorschaften (inklusive geteilter Autorschaften) sind aufgeführt.
 Eine vollständige und aktuelle Liste findet sich auf [Google Scholar](https://scholar.google.de/citations?user=Uvhu3t0AAAAJ).
 
 ---

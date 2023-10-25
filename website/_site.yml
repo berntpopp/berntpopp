@@ -14,6 +14,8 @@ navbar:
       href: cv.html
     - text: "Impressum"
       href: impressum.html
-  html_document:
+output:
+  rmarkdown::html_document:
     includes:
       in_header: assets/html/header.html
+    pandoc_args: ["--lua-filter", "lua/strong.lua"]

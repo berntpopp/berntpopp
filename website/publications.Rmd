@@ -1,9 +1,7 @@
 ---
 title: "Publications"
-output: 
-  html_document
-bibliography: [bp.bib]
-csl: apa.csl
+bibliography: [bib/bp.bib]
+csl: bib/apa.csl
 ---
 
 ***
