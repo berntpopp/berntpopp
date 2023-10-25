@@ -6,7 +6,7 @@ Human Genetics Researcher
 - [Twitter/X Profile](https://twitter.com/berntpopp)
 - [ORCID Profile](https://orcid.org/0000-0002-3679-1081)
 - [GitHub Profile](https://github.com/berntpopp)
-- [Personal website](https://berntpopp.com/)
+- [Personal website](http://www.berntpopp.com/)
 - Location: [BIH Charité – Universitätsmedizin Berlin, Berlin, Germany]
 
 ## Background
