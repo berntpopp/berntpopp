@@ -8,6 +8,8 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
+bibliography: [../bp_first-or-last.bib]
+csl: ../apa.csl
 ---
 
 Aside
@@ -208,4 +210,9 @@ Nürnberg, Deutschland
 Publikationen {data-icon=book data-concise=true}
 --------------------------------------------------------------------------------
 
+Nur Erst- oder Letztautorschaften (inklusive geteilter Autorschaften) sind aufgeführt.
 Eine vollständige und aktuelle Liste findet sich auf [Google Scholar](https://scholar.google.de/citations?user=Uvhu3t0AAAAJ).
+
+---
+nocite: '@*'
+---

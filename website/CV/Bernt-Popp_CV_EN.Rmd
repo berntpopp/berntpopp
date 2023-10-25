@@ -8,6 +8,8 @@ output:
     self_contained: true
 # uncomment this line to produce HTML and PDF in RStudio:
 knit: pagedown::chrome_print
+bibliography: [../bp_first-or-last.bib]
+csl: ../apa.csl
 ---
 
 Aside
@@ -210,4 +212,9 @@ Nuremberg, Germany
 Publications {data-icon=book data-concise=true}
 --------------------------------------------------------------------------------
 
+Only first and last author positions (including equal contributions) are listed here.
 A complete and always up-to-date list can be found at [Google Scholar](https://scholar.google.de/citations?user=Uvhu3t0AAAAJ).
+
+---
+nocite: '@*'
+---

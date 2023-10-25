@@ -25,3 +25,8 @@ rmarkdown::render_site()
 ```
 
 The CSL file is [American Psychological Association 7th edition, from Zotero](https://www.zotero.org/styles/apa).
+
+## TODO
+- [ ] fix favicon
+- [ ] fix responsiveness for lower width screens
+- [ ] highlight name in Publications on website and CV
