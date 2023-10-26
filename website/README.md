@@ -28,5 +28,5 @@ The CSL file is [American Psychological Association 7th edition, from Zotero](ht
 
 ## TODO
 - [ ] fix favicon
-- [ ] fix responsiveness for lower width screens
+- [x] fix responsiveness for lower width screens
 - [ ] highlight name in Publications on website and CV
