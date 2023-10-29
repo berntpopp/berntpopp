@@ -18,4 +18,5 @@ output:
   rmarkdown::html_document:
     includes:
       in_header: assets/html/header.html
-    pandoc_args: ["--lua-filter", "lua/strong.lua"]
+    pandoc_args:
+      - --lua-filter=lua/strong.lua

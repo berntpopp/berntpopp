@@ -25,6 +25,7 @@ Kontakt {#contact}
 - <i class="fa fa-envelope"></i> bernt.popp@charite.de
 - <i class="fa fa-envelope"></i> bernt.popp@gmail.com
 - <i class="fa fa-phone"></i> +49 162 1086590
+- <i class="fa fa-user"></i> https://www.berntpopp.com
 
 
 Competence {#skills}
@@ -81,13 +82,24 @@ since 07/2022
 Translational Research Area - Research Group "Hypertension and Molecular Biology of Endocrine Tumors" (Prof. Dr. med. Ute Scholl)
 
 
+### Habilitation started 
+
+at the Institute of Human Genetics, University of Leipzig Medical Center, Leipzig, Germany
+
+Leipzig, Germany
+
+ab 09/2022 
+
+Title “Sequencing and Gene Curartion in Rare Disease"
+
+
 ### Senior physician and head of the genetics outpatient clinic at MVZ Dresden
 
 Medizinisches Versorgungszentrum des Universitätsklinikums Dresden
 
 Dresden, Germany
 
-07/2021 - 04/2022
+04/2022 - 07/2021
 
 Head of the genetic outpatient clinic as senior physician
 
@@ -164,7 +176,7 @@ Institute of Human Genetics, University Hospital Erlangen, Friedrich-Alexander-U
 
 Erlangen, Germany
 
-05/2019 - 02/2013
+11/2015 - 02/2013
 
 Title of the dissertation „De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females”  (summa cum laude)
 
@@ -207,6 +219,13 @@ Peter-Vischer-Gymnasium, Nuremberg
 Nuremberg, Germany
 
 06/2005 - 09/1996
+
+
+Memberships in professional societies {data-icon=users data-concise=true}
+--------------------------------------------------------------------------------
+- GfH - Gesellschaft für Humangenetik
+- ESHG - European Society of Human Genetics
+- ASHG - American Society of Human Genetics
 
 
 Publications {data-icon=book data-concise=true}
