@@ -24,6 +24,7 @@ My journey in this field has been marked by pivotal moments, like securing my [f
 - DFG Rotation Position at the Human Genetics Institute of the University Hospital Leipzig, working on the project "Exome Pool-Seq and systems biology approach to identify and characterize genes and networks in neurodevelopmental disorders".
 - Previously Resident and scientific-medical assistant at the Institute of Human Genetics, University Hospital Erlangen, Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Erlangen, Germany.
 
+
 ## 🌱 Other Interests
 Nature, science, and technology also play a big role in my personal life. I enjoy freediving, scuba diving, being in nature and I am a passionate photographer. Most recent hobby is finding fossil shark teeth around the world.
 
@@ -55,9 +56,11 @@ Very happy after finding my first Megalodon tooth in Gainsville, Florida.
 - Languages: R, SQL, Bash, Python, JavaScript, HTML, CSS
 - Technologies: Docker, GitHub, Nextflow, SnakeMake
 
+
 ## 🎓 Academic Background
-- Dissertation Dr. med. at the Institute of Human Genetics, University Hospital Erlangen, Title: "De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females" (summa cum laude), 05/2019 - 02/2013.
+- Dissertation Dr. med. at the Institute of Human Genetics, University Hospital Erlangen, Title: "De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females" (summa cum laude), 11/2015 - 02/2013.
 - License as a physician after completing medical studies at the FAU Erlangen-Nuremberg, 11/2012.
+
 
 ## 📬 Contact
 - 📧 bernt.popp[at]charite.de | bernt.popp.md[at]gmail.com
