@@ -24,8 +24,8 @@ env:
     R_ENVIRONMENT: github
 
 jobs:
-    bookdown:
-        name: Render-Book
+  rmarkdown:
+        name: Render-Site
         runs-on: ubuntu-20.04
         defaults:
             run:
@@ -47,17 +47,17 @@ jobs:
               run: |
                 sudo apt-get install librsvg2-bin
             - name: Install packages
-              run: Rscript -e 'install.packages(c("tidyverse", "rmarkdown", "bookdown", "config", "remotes", "webshot", "readr", "dplyr", "DT", "plotly", "knitr", "knitrdrawio", "config", "ggplot2", "ComplexUpset", "snakecase", "readxl", "shinyLP", "pagedown"))'
-            - name: Render Book
+              run: Rscript -e 'install.packages(c("tidyverse", "rmarkdown", "config", "remotes", "webshot", "readr", "dplyr", "DT", "plotly", "knitr", "knitrdrawio", "config", "ggplot2", "ComplexUpset", "snakecase", "readxl", "shinyLP", "pagedown"))'
+            - name: Render Site
               run: Rscript -e 'rmarkdown::render_site()'
             - uses: actions/upload-artifact@v4
               with:
                 name: build
                 path: ./documentation/build
                 if-no-files-found: error
-    checkout-and-deploy:
+  checkout-and-deploy:
         runs-on: ubuntu-20.04
-        needs: bookdown
+        needs: rmarkdown
         steps:
             - name: Checkout
               uses: actions/checkout@v4
