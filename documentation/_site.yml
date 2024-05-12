@@ -1,0 +1,22 @@
+name: "Bernt Popp"
+output_dir: build
+template:
+  params:
+    noindex: false
+navbar:
+  title: "BP"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Publications"
+      href: publications.html
+    - text: "CV"
+      href: cv.html
+    - text: "Impressum"
+      href: impressum.html
+output:
+  rmarkdown::html_document:
+    includes:
+      in_header: assets/html/header.html
+    pandoc_args:
+      - --lua-filter=lua/strong.lua

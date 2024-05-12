@@ -1,0 +1,239 @@
+---
+title: "Bernt Popp's CV"
+author: Bernt Popp
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+bibliography: [../bib/bp_first-or-last.bib]
+csl: ../bib/apa.csl
+---
+
+Aside
+================================================================================
+
+
+![Bernt Popp](../assets/images/b1_square_nobg.png)
+
+
+Kontakt {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> bernt.popp@charite.de
+- <i class="fa fa-envelope"></i> bernt.popp@gmail.com
+- <i class="fa fa-phone"></i> +49 162 1086590
+- <i class="fa fa-user"></i> https://www.berntpopp.com
+
+
+Kompetenzen {#skills}
+--------------------------------------------------------------------------------
+
+- Facharzt für Humangenetik mit 12 Jahren Erfahrung in genetischer Diagnostik und Beratung.
+
+- Wissenschaftler mit Erfahrung in Hochdurchsatzsequenzierung, Datenanalyse, seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumorsyndrome und der Niere. 
+
+- Bioinformatiker mit Erfahrung in in R, Bash, Python, Javascript, Workflow Automatisierung, Virtualisierung und Linux Administration.
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Letzte Änderung `r Sys.Date()`.
+
+
+
+Main
+================================================================================
+
+Dr. med. Bernt Popp {#title}
+--------------------------------------------------------------------------------
+
+### Curriculum Vitae
+
+Als Arzt und Wissenschaftler bin ich derzeit am BIH der Charité Berlin und bei Labor Berlin — Charité Vivantes GmbH tätig.
+
+Mein wissenschaftliches Interesse gilt aus humangenetischer Sicht den seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumore und der Niere.
+Dabei arbeite ich besonders gerne bioinformatisch an der Analyse von Daten aus der Hochdurchsatzsequenzierung sowie zur Kuratierung von genetischen Erkrankungen, Varianten und Genen.
+
+Akademischer und Ärztlich-klinischer Werdegang {data-icon=user-md data-concise=true}
+--------------------------------------------------------------------------------
+### Projektleitung Innovation in der Humangenetik (Oberarztäquivalent) bei Labor Berlin - Charité Vivantes GmbH (50%)
+
+Labor Berlin - Charité Vivantes GmbH
+
+Berlin, Deutschland
+
+seit 01/2023
+
+Abteilung für Humangenetik im Labor Berlin - Charité Vivantes GmbH
+
+
+### Oberarzt am Charité – Universitätsmedizin Berlin (50%)
+
+Berlin Institute of Health (BIH)
+
+Berlin, Deutschland
+
+seit 07/2022
+
+Translationsforschungsbereich - Research Group "Hypertension and Molecular Biology of Endocrine Tumors" (Prof. Dr. med. Ute Scholl)
+
+
+### Habilitation begonnen 
+
+am Humangenetisches Institut des Universitätsklinikums Leipzig
+
+Leipzig, Deutschland
+
+ab 09/2022 
+
+Thema “Sequencing and Gene Curartion in Rare Disease"
+
+
+### Oberarzt und Leiter Fachbereich Humangenetik MVZ Dresden
+
+Medizinisches Versorgungszentrum des Universitätsklinikums
+
+Dresden, Deutschland
+
+04/2022 - 07/2021
+
+Leitung der genetischen Ambulanz als Oberarzt
+
+
+### Facharzt
+
+am Humangenetisches Institut des Universitätsklinikums Leipzig
+
+Leipzig, Deutschland
+
+06/2021 - 04/2021
+
+Stellvertretender Teamleiter Genetische Diagnostik - Klinische Genomik
+
+
+### Anerkennung als Facharzt
+
+Abgeschlossene Weiterbildung und Prüfung der Sächsischen Landesärztekammer
+
+Dresden, Deutschland
+
+03/2021
+
+Führung der Bezeichnung "Facharzt für Humangenetik"
+
+
+### DFG Rotationsstelle
+
+Wissenschaftlich-ärztlicher Mitarbeiter am Humangenetischen Institut des Universitätsklinikums Leipzig
+
+Leipzig, Deutschland
+
+seit 01/2020
+
+Im Rahmen der eingeworbenen Gelder für das Projekt "Exome Pool-Seq and systems biology approach to identify and characterize genes and networks in neurodevelopmental disorders"
+
+
+### Assistenzarzt 
+
+am Humangenetischen Institut des Universitätsklinikums Leipzig
+
+Leipzig, Deutschland
+
+03/2021 - 06/2019 
+
+Weiterbildung zum Facharzt für Humangenetik
+
+
+### Klinisches Jahr
+
+als Assistenzarzt im Bereich Nephrologie der Klinik und Poliklinik für Endokrinologie, Nephrologie, Rheumatologie des Universitätsklinikums Leipzig
+
+Leipzig, Deutschland
+
+09/2020 - 09/2019
+
+Weiterbildung zum Facharzt für Humangenetik
+
+
+### Assistenzarzt und wissenschaftlich-ärztlicher Mitarbeiter
+
+am Humangenetischen Institut des Universitätsklinikums Erlangen
+
+Erlangen, Deutschland
+
+05/2019 - 02/2013
+
+Weiterbildung zum Facharzt für Humangenetik
+
+
+### Dissertation als Dr. med.
+
+Humangenetisches Institut Erlangen, FAU Erlangen-Nürnberg, unter der Leitung von Prof. Dr. med. André Reis
+
+Erlangen, Deutschland
+
+11/2015 - 02/2013
+
+Titel der Arbeit „De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females”  (summa cum laude)
+
+
+### Approbation als Arzt
+
+nach abgeschlossenem Medizinstudium an der FAU Erlangen-Nürnberg
+
+Erlangen, Deutschland
+
+11/2012
+
+
+
+Ausbildung {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Teilzeitstudium Bachelor of Science Informatik
+
+FernUniversität in Hagen
+
+Hagen, Deutschland
+
+10/2021 - 10/2019
+
+
+### Studium der Humanmedizin 
+
+Universität Erlangen-Nürnberg
+
+Erlangen, Deutschland
+
+11/2012 - 10/2005
+
+
+### Allgemeine Hochschulreife
+
+Peter-Vischer-Gymnasium, Nürnberg
+
+Nürnberg, Deutschland
+
+06/2005 - 09/1996
+
+
+Mitgliedschaften in Fachgesellschaften {data-icon=users data-concise=true}
+--------------------------------------------------------------------------------
+- GfH - Gesellschaft für Humangenetik
+- ESHG - European Society of Human Genetics
+- ASHG - American Society of Human Genetics
+
+
+Publikationen {data-icon=book data-concise=true}
+--------------------------------------------------------------------------------
+
+Nur Erst- oder Letztautorschaften (inklusive geteilter Autorschaften) sind aufgeführt.
+Eine vollständige und aktuelle Liste findet sich auf [Google Scholar](https://scholar.google.de/citations?user=Uvhu3t0AAAAJ).
+
+---
+nocite: '@*'
+---

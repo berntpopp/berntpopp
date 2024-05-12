@@ -1,0 +1,10 @@
+---
+title: "Curriculum vitae"
+---
+
+```{r, echo=FALSE, results='asis'}
+rmarkdown::render('CV/Bernt-Popp_CV_DE.Rmd', quiet = TRUE)
+rmarkdown::render('CV/Bernt-Popp_CV_EN.Rmd', quiet = TRUE)
+```
+
+<iframe src="CV/Bernt-Popp_CV_EN.html" width="1000" height="800" allow="autoplay"></iframe>
