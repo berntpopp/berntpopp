@@ -221,7 +221,7 @@ Nuremberg, Germany
 06/2005 - 09/1996
 
 
-Memberships in professional societies {data-icon=users data-concise=true}
+Member of professional associations {data-icon=users data-concise=true}
 --------------------------------------------------------------------------------
 - GfH - Gesellschaft für Humangenetik
 - ESHG - European Society of Human Genetics
