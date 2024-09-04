@@ -25,6 +25,7 @@ Kontakt {#contact}
 - <i class="fa fa-envelope"></i> bernt.popp@charite.de
 - <i class="fa fa-phone"></i> +49 162 1086590
 - <i class="fa fa-user"></i> https://www.berntpopp.com
+- <i class="fa fa-bok"></i> https://orcid.org/0000-0002-3679-1081
 
 
 Competence {#skills}
