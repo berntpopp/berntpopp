@@ -32,9 +32,9 @@ Kompetenzen {#skills}
 
 - Facharzt für Humangenetik mit 12 Jahren Erfahrung in genetischer Diagnostik und Beratung.
 
-- Wissenschaftler mit Erfahrung in Hochdurchsatz-Sequenzierung, Datenanalyse, seltenen Erkrankungen der neuronalen Entwicklung, Tumorsyndromen und der Niere. 
+- Wissenschaftler mit Expertise in Hochdurchsatzsequenzierung, Datenanalyse und seltenen genetischen Erkrankungen.
 
-- Bioinformatiker mit Erfahrung in in R, Bash, Python, Javascript, Workflow Automatisierung, Virtualisierung und Linux Administration.
+- Bioinformatiker mit Erfahrung in R, Bash, Python, JavaScript, Workflow-Automatisierung und Linux-Administration.
 
 
 Disclaimer {#disclaimer}
@@ -56,6 +56,9 @@ Als Arzt und Wissenschaftler bin ich derzeit am BIH in der Charité - Universit�
 
 Mein wissenschaftliches Interesse gilt aus humangenetischer Sicht den seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumore und der Niere.
 Dabei arbeite ich besonders gerne bioinformatisch an der Analyse von Daten aus der Hochdurchsatzsequenzierung sowie zur Kuratierung von genetischen Erkrankungen, Varianten und Genen.
+
+Mein derzeitiger wissenschaftlicher Fokus im Rahmen des Forschungsprojekts CADS ist die Entwicklung digitaler Tools zur Unterstützung der klinischen Entscheidungsfindung und Analyse genetischer Daten, insbesondere im Bereich nephrologischer Erkrankungen. Dazu gehören die Entwicklung von Algorithmen zur Detektion genetischer Varianten und die Integration von Patientendaten zur verbesserten Behandlung seltener Nierenerkrankungen.
+
 
 Akademischer und Ärztlich-klinischer Werdegang {data-icon=user-md data-concise=true}
 --------------------------------------------------------------------------------
@@ -146,7 +149,7 @@ am Humangenetischen Institut des Universitätsklinikums Leipzig
 
 Leipzig, Deutschland
 
-03/2021 - 06/2019 
+03/2021 - 06/2019
 
 Weiterbildung zum Facharzt für Humangenetik
 

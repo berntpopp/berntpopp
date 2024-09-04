@@ -57,6 +57,9 @@ As a physician and scientist I am currently working at the BIH at Charité Berli
 From a human genetics perspective, my scientific interests are in rare diseases of neuronal development, rare tumors and the kidney.
 I particularly enjoy working bioinformatically on the analysis of data from high-throughput sequencing and on the curation of genetic diseases, variants and genes.
 
+My current scientific focus within the CADS research project is the development of digital tools to support clinical decision-making and the analysis of genetic data, particularly in the field of nephrological diseases. This includes the development of algorithms for the detection of genetic variants and the integration of patient data to improve the treatment of rare kidney diseases.
+
+
 Academic and medical-clinical career {data-icon=user-md data-concise=true}
 --------------------------------------------------------------------------------
 ### Project lead Innovation in Human Genetics (Senior physician equivalent) at Labor Berlin — Charité Vivantes GmbH (50%)
