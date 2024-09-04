@@ -33,7 +33,7 @@ Kompetenzen {#skills}
 
 - Facharzt für Humangenetik mit 12 Jahren Erfahrung in genetischer Diagnostik und Beratung.
 
-- Wissenschaftler mit Erfahrung in Hochdurchsatzsequenzierung, Datenanalyse, seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumorsyndrome und der Niere. 
+- Wissenschaftler mit Erfahrung in Hochdurchsatz-Sequenzierung, Datenanalyse, seltenen Erkrankungen der neuronalen Entwicklung, Tumorsyndromen und der Niere. 
 
 - Bioinformatiker mit Erfahrung in in R, Bash, Python, Javascript, Workflow Automatisierung, Virtualisierung und Linux Administration.
 
@@ -53,7 +53,7 @@ Dr. med. Bernt Popp {#title}
 
 ### Curriculum Vitae
 
-Als Arzt und Wissenschaftler bin ich derzeit am BIH der Charité Berlin und bei Labor Berlin — Charité Vivantes GmbH tätig.
+Als Arzt und Wissenschaftler bin ich derzeit am BIH in der Charité - Universitätsmedizin Berlin und bei Labor Berlin — Charité Vivantes GmbH tätig.
 
 Mein wissenschaftliches Interesse gilt aus humangenetischer Sicht den seltenen Erkrankungen der neuronalen Entwicklung, seltener Tumore und der Niere.
 Dabei arbeite ich besonders gerne bioinformatisch an der Analyse von Daten aus der Hochdurchsatzsequenzierung sowie zur Kuratierung von genetischen Erkrankungen, Varianten und Genen.
@@ -71,9 +71,13 @@ seit 01/2023
 Abteilung für Humangenetik im Labor Berlin - Charité Vivantes GmbH
 
 
-### Oberarzt am Charité – Universitätsmedizin Berlin (50%)
+### Oberarzt am BIH (50%)
 
-Berlin Institute of Health (BIH)
+Berlin Institute of Health (BIH) in der Charité - Universitätsmedizin Berlin
+
+Forschungsprojekt “Case Analysis and Decision Support” (CADS)
+
+Schwerpunkt "Rare Genetic Kidney Diseases"
 
 Berlin, Deutschland
 
@@ -84,7 +88,7 @@ Translationsforschungsbereich - Research Group "Hypertension and Molecular Biolo
 
 ### Habilitation begonnen 
 
-am Humangenetisches Institut des Universitätsklinikums Leipzig
+am Humangenetischen Institut des Universitätsklinikums Leipzig
 
 Leipzig, Deutschland
 
@@ -106,7 +110,7 @@ Leitung der genetischen Ambulanz als Oberarzt
 
 ### Facharzt
 
-am Humangenetisches Institut des Universitätsklinikums Leipzig
+am Humangenetischen Institut des Universitätsklinikums Leipzig
 
 Leipzig, Deutschland
 
@@ -221,7 +225,7 @@ Nürnberg, Deutschland
 06/2005 - 09/1996
 
 
-Mitgliedschaften in Fachgesellschaften {data-icon=users data-concise=true}
+Mitglied in Fachgesellschaften {data-icon=users data-concise=true}
 --------------------------------------------------------------------------------
 - GfH - Gesellschaft für Humangenetik
 - ESHG - European Society of Human Genetics
