@@ -23,7 +23,6 @@ Kontakt {#contact}
 --------------------------------------------------------------------------------
 
 - <i class="fa fa-envelope"></i> bernt.popp@charite.de
-- <i class="fa fa-envelope"></i> bernt.popp@gmail.com
 - <i class="fa fa-phone"></i> +49 162 1086590
 - <i class="fa fa-user"></i> https://www.berntpopp.com
 
