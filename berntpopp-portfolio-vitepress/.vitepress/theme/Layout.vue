@@ -9,18 +9,16 @@ const { frontmatter } = useData()
 </script>
 
 <template>
-  <div v-if="frontmatter.home" class="custom-home">
-    <Layout>
-      <template #layout-top>
-        <Hero />
-      </template>
-    </Layout>
-  </div>
-  <Layout v-else />
+  <Layout>
+    <template #layout-top v-if="frontmatter.home">
+      <Hero />
+    </template>
+  </Layout>
 </template>
 
 <style scoped>
-.custom-home :deep(.VPHome) {
+/* Hide default home content when using custom hero */
+:deep(.VPHome) {
   display: none;
 }
 </style>
