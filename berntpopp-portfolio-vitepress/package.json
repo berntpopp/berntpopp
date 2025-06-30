@@ -1,0 +1,22 @@
+{
+  "name": "berntpopp-portfolio-vitepress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev --host",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview --host"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vitepress": "^1.6.3",
+    "vue": "^3.5.17"
+  },
+  "dependencies": {
+    "bibtex-parser-js": "^0.0.2"
+  }
+}

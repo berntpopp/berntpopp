@@ -1,2 +1,3 @@
-website/assets/images/_raw
-*.Rhistory
+# claude fieles
+.claude/
+CLAUDE.md
