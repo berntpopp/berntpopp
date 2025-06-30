@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6a3ffb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b64ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- DNA Double Helix -->
+  <g stroke="url(#gradient1)" stroke-width="2" fill="none">
+    <!-- Left strand -->
+    <path d="M 8 2 Q 8 8, 12 12 T 12 22 T 8 30" />
+    <!-- Right strand -->
+    <path d="M 24 2 Q 24 8, 20 12 T 20 22 T 24 30" />
+    
+    <!-- Connecting base pairs -->
+    <line x1="8" y1="6" x2="24" y2="6" stroke-width="1.5" opacity="0.7"/>
+    <line x1="10" y1="10" x2="22" y2="10" stroke-width="1.5" opacity="0.7"/>
+    <line x1="12" y1="14" x2="20" y2="14" stroke-width="1.5" opacity="0.7"/>
+    <line x1="12" y1="18" x2="20" y2="18" stroke-width="1.5" opacity="0.7"/>
+    <line x1="10" y1="22" x2="22" y2="22" stroke-width="1.5" opacity="0.7"/>
+    <line x1="8" y1="26" x2="24" y2="26" stroke-width="1.5" opacity="0.7"/>
+  </g>
+</svg>

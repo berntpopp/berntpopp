@@ -29,3 +29,27 @@ h1, h2, h3 {
 .custom-home {
   min-height: 100vh;
 }
+
+/* Align navigation with hero container */
+.VPNav .VPNavBar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.VPNav .VPNavBar .container {
+  max-width: 100%;
+  padding: 0;
+}
+
+/* Ensure consistent spacing across the site */
+.VPContent .container {
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+/* Style the navigation background */
+.VPNav {
+  background-color: var(--vp-c-bg);
+  border-bottom: 1px solid var(--vp-c-divider);
+}

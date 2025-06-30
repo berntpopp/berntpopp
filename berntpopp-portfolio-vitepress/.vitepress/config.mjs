@@ -27,9 +27,8 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
     
-    // Favicons
-    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
+    // Favicon
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/dna-helix.svg' }],
 
     // Schema.org JSON-LD
     ['script', { type: 'application/ld+json' }, JSON.stringify({
@@ -53,7 +52,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/favicon-32x32.png', // Or a dedicated logo image
+    logo: '/dna-helix.svg',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Publications', link: '/publications' },
