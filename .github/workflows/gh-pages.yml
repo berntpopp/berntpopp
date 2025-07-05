@@ -1,9 +1,13 @@
+# DEPRECATED: This workflow is no longer needed as we've migrated to VitePress
+# The new portfolio is deployed using deploy-portfolio.yml
+# This workflow can be removed once the old documentation is fully retired
+#
 # based onhttps://github.com/horosin/pages-deploy
 # and https://lucacozzuto.medium.com/automatic-reports-with-bookdown-and-github-actions-3c19498394aa
 # and https://stackoverflow.com/questions/76723921/install-a-github-r-package-for-a-github-action
 # and https://docs.github.com/en/actions/learn-github-actions/variables
 # and https://github.com/salimkayabasi/drawio-github-action-installation/blob/main/.github/workflows/drawio.yml
-name: github pages
+name: Legacy Documentation Build (Deprecated)
 
 on:
   push:
