@@ -58,6 +58,7 @@ export default defineConfig({
       { text: 'Publications', link: '/publications' },
       { text: 'CV', link: '/cv' },
       { text: 'About', link: '/about' }, // Create an 'about.md' from your READMEs
+      { text: 'Impressum', link: '/impressum' }
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/berntpopp' },
