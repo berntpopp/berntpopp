@@ -20,28 +20,28 @@
         :key="index" 
         class="publication-item"
       >
-        <h3 class="title">{{ pub.TITLE || pub.title || 'No title' }}</h3>
-        <p class="authors">{{ formatAuthors(pub.AUTHOR || pub.author) }}</p>
+        <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
+        <p class="authors">{{ formatAuthors(pub.entryTags?.AUTHOR) }}</p>
         <p class="details">
           <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
-          <span v-if="pub.JOURNAL || pub.journal">{{ pub.JOURNAL || pub.journal }}</span>
-          <span v-if="pub.YEAR || pub.year"> ({{ pub.YEAR || pub.year }})</span>
-          <span v-if="pub.VOLUME || pub.volume">, {{ pub.VOLUME || pub.volume }}</span>
-          <span v-if="pub.NUMBER || pub.number">({{ pub.NUMBER || pub.number }})</span>
-          <span v-if="pub.PAGES || pub.pages">: {{ pub.PAGES || pub.pages }}</span>
+          <span v-if="pub.entryTags?.JOURNAL">{{ pub.entryTags.JOURNAL }}</span>
+          <span v-if="pub.entryTags?.YEAR"> ({{ pub.entryTags.YEAR }})</span>
+          <span v-if="pub.entryTags?.VOLUME">, {{ pub.entryTags.VOLUME }}</span>
+          <span v-if="pub.entryTags?.NUMBER">({{ pub.entryTags.NUMBER }})</span>
+          <span v-if="pub.entryTags?.PAGES">: {{ pub.entryTags.PAGES }}</span>
         </p>
         <div class="links">
           <a
-            v-if="pub.DOI || pub.doi"
-            :href="`https://doi.org/${pub.DOI || pub.doi}`"
+            v-if="pub.entryTags?.DOI"
+            :href="`https://doi.org/${pub.entryTags.DOI}`"
             target="_blank"
             class="link"
           >
             DOI
           </a>
           <a
-            v-if="pub.URL || pub.url"
-            :href="pub.URL || pub.url"
+            v-if="pub.entryTags?.URL"
+            :href="pub.entryTags.URL"
             target="_blank"
             class="link"
           >
@@ -68,18 +68,32 @@ const filteredPublications = computed(() => {
   const query = searchQuery.value.toLowerCase()
   return publications.value.filter(pub => {
     return (
-      (pub.TITLE || pub.title || '')?.toLowerCase().includes(query) ||
-      (pub.AUTHOR || pub.author || '')?.toLowerCase().includes(query) ||
-      (pub.JOURNAL || pub.journal || '')?.toLowerCase().includes(query) ||
-      (pub.YEAR || pub.year || '')?.toString().includes(query)
+      pub.entryTags?.TITLE?.toLowerCase().includes(query) ||
+      pub.entryTags?.AUTHOR?.toLowerCase().includes(query) ||
+      pub.entryTags?.JOURNAL?.toLowerCase().includes(query) ||
+      pub.entryTags?.YEAR?.toString().includes(query) ||
+      pub.citationKey?.toLowerCase().includes(query)
     )
   })
 })
 
+function formatTitle(title) {
+  if (!title) return ''
+  // Remove curly braces used for BibTeX formatting
+  return title.replace(/[{}]/g, '')
+}
+
 function formatAuthors(authors) {
   if (!authors) return ''
-  // Simple formatting - can be improved
-  return authors.replace(/and/g, ',').replace(/[{}]/g, '')
+  // Remove curly braces and split by 'and'
+  const authorList = authors.replace(/[{}]/g, '').split(' and ')
+  
+  // Format: show all authors for short lists, otherwise show first 3 + et al.
+  if (authorList.length <= 4) {
+    return authorList.join(', ')
+  } else {
+    return authorList.slice(0, 3).join(', ') + ', et al.'
+  }
 }
 
 onMounted(async () => {
@@ -97,8 +111,8 @@ onMounted(async () => {
     
     // Sort by year (descending)
     publications.value = parsed.sort((a, b) => {
-      const yearA = parseInt(a.YEAR || a.year) || 0
-      const yearB = parseInt(b.YEAR || b.year) || 0
+      const yearA = parseInt(a.entryTags?.YEAR) || 0
+      const yearB = parseInt(b.entryTags?.YEAR) || 0
       return yearB - yearA
     })
   } catch (e) {
