@@ -1,59 +1,51 @@
 # About Me
 
-🔬 **Human Genetics Researcher** - Passionate about unraveling the mysteries of genetics and contributing to advancements in medical science.
+## 🧬 My Journey into Genetics
 
-## 🌐 Quick Links
+I was born in a small Romanian town, where my heritage as the son of a Transylvanian Saxon mother and a Romanian father shaped my worldview from birth. Growing up between cultures taught me to see similarities where others saw differences, a perspective that would later prove invaluable in genetics research.
 
-- [Google Scholar Profile](https://scholar.google.com/citations?user=Uvhu3t0AAAAJ)
-- [ORCID Profile](https://orcid.org/0000-0002-3679-1081)
-- [GitHub Profile](https://github.com/berntpopp)
-- Location: BIH Charité – Universitätsmedizin Berlin, Berlin, Germany
+My interest in the fundamentals of life began at a young age. I've always been fascinated by animals and life, and how everything is unique and yet interconnected. 
 
-## 📖 Background
+## 💻 Where Technology Meets Biology
 
-I was born in a small Romanian town. My mother is a Transylvanian Saxon, and my father is Romanian. Nature, genetics, and the evolution of DNA, a thread that connects all life on Earth, have always captivated me. My interest in technology and computers began in the late 1990s with a family-owned computer, where I learned to code in Basic. During my medical studies, I discovered the field of human genetics, which provided a way to combine these interests.
+Our family's first computer arrived in the late 1990s, and with it, I was introduced to BASIC programming. I recall the thrill of making pixels dance across the screen with only a few lines of code. Little did I know that decades later, I'd be applying similar principles to decode the human genome.
 
-My journey in this field has been marked by pivotal moments, like securing my [first DFG project](https://gepris.dfg.de/gepris/projekt/422575385), being honored with the ["GfH-Promotionspreis" 2017](https://gfhev.de/de/ueber-uns/ehrungen.html), and the SYNLAB-award at EuroDysmorpho 2019, each milestone propelling me further into the exploration of genetic landscapes and bioinformatics.
+During my medical studies at FAU Erlangen-Nürnberg, I discovered human genetics, a field that seamlessly combined my two interests. Here was a field where computational thinking could help solve the mysteries of human health and disease. 
 
-## 💼 Professional Experience
+## 🔬 The Science That Drives Me
 
-- Currently working at BIH Charité Berlin and LaborBerlin, focusing on rare diseases of neuronal development, rare tumors, and kidney diseases.
-- Senior Physician at Charité – Universitätsmedizin Berlin, Translational Research Area - Research Group "Hypertension and Molecular Biology of Endocrine Tumors" since 07/2022.
-- Previously Senior Physician and Head of the Genetics Outpatient Clinic at MVZ Dresden.
-- Specialist in Human Genetics at the Institute of Human Genetics, University of Leipzig Medical Center, and Deputy Team Leader Genetic Diagnostics - Clinical Genomics.
-- DFG Rotation Position at the Human Genetics Institute of the University Hospital Leipzig, working on the project "Exome Pool-Seq and systems biology approach to identify and characterize genes and networks in neurodevelopmental disorders".
-- Previously Resident and scientific-medical assistant at the Institute of Human Genetics, University Hospital Erlangen, Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Erlangen, Germany.
+What interests me most about genetics isn't the science, but the stories. Every variant tells a story, every mutation has a history, and every diagnosis can alter a family's future. My research focuses on neurodevelopmental disorders, rare tumors, and kidney diseases, but at its core, it is about discovering what makes us uniquely human.
 
-## 🌱 Other Interests
+In 2018, I secured my first DFG project, which crystallized my path. It was more than just the funding; it was confirmation that my approach, which combined rigorous bioinformatics with clinical insight, could make a significant difference. Winning the GfH-Promotionspreis in 2017 and the SYNLAB award at EuroDysmorpho 2019 were fantastic honors, but the true reward is seeing our research translate into better patient outcomes.
 
-Nature, science, and technology also play a big role in my personal life. I enjoy freediving, scuba diving, being in nature and I am a passionate photographer. Most recent hobby is finding fossil shark teeth around the world.
+## 🌊 Life Beyond the Lab
 
-I love traveling and experiencing new things, trying to involve in local communities, cultures and citizen science.
+Nature reminds us to marvel at the answers, whereas science teaches us to question everything. When I'm not analyzing genomes, you can find me exploring the oceans, which make up the remaining 71% of our planet. Freediving and scuba diving are more than just recreational activities; they are active meditation. There is something profound about floating alongside creatures whose ancestors witnessed the first signs of life on Earth.
 
-### 🐋 Favorite Animals
+Photography allows me to capture these moments of wonder, whereas my most recent obsession, searching for fossil shark teeth, connects me to deep time in the most tangible way. Holding a Megalodon tooth that is 20 million years old serves as a humble reminder that we are all participants in a never-ending experiment known as life.
 
-Favorite animals: sharks 🦈, whales 🐋, and turtles 🐢.
+## 🌍 Exploring Nature
+For me, travel is as much about discovering the natural world as it is about seeing new places. Whether I'm photographing sharks for identification, patrolling turtle-nesting beaches to protect hatchlings, or observing local wildlife behaviors, I enjoy making each trip a hands-on field adventure that strengthens my connection to the places I visit.
 
-## 🏆 Achievements
+## 🦈 A Few of My Favorite Things
 
-- Spearheaded [SysNDD](https://github.com/berntpopp/sysndd), a robust platform for analyzing gene-disease relationships in neurodevelopmental disorders (NDD).
-- Established [MorbidGenes](https://github.com/berntpopp/morbidgenes), providing a monthly updated list of diagnostically relevant genes to advance genetic diagnostics.
-- Developed [HNF1B-db](https://github.com/berntpopp/HNF1B-db), a dedicated database for HNF1B variant annotations.
-- Contributed to [AutoCaSc](https://github.com/JohannKaspar/AutoCaSc), an automated variant curation system, showcased in a recent [publication](https://onlinelibrary.wiley.com/doi/10.1002/humu.24451) in Human Mutation.
-- Involved in [Kidney-Genetics](https://github.com/halbritter-lab/kidney-genetics), a project dedicated to understanding the genetic underpinnings of kidney diseases, with comprehensive [documentation](https://halbritter-lab.github.io/kidney-genetics/).
+If you're curious about what makes me tick beyond the double helix:
 
-## 👨‍💻 Coding Experience
+- **Favorite animals**: Sharks 🦈 (apex survivors), whales 🐋 (gentle giants with complex songs), and sea turtles 🐢 (ancient navigators)
+- **Favorite discovery**: That NAA10 mutations can cause severe developmental delays – a finding from my doctoral work that still guides families today
+- **Favorite quote**: "Nothing in biology makes sense except in the light of evolution" – Theodosius Dobzhansky
+- **Favorite diving spot**: Baja california is so full of life, you have the chance to see everything every day again
 
-- Languages: R, SQL, Bash, Python, JavaScript, HTML, CSS
-- Technologies: Docker, GitHub, Nextflow, SnakeMake
+## 💬 Let's Connect
 
-## 🎓 Academic Background
+I believe the best science happens in conversation. I believe that the best science happens during conversation. I'd be delighted to hear from you if you're a fellow researcher, a patient advocate, a diver, or simply interested in genetics. Science is a team sport, and the most exciting discoveries often come from unexpected collaborations.
 
-- Dissertation Dr. med. at the Institute of Human Genetics, University Hospital Erlangen, Title: "De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females" (summa cum laude), 11/2015 - 02/2013.
-- License as a physician after completing medical studies at the FAU Erlangen-Nuremberg, 11/2012.
+Find me on:
 
-## 📬 Contact
+- 📚 [Google Scholar](https://scholar.google.com/citations?user=Uvhu3t0AAAAJ) - Where my research lives
+- 🔬 [ORCID](https://orcid.org/0000-0002-3679-1081) - My scientific fingerprint
+- 💻 [GitHub](https://github.com/berntpopp) - Where code meets chromosomes
+- 📧 Drop me a line at bernt.popp.md[at]gmail.com
 
-- 📧 bernt.popp[at]charite.de | bernt.popp.md[at]gmail.com
+*Remember: We're all just billions of years of evolution learning to understand itself. How cool is that?*
 
-> Disclaimer: Any opinions expressed here are solely my own and do not reflect the views of my employer, funders, or their affiliates.

@@ -8,7 +8,12 @@
       <p class="entry-organization">{{ organization }}</p>
       <p v-if="department" class="entry-department">{{ department }}</p>
       <p v-if="location" class="entry-location">{{ location }}</p>
-      <p v-if="details" class="entry-details">{{ details }}</p>
+      <div v-if="details" class="entry-details">
+        <ul v-if="Array.isArray(details)" class="details-list">
+          <li v-for="(detail, index) in details" :key="index">{{ detail }}</li>
+        </ul>
+        <p v-else>{{ details }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +25,10 @@ defineProps({
   department: String,
   period: String,
   location: String,
-  details: String
+  details: {
+    type: [String, Array],
+    default: null
+  }
 })
 </script>
 
@@ -85,6 +93,29 @@ defineProps({
   font-size: 0.95rem;
   color: var(--vp-c-text-2);
   line-height: 1.5;
+}
+
+.entry-details p {
+  margin: 0;
+}
+
+.details-list {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style: none;
+}
+
+.details-list li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.details-list li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--vp-c-brand);
 }
 
 @media (max-width: 768px) {

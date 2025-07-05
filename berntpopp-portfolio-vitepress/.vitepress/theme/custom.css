@@ -66,3 +66,47 @@ h1, h2, h3 {
 .VPDoc {
   min-height: calc(100vh - var(--vp-nav-height));
 }
+
+/* About Page Styles */
+.vp-doc h1[id="about-me"] {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  background: linear-gradient(120deg, var(--vp-c-brand) 0%, var(--vp-c-brand-dark) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Style About page content container */
+main:has(h1[id="about-me"]) .vp-doc {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* About page paragraph styling */
+main:has(h1[id="about-me"]) .vp-doc p {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+/* About page section headings */
+main:has(h1[id="about-me"]) .vp-doc h2 {
+  font-size: 1.75rem;
+  margin: 3rem 0 1.5rem;
+}
+
+/* Final quote styling on About page */
+main:has(h1[id="about-me"]) .vp-doc > p:last-child em {
+  display: block;
+  text-align: center;
+  font-size: 1.25rem;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  color: var(--vp-c-brand);
+  font-style: normal;
+  font-weight: 500;
+}
