@@ -1,8 +1,8 @@
 {
   "site": {
     "url": "https://berntpopp.com",
-    "title": "Dr. Bernt Popp",
-    "titleTemplate": "%s | Dr. Bernt Popp - Human Geneticist",
+    "title": "Dr.med. Bernt Popp",
+    "titleTemplate": "%s | Dr.med. Bernt Popp - Human Geneticist",
     "description": "Dr. med. Bernt Popp is a board-certified geneticist at Charité Berlin specializing in rare diseases, neurodevelopmental disorders, and clinical genomics.",
     "author": "Dr. med. Bernt Popp",
     "locale": "en_US",
@@ -125,7 +125,7 @@
   "keywords": {
     "primary": [
       "Bernt Popp",
-      "Dr. Bernt Popp",
+      "Dr.med. Bernt Popp",
       "human geneticist",
       "medical geneticist"
     ],

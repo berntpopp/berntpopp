@@ -1,6 +1,6 @@
 # 🚀 Automated SEO System
 
-This directory contains the automated SEO configuration system for Dr. Bernt Popp's portfolio website.
+This directory contains the automated SEO configuration system for Dr.med. Bernt Popp's portfolio website.
 
 ## 📂 Directory Structure
 

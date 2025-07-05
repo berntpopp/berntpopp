@@ -1,0 +1,63 @@
+{
+  "timestamp": "2025-07-05T14:39:05.668Z",
+  "scores": {
+    "/": {
+      "descriptionLength": 172,
+      "descriptionScore": 70,
+      "titleLength": 4,
+      "titleScore": 60,
+      "keywordCount": 5,
+      "keywordScore": 100,
+      "overallScore": 77
+    },
+    "/publications": {
+      "descriptionLength": 161,
+      "descriptionScore": 90,
+      "titleLength": 12,
+      "titleScore": 60,
+      "keywordCount": 4,
+      "keywordScore": 80,
+      "overallScore": 77
+    },
+    "/cv": {
+      "descriptionLength": 152,
+      "descriptionScore": 100,
+      "titleLength": 16,
+      "titleScore": 60,
+      "keywordCount": 4,
+      "keywordScore": 80,
+      "overallScore": 80
+    },
+    "/about": {
+      "descriptionLength": 160,
+      "descriptionScore": 100,
+      "titleLength": 5,
+      "titleScore": 60,
+      "keywordCount": 3,
+      "keywordScore": 80,
+      "overallScore": 80
+    },
+    "/impressum": {
+      "descriptionLength": 47,
+      "descriptionScore": 30,
+      "titleLength": 24,
+      "titleScore": 80,
+      "keywordCount": 3,
+      "keywordScore": 80,
+      "overallScore": 63
+    }
+  },
+  "recommendations": [
+    "Add ResearchProject schemas for SysNDD, HNF1B-db, etc."
+  ],
+  "warnings": [
+    "/: Description too long (172 chars). Keep under 160.",
+    "/publications: Description too long (161 chars). Keep under 160.",
+    "/impressum: Description too short (47 chars). Aim for 150-160."
+  ],
+  "successes": [
+    "/cv: Description length optimal (152 chars).",
+    "/about: Description length optimal (160 chars).",
+    "All technical SEO files are properly generated"
+  ]
+}

@@ -14,7 +14,10 @@
     "lint:js:fix": "eslint . --ext .js,.mjs,.cjs,.vue --fix",
     "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore .vitepress/dist --fix",
     "seo:generate": "node scripts/generate-seo.js",
-    "seo:check": "npm run seo:generate && cat seo/health-report.json"
+    "seo:check": "npm run seo:generate && cat seo/health-report.json",
+    "seo:images": "node scripts/seo-image-optimizer.js",
+    "seo:monitor": "node scripts/seo-monitor.js",
+    "seo:full": "npm run seo:generate && npm run seo:images && npm run seo:monitor"
   },
   "keywords": [],
   "author": "",

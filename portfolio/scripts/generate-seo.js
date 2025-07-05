@@ -142,6 +142,10 @@ function generateRobots() {
   
   if (seoConfig.robots.sitemap) {
     content += `Sitemap: ${seoConfig.site.url}/sitemap.xml\n`;
+    // Add image sitemap if it exists
+    if (existsSync(join(publicDir, 'sitemap-images.xml'))) {
+      content += `Sitemap: ${seoConfig.site.url}/sitemap-images.xml\n`;
+    }
   }
   
   writeFileSync(join(publicDir, 'robots.txt'), content.trim());

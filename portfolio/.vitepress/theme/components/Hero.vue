@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="hero-image-container">
-        <img src="/b1_square_nobg.png" alt="Dr. Bernt Popp" class="hero-image">
+        <img src="/b1_square_nobg.png" alt="Dr.med. Bernt Popp" class="hero-image">
         <div class="vertical-divider" />
         <div class="horizontal-divider" />
       </div>

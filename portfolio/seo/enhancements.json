@@ -1,0 +1,216 @@
+{
+  "additionalSchemas": {
+    "ResearchProject": {
+      "description": "Schema for research projects like SysNDD, HNF1B-db",
+      "properties": {
+        "@context": "https://schema.org",
+        "@type": "ResearchProject",
+        "name": "{{projectName}}",
+        "description": "{{projectDescription}}",
+        "url": "{{projectUrl}}",
+        "funder": {
+          "@type": "Organization",
+          "name": "{{funderName}}"
+        },
+        "member": {
+          "@id": "{{siteUrl}}/#person"
+        }
+      }
+    },
+    "MedicalScholarlyArticle": {
+      "description": "Enhanced schema for individual publications",
+      "properties": {
+        "@context": "https://schema.org",
+        "@type": "MedicalScholarlyArticle",
+        "headline": "{{title}}",
+        "author": "{{authors}}",
+        "datePublished": "{{year}}",
+        "isPartOf": {
+          "@type": "PublicationIssue",
+          "isPartOf": {
+            "@type": "Periodical",
+            "name": "{{journal}}"
+          }
+        },
+        "identifier": [
+          {
+            "@type": "PropertyValue",
+            "propertyID": "DOI",
+            "value": "{{doi}}"
+          },
+          {
+            "@type": "PropertyValue",
+            "propertyID": "PMID",
+            "value": "{{pmid}}"
+          }
+        ]
+      }
+    }
+  },
+  "multilingual": {
+    "enabled": true,
+    "languages": ["en", "de"],
+    "hreflang": {
+      "en": {
+        "url": "https://berntpopp.com",
+        "locale": "en_US"
+      },
+      "de": {
+        "url": "https://berntpopp.com/de",
+        "locale": "de_DE"
+      }
+    },
+    "germanContent": {
+      "person": {
+        "jobTitle": "Oberarzt & Facharzt für Humangenetik",
+        "description": "Facharzt für Humangenetik mit Spezialisierung auf seltene Erkrankungen, neurologische Entwicklungsstörungen und klinische Genomik"
+      },
+      "keywords": {
+        "local": [
+          "Facharzt Humangenetik Berlin",
+          "Genetiker Berlin",
+          "Seltene Krankheiten Berlin",
+          "Genetische Beratung Berlin"
+        ]
+      }
+    }
+  },
+  "performanceOptimizations": {
+    "criticalCSS": {
+      "enabled": true,
+      "inline": true
+    },
+    "preconnect": [
+      "https://fonts.googleapis.com",
+      "https://fonts.gstatic.com",
+      "https://scholar.google.com"
+    ],
+    "dnsPrefetch": [
+      "https://orcid.org",
+      "https://github.com"
+    ],
+    "resourceHints": {
+      "preload": [
+        {
+          "href": "/b2_round.png",
+          "as": "image",
+          "type": "image/png"
+        },
+        {
+          "href": "/dna-helix.svg",
+          "as": "image",
+          "type": "image/svg+xml"
+        }
+      ]
+    }
+  },
+  "socialMediaEnhancements": {
+    "openGraph": {
+      "enhanced": true,
+      "images": {
+        "default": {
+          "url": "/b2_round.png",
+          "width": 1200,
+          "height": 630,
+          "alt": "Dr.med. Bernt Popp - Human Geneticist"
+        },
+        "square": {
+          "url": "/b1_square_nobg.png",
+          "width": 600,
+          "height": 600,
+          "alt": "Dr.med. Bernt Popp Profile"
+        }
+      }
+    },
+    "twitterCard": {
+      "enhanced": true,
+      "creator": "@berntpopp",
+      "imageAlt": "Dr.med. Bernt Popp - Senior Physician & Human Geneticist at Charité Berlin"
+    },
+    "linkedIn": {
+      "enabled": true,
+      "profile": "https://www.linkedin.com/in/berntpopp/"
+    }
+  },
+  "academicEnhancements": {
+    "googleScholar": {
+      "metaTags": {
+        "citation_author": "Popp, Bernt",
+        "citation_author_email": "bernt.popp.md@gmail.com",
+        "citation_author_institution": "BIH Charité – Universitätsmedizin Berlin",
+        "citation_author_orcid": "https://orcid.org/0000-0002-3679-1081"
+      },
+      "profileLink": {
+        "verified": true,
+        "url": "https://scholar.google.com/citations?user=Uvhu3t0AAAAJ"
+      }
+    },
+    "researchGate": {
+      "enabled": false,
+      "profile": "https://www.researchgate.net/profile/Bernt-Popp"
+    },
+    "pubMed": {
+      "enabled": true,
+      "searchUrl": "https://pubmed.ncbi.nlm.nih.gov/?term=Popp+B%5BAuthor%5D"
+    }
+  },
+  "localSEO": {
+    "enhanced": true,
+    "googleMyBusiness": {
+      "suggestion": "Consider creating a Google My Business profile for professional medical services"
+    },
+    "localSchema": {
+      "@type": "MedicalBusiness",
+      "medicalSpecialty": "Medical Genetics",
+      "priceRange": "Contact for consultation fees",
+      "openingHours": "Mo-Fr 08:00-17:00",
+      "hasMap": "https://maps.google.com/?q=Chaußeestr.+58D+10115+Berlin"
+    }
+  },
+  "contentStrategy": {
+    "futurePages": [
+      {
+        "path": "/research",
+        "title": "Research Projects",
+        "description": "Active research projects in neurodevelopmental disorders, kidney genetics, and variant curation",
+        "priority": 0.8
+      },
+      {
+        "path": "/photography",
+        "title": "Photography",
+        "description": "Nature and underwater photography by Dr.med. Bernt Popp",
+        "priority": 0.5
+      },
+      {
+        "path": "/blog",
+        "title": "Blog",
+        "description": "Insights on human genetics, rare diseases, and scientific discoveries",
+        "priority": 0.7
+      }
+    ]
+  },
+  "monitoring": {
+    "analytics": {
+      "googleAnalytics4": {
+        "enabled": false,
+        "measurementId": "G-XXXXXXXXXX"
+      },
+      "microsoftClarity": {
+        "enabled": false,
+        "projectId": "XXXXXXXXXX"
+      }
+    },
+    "searchConsole": {
+      "verified": false,
+      "siteVerification": "XXXXXXXXXX"
+    },
+    "seoTools": {
+      "ahrefs": {
+        "siteVerification": "XXXXXXXXXX"
+      },
+      "semrush": {
+        "siteVerification": "XXXXXXXXXX"
+      }
+    }
+  }
+}

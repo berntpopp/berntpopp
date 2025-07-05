@@ -4,8 +4,8 @@
 export const seoConfig = {
   "site": {
     "url": "https://berntpopp.com",
-    "title": "Dr. Bernt Popp",
-    "titleTemplate": "%s | Dr. Bernt Popp - Human Geneticist",
+    "title": "Dr.med. Bernt Popp",
+    "titleTemplate": "%s | Dr.med. Bernt Popp - Human Geneticist",
     "description": "Dr. med. Bernt Popp is a board-certified geneticist at Charité Berlin specializing in rare diseases, neurodevelopmental disorders, and clinical genomics.",
     "author": "Dr. med. Bernt Popp",
     "locale": "en_US",
@@ -32,7 +32,7 @@ export const seoConfig = {
     },
     "/publications": {
       "title": "Publications",
-      "description": "Scientific publications by Dr. Bernt Popp on human genetics, rare diseases, neurodevelopmental disorders, and clinical genomics. Over 100 peer-reviewed articles.",
+      "description": "Scientific publications by Dr.med. Bernt Popp on human genetics, rare diseases, neurodevelopmental disorders, and clinical genomics. Over 100 peer-reviewed articles.",
       "keywords": [
         "Bernt Popp publications",
         "genetics research",
@@ -45,7 +45,7 @@ export const seoConfig = {
     },
     "/cv": {
       "title": "Curriculum Vitae",
-      "description": "Professional CV of Dr. Bernt Popp - Education, clinical experience, research positions, and achievements in human genetics and rare disease diagnostics.",
+      "description": "Professional CV of Dr.med. Bernt Popp - Education, clinical experience, research positions, and achievements in human genetics and rare disease diagnostics.",
       "keywords": [
         "Bernt Popp CV",
         "geneticist resume",
@@ -57,7 +57,7 @@ export const seoConfig = {
     },
     "/about": {
       "title": "About",
-      "description": "Learn about Dr. Bernt Popp's journey in human genetics, from Romania to becoming a leading geneticist in Berlin. Personal interests and professional philosophy.",
+      "description": "Learn about Dr.med. Bernt Popp's journey in human genetics, from Romania to becoming a leading geneticist in Berlin. Personal interests and professional philosophy.",
       "keywords": [
         "about Bernt Popp",
         "geneticist background",

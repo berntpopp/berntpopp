@@ -9,7 +9,7 @@
     },
     "/publications": {
       "title": "Publications",
-      "description": "Scientific publications by Dr. Bernt Popp on human genetics, rare diseases, neurodevelopmental disorders, and clinical genomics. Over 100 peer-reviewed articles.",
+      "description": "Scientific publications by Dr.med. Bernt Popp on human genetics, rare diseases, neurodevelopmental disorders, and clinical genomics. Over 100 peer-reviewed articles.",
       "keywords": ["Bernt Popp publications", "genetics research", "rare disease papers", "clinical genomics articles"],
       "type": "CollectionPage",
       "breadcrumb": true,
@@ -17,14 +17,14 @@
     },
     "/cv": {
       "title": "Curriculum Vitae",
-      "description": "Professional CV of Dr. Bernt Popp - Education, clinical experience, research positions, and achievements in human genetics and rare disease diagnostics.",
+      "description": "Professional CV of Dr.med. Bernt Popp - Education, clinical experience, research positions, and achievements in human genetics and rare disease diagnostics.",
       "keywords": ["Bernt Popp CV", "geneticist resume", "medical genetics career", "Charité physician"],
       "type": "ProfilePage",
       "breadcrumb": true
     },
     "/about": {
       "title": "About",
-      "description": "Learn about Dr. Bernt Popp's journey in human genetics, from Romania to becoming a leading geneticist in Berlin. Personal interests and professional philosophy.",
+      "description": "Learn about Dr.med. Bernt Popp's journey in human genetics, from Romania to becoming a leading geneticist in Berlin. Personal interests and professional philosophy.",
       "keywords": ["about Bernt Popp", "geneticist background", "medical career story"],
       "type": "AboutPage",
       "breadcrumb": true
