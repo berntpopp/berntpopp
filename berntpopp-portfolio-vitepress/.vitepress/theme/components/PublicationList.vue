@@ -45,7 +45,7 @@
             <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst && getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="tag sole-author">Sole Author</span>
           </div>
         </div>
-        <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)"></p>
+        <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)" />
         <p class="details">
           <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
           <span v-if="pub.entryTags?.JOURNAL">{{ pub.entryTags.JOURNAL }}</span>

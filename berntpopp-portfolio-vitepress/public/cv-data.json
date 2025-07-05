@@ -1,0 +1,190 @@
+{
+  "personalInfo": {
+    "name": "Dr. med. Bernt Popp",
+    "title": "Senior Physician & Human Geneticist",
+    "email": "bernt.popp@charite.de",
+    "alternativeEmail": "bernt.popp.md@gmail.com",
+    "phone": "+49 162 1086590",
+    "website": "https://www.berntpopp.com",
+    "orcid": "0000-0002-3679-1081",
+    "location": "Berlin, Germany"
+  },
+  "professionalSummary": "Board-certified human geneticist with 12+ years of experience in genetic diagnostics, rare disease research, and bioinformatics. Currently focusing on neurodevelopmental disorders, rare tumors, and kidney diseases at BIH Charité Berlin.",
+  "experience": [
+    {
+      "title": "Senior Physician",
+      "organization": "Charité – Universitätsmedizin Berlin",
+      "department": "Translational Research Area - Research Group 'Hypertension and Molecular Biology of Endocrine Tumors'",
+      "period": "07/2022 - Present",
+      "location": "Berlin, Germany",
+      "details": [
+        "Improving genetic diagnostics for rare kidney disease",
+        "Developing molecular diagnostic pipelines"
+      ]
+    },
+    {
+      "title": "Senior Physician",
+      "organization": "LaborBerlin - Charité Vivantes GmbH",
+      "department": "Human Genetics",
+      "period": "07/2022 - Present",
+      "location": "Berlin, Germany",
+      "details": [
+        "Improving genetic diagnostics workflows"
+      ]
+    },
+    {
+      "title": "Senior Physician & Head of Genetics Outpatient Clinic",
+      "organization": "MVZ Dresden",
+      "period": "2021 - 2022",
+      "location": "Dresden, Germany",
+      "details": [
+        "Led genetics outpatient clinic",
+        "Modernized genetic diagnostics workflow for rare diseases"
+      ]
+    },
+    {
+      "title": "Specialist in Human Genetics",
+      "organization": "University of Leipzig Medical Center",
+      "department": "Institute of Human Genetics",
+      "period": "2019 - 2021",
+      "location": "Leipzig, Germany",
+      "details": [
+        "Deputy Team Leader Genetic Diagnostics - Clinical Genomics",
+        "Supervised molecular genetic diagnostics team"
+      ]
+    },
+    {
+      "title": "DFG Rotation Position",
+      "organization": "University Hospital Leipzig",
+      "department": "Institute of Human Genetics",
+      "period": "2018 - 2019",
+      "location": "Leipzig, Germany",
+      "details": [
+        "Project: 'Exome Pool-Seq and systems biology approach to identify genes in neurodevelopmental disorders'",
+        "Developed bioinformatic pipelines for variant analysis"
+      ]
+    },
+    {
+      "title": "Resident / Scientific Assistant",
+      "organization": "University Hospital Erlangen",
+      "department": "Institute of Human Genetics",
+      "period": "2013 - 2018",
+      "location": "Erlangen, Germany",
+      "details": [
+        "Initial residency in human genetics",
+        "Established bioinformatics workflows"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Board Certification in Human Genetics",
+      "institution": "Ärztekammer Sachsen",
+      "period": "2019",
+      "location": "Germany"
+    },
+    {
+      "degree": "Dr. med. (summa cum laude)",
+      "institution": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+      "department": "Institute of Human Genetics",
+      "period": "2013 - 2015",
+      "location": "Erlangen, Germany",
+      "thesis": "De novo missense mutations in the NAA10 gene cause severe non-syndromic developmental delay in males and females"
+    },
+    {
+      "degree": "Medical License (Approbation)",
+      "institution": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+      "period": "2012",
+      "location": "Erlangen, Germany"
+    },
+    {
+      "degree": "Medical Studies",
+      "institution": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+      "period": "2006 - 2012",
+      "location": "Erlangen, Germany"
+    }
+  ],
+  "skills": {
+    "clinical": [
+      "Genetic counseling and diagnostics",
+      "Rare disease expertise (neurodevelopmental, renal, cancer)",
+      "Clinical variant interpretation",
+      "Dysmorphology assessment"
+    ],
+    "technical": [
+      "Next-generation sequencing (Exome, Genome, Panel)",
+      "Bioinformatics pipeline development",
+      "Statistical genetics",
+      "Database development and management"
+    ],
+    "programming": [
+      "R (advanced)",
+      "Python (advanced)",
+      "SQL (advanced)",
+      "Bash/Shell scripting (advanced)",
+      "JavaScript/HTML/CSS (advanced)"
+    ],
+    "tools": [
+      "Docker & containerization",
+      "Git/GitHub",
+      "Nextflow & Snakemake",
+      "Linux system administration",
+      "Cloud computing (AWS, Google Cloud)"
+    ]
+  },
+  "awards": [
+    {
+      "title": "GfH-Promotionspreis",
+      "organization": "German Society of Human Genetics (GfH)",
+      "year": "2017",
+      "description": "Best doctoral thesis award in human genetics"
+    },
+    {
+      "title": "SYNLAB Award",
+      "organization": "EuroDysmorpho Conference",
+      "year": "2019",
+      "description": "Recognition for outstanding research in dysmorphology"
+    },
+    {
+      "title": "DFG Research Grant",
+      "organization": "German Research Foundation",
+      "year": "2018",
+      "projectNumber": "422575385",
+      "description": "Principal investigator for neurodevelopmental disorders research"
+    }
+  ],
+  "projects": [
+    {
+      "name": "SysNDD",
+      "role": "Founder & Lead Developer",
+      "description": "Comprehensive platform for analyzing gene-disease relationships in neurodevelopmental disorders",
+      "url": "https://github.com/berntpopp/sysndd"
+    },
+    {
+      "name": "HNF1B-db",
+      "role": "Lead Developer",
+      "description": "Specialized database for HNF1B variant annotations and clinical interpretation",
+      "url": "https://github.com/berntpopp/HNF1B-db"
+    },
+    {
+      "name": "AutoCaSc",
+      "role": "Contributor",
+      "description": "Automated variant curation system for clinical genetics",
+      "url": "https://github.com/JohannKaspar/AutoCaSc"
+    },
+    {
+      "name": "Kidney-Genetics",
+      "role": "Core Contributor",
+      "description": "Comprehensive resource for genetic kidney disease research",
+      "url": "https://halbritter-lab.github.io/kidney-genetics/"
+    }
+  ],
+  "languages": [
+    { "language": "German", "level": "Native" },
+    { "language": "English", "level": "Fluent" },
+    { "language": "Romanian", "level": "Basic" }
+  ],
+  "memberships": [
+    "German Society of Human Genetics (GfH)"
+  ]
+}
