@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-05T15:02:33.065Z",
+  "timestamp": "2025-07-05T15:27:15.178Z",
   "checks": {
     "sitemap": true,
     "robots": true,
@@ -39,6 +39,13 @@
       "hasTitle": true,
       "hasDescription": true,
       "descriptionLength": 47,
+      "hasKeywords": true,
+      "hasBreadcrumb": true
+    },
+    "/photography": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 148,
       "hasKeywords": true,
       "hasBreadcrumb": true
     }
