@@ -20,26 +20,28 @@
         :key="index" 
         class="publication-item"
       >
-        <h3 class="title">{{ pub.title }}</h3>
-        <p class="authors">{{ formatAuthors(pub.author) }}</p>
+        <h3 class="title">{{ pub.TITLE || pub.title || 'No title' }}</h3>
+        <p class="authors">{{ formatAuthors(pub.AUTHOR || pub.author) }}</p>
         <p class="details">
-          <span v-if="pub.journal">{{ pub.journal }}</span>
-          <span v-if="pub.year"> ({{ pub.year }})</span>
-          <span v-if="pub.volume">, {{ pub.volume }}</span>
-          <span v-if="pub.pages">: {{ pub.pages }}</span>
+          <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
+          <span v-if="pub.JOURNAL || pub.journal">{{ pub.JOURNAL || pub.journal }}</span>
+          <span v-if="pub.YEAR || pub.year"> ({{ pub.YEAR || pub.year }})</span>
+          <span v-if="pub.VOLUME || pub.volume">, {{ pub.VOLUME || pub.volume }}</span>
+          <span v-if="pub.NUMBER || pub.number">({{ pub.NUMBER || pub.number }})</span>
+          <span v-if="pub.PAGES || pub.pages">: {{ pub.PAGES || pub.pages }}</span>
         </p>
         <div class="links">
           <a
-            v-if="pub.doi"
-            :href="`https://doi.org/${pub.doi}`"
+            v-if="pub.DOI || pub.doi"
+            :href="`https://doi.org/${pub.DOI || pub.doi}`"
             target="_blank"
             class="link"
           >
             DOI
           </a>
           <a
-            v-if="pub.url"
-            :href="pub.url"
+            v-if="pub.URL || pub.url"
+            :href="pub.URL || pub.url"
             target="_blank"
             class="link"
           >
@@ -66,10 +68,10 @@ const filteredPublications = computed(() => {
   const query = searchQuery.value.toLowerCase()
   return publications.value.filter(pub => {
     return (
-      pub.title?.toLowerCase().includes(query) ||
-      pub.author?.toLowerCase().includes(query) ||
-      pub.journal?.toLowerCase().includes(query) ||
-      pub.year?.toString().includes(query)
+      (pub.TITLE || pub.title || '')?.toLowerCase().includes(query) ||
+      (pub.AUTHOR || pub.author || '')?.toLowerCase().includes(query) ||
+      (pub.JOURNAL || pub.journal || '')?.toLowerCase().includes(query) ||
+      (pub.YEAR || pub.year || '')?.toString().includes(query)
     )
   })
 })
@@ -95,8 +97,8 @@ onMounted(async () => {
     
     // Sort by year (descending)
     publications.value = parsed.sort((a, b) => {
-      const yearA = parseInt(a.year) || 0
-      const yearB = parseInt(b.year) || 0
+      const yearA = parseInt(a.YEAR || a.year) || 0
+      const yearB = parseInt(b.YEAR || b.year) || 0
       return yearB - yearA
     })
   } catch (e) {
@@ -187,6 +189,17 @@ onMounted(async () => {
   margin: 0 0 0.75rem 0;
   color: var(--vp-c-text-3);
   font-size: 0.875rem;
+}
+
+.entry-type {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand);
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin-right: 0.5rem;
 }
 
 .links {
