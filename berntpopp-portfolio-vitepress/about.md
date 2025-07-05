@@ -36,6 +36,11 @@ If you're curious about what makes me tick beyond the double helix:
 - **Favorite quote**: "Nothing in biology makes sense except in the light of evolution" – Theodosius Dobzhansky
 - **Favorite diving spot**: Baja california is so full of life, you have the chance to see everything every day again
 
+## 🐰 Bubu and Banni – Companions in Stillness
+My two house rabbits, Bubu and Banni, are silent teachers of presence. Living with them is like sharing a space with two miniature, hairy monks: calm, curious, and never hurried.
+Their simple rituals – flopping beside me, grooming each other, and munching herbs in the sun — teach me to slow down, breathe, and enjoy the moment. When research becomes overwhelming, they offer wordless friendship and a sense of security that no algorithm can replicate.
+They may not publish papers, but they contribute to the cause by proving that life's meaning stems from connection rather than discovery.
+
 ## 💬 Let's Connect
 
 I believe the best science happens in conversation. I believe that the best science happens during conversation. I'd be delighted to hear from you if you're a fellow researcher, a patient advocate, a diver, or simply interested in genetics. Science is a team sport, and the most exciting discoveries often come from unexpected collaborations.
