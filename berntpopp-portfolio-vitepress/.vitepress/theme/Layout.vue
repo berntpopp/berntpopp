@@ -10,7 +10,7 @@ const { frontmatter } = useData()
 
 <template>
   <Layout>
-    <template #layout-top v-if="frontmatter.home">
+    <template v-if="frontmatter.home" #layout-top>
       <Hero />
     </template>
   </Layout>

@@ -29,10 +29,20 @@
           <span v-if="pub.pages">: {{ pub.pages }}</span>
         </p>
         <div class="links">
-          <a v-if="pub.doi" :href="`https://doi.org/${pub.doi}`" target="_blank" class="link">
+          <a
+            v-if="pub.doi"
+            :href="`https://doi.org/${pub.doi}`"
+            target="_blank"
+            class="link"
+          >
             DOI
           </a>
-          <a v-if="pub.url" :href="pub.url" target="_blank" class="link">
+          <a
+            v-if="pub.url"
+            :href="pub.url"
+            target="_blank"
+            class="link"
+          >
             URL
           </a>
         </div>

@@ -1,3 +1,7 @@
 # claude fieles
 .claude/
 CLAUDE.md
+
+# Linting
+.eslintcache
+*.markdownlint.json
