@@ -26,7 +26,7 @@ env:
 jobs:
   rmarkdown:
         name: Render-Site
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         defaults:
             run:
               working-directory: ./documentation
@@ -59,7 +59,7 @@ jobs:
                 path: ./documentation/build
                 if-no-files-found: error
   checkout-and-deploy:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         needs: rmarkdown
         steps:
             - name: Checkout
