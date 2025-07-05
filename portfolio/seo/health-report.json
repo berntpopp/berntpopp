@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-05T14:29:31.245Z",
+  "timestamp": "2025-07-05T14:48:04.477Z",
   "checks": {
     "sitemap": true,
     "robots": true,
@@ -17,21 +17,21 @@
     "/publications": {
       "hasTitle": true,
       "hasDescription": true,
-      "descriptionLength": 161,
+      "descriptionLength": 165,
       "hasKeywords": true,
       "hasBreadcrumb": true
     },
     "/cv": {
       "hasTitle": true,
       "hasDescription": true,
-      "descriptionLength": 152,
+      "descriptionLength": 156,
       "hasKeywords": true,
       "hasBreadcrumb": true
     },
     "/about": {
       "hasTitle": true,
       "hasDescription": true,
-      "descriptionLength": 160,
+      "descriptionLength": 164,
       "hasKeywords": true,
       "hasBreadcrumb": true
     },
