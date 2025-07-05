@@ -20,11 +20,26 @@
 
 <script setup>
 defineProps({
-  title: String,
-  organization: String,
-  department: String,
-  period: String,
-  location: String,
+  title: {
+    type: String,
+    default: ''
+  },
+  organization: {
+    type: String,
+    default: ''
+  },
+  department: {
+    type: String,
+    default: ''
+  },
+  period: {
+    type: String,
+    default: ''
+  },
+  location: {
+    type: String,
+    default: ''
+  },
   details: {
     type: [String, Array],
     default: null

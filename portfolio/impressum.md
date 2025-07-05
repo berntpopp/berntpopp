@@ -3,17 +3,15 @@ title: Impressum / Legal Notice
 description: Legal information and imprint for berntpopp.com
 ---
 
-# Impressum / Legal Notice
-
 ## Deutsch
 
 ### Über diese Webseite
 
-**Impressum**
+#### Impressum
 
 Gemäß § 28 BDSG widerspreche ich jeder kommerziellen Verwendung und Weitergabe der Daten.
 
-**Verantwortungsbereich:** Das Impressum gilt nur für die Internetpräsenz unter der Adresse: http://berntpopp.com/
+**Verantwortungsbereich:** Das Impressum gilt nur für die Internetpräsenz unter der Adresse: <http://berntpopp.com/>
 
 **Abgrenzung:** Die Web-Präsenz ist Teil des WWW und dementsprechend mit fremden, sich jederzeit wandeln könnenden Web-Sites verknüpft, die folglich auch nicht diesem Verantwortungsbereich unterliegen und für die nachfolgende Informationen nicht gelten. Dass die Links weder gegen Sitten noch Gesetze verstoßen, wurde genau ein Mal geprüft (bevor sie hier aufgenommen wurden).
 
@@ -47,11 +45,11 @@ Lt. Urteil vom 12. Mai 1998 - 312 O 85/98 - "Haftung für Links" hat das Landger
 
 ### About this Website
 
-**Legal Notice**
+#### Legal Notice
 
 According to § 28 BDSG (German Federal Data Protection Act), I object to any commercial use and distribution of the data.
 
-**Scope of Responsibility:** This legal notice applies only to the internet presence at the address: http://berntpopp.com/
+**Scope of Responsibility:** This legal notice applies only to the internet presence at the address: <http://berntpopp.com/>
 
 **Delimitation:** This web presence is part of the WWW and accordingly linked to external, constantly changing websites, which consequently are not subject to this area of responsibility and for which the following information does not apply. The links have been checked exactly once (before being included here) to ensure they do not violate customs or laws.
 

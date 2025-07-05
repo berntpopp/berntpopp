@@ -45,6 +45,7 @@
             <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst && getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="tag sole-author">Sole Author</span>
           </div>
         </div>
+        <!-- eslint-disable-next-line vue/no-v-html -->
         <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)" />
         <p class="details">
           <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>

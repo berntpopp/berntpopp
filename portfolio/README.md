@@ -37,7 +37,7 @@ git clone https://github.com/berntpopp/berntpopp.git
 cd berntpopp/portfolio
 ```
 
-2. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
@@ -75,7 +75,7 @@ Preview the production build locally at `http://localhost:4173`.
 
 ## 📁 Project Structure
 
-```
+```text
 portfolio/
 ├── .vitepress/
 │   ├── config.mjs          # VitePress configuration
@@ -296,7 +296,7 @@ This project is private and proprietary. All rights reserved.
 
 ## 👤 Author
 
-**Dr. Bernt Popp**
+### Dr. Bernt Popp
 
 - Website: [berntpopp.com](https://berntpopp.com)
 - Email: <bernt.popp@gmail.com>

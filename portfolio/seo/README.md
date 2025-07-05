@@ -4,7 +4,7 @@ This directory contains the automated SEO configuration system for Dr.med. Bernt
 
 ## 📂 Directory Structure
 
-```
+```text
 seo/
 ├── config.json          # Main SEO configuration
 ├── pages.json          # Page-specific SEO settings
@@ -21,7 +21,9 @@ seo/
 ## 🔧 Configuration Files
 
 ### `config.json`
+
 Main SEO configuration containing:
+
 - Site metadata (URL, title, description)
 - Person information (name, job, contact, etc.)
 - Organization details (medical specialty, services)
@@ -31,7 +33,9 @@ Main SEO configuration containing:
 - Academic SEO settings
 
 ### `pages.json`
+
 Page-specific SEO configuration:
+
 - Custom titles and descriptions per page
 - Page-specific keywords
 - Schema.org type mappings
@@ -41,12 +45,15 @@ Page-specific SEO configuration:
 ## 🤖 Automation
 
 ### SEO Generation Script
+
 Run the SEO generation:
+
 ```bash
 npm run seo:generate
 ```
 
 This will:
+
 1. Generate `sitemap.xml` in the public directory
 2. Generate `robots.txt` in the public directory
 3. Process structured data templates
@@ -54,7 +61,9 @@ This will:
 5. Generate SEO health report
 
 ### GitHub Actions
+
 The system automatically updates SEO files when:
+
 - Markdown content changes
 - SEO configuration is updated
 - Bibliography file is modified
@@ -62,29 +71,34 @@ The system automatically updates SEO files when:
 
 ## 📝 Making Changes
 
-### To update site-wide SEO:
+### To update site-wide SEO
+
 1. Edit `seo/config.json`
 2. Run `npm run seo:generate`
 3. Commit changes
 
-### To update page-specific SEO:
+### To update page-specific SEO
+
 1. Edit `seo/pages.json`
 2. Run `npm run seo:generate`
 3. Commit changes
 
-### To add a new page:
+### To add a new page
+
 1. Add entry to `seo/pages.json`
 2. Run `npm run seo:generate`
 3. The page will be included in sitemap automatically
 
-### To modify structured data:
+### To modify structured data
+
 1. Edit templates in `seo/schemas/`
 2. Templates use `{{variable}}` syntax
 3. Run `npm run seo:generate`
 
 ## 🔍 SEO Features
 
-### Implemented:
+### Implemented
+
 - ✅ Dynamic sitemap.xml generation
 - ✅ Configurable robots.txt
 - ✅ JSON-LD structured data (Person, WebSite, Physician)
@@ -97,7 +111,8 @@ The system automatically updates SEO files when:
 - ✅ Breadcrumb navigation
 - ✅ SEO health reporting
 
-### VitePress Integration:
+### VitePress Integration
+
 - Dynamic meta tags via `transformPageData`
 - Client-side SEO enhancement via `useSeo` hook
 - Structured data injection
@@ -106,11 +121,13 @@ The system automatically updates SEO files when:
 ## 📊 Health Report
 
 Check SEO health:
+
 ```bash
 npm run seo:check
 ```
 
 The health report includes:
+
 - File generation status
 - Page coverage
 - Meta tag completeness
