@@ -7,8 +7,25 @@
         placeholder="Search publications..." 
         class="search-input"
       >
+      <div class="filter-toggles">
+        <label>
+          <input 
+            v-model="showOnlyFirstLast" 
+            type="checkbox"
+          >
+          Show only first/last author publications
+        </label>
+        <label>
+          <input 
+            v-model="showAllAuthors" 
+            type="checkbox"
+          >
+          Show all authors
+        </label>
+      </div>
       <div class="stats">
         Showing {{ filteredPublications.length }} of {{ publications.length }} publications
+        <span v-if="showOnlyFirstLast" class="filter-active">(filtered)</span>
       </div>
     </div>
     
@@ -20,8 +37,15 @@
         :key="index" 
         class="publication-item"
       >
-        <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
-        <p class="authors">{{ formatAuthors(pub.entryTags?.AUTHOR) }}</p>
+        <div class="title-row">
+          <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
+          <div class="authorship-tags">
+            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="tag first-author">First Author</span>
+            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast && !getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="tag last-author">Last Author</span>
+            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst && getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="tag sole-author">Sole Author</span>
+          </div>
+        </div>
+        <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)"></p>
         <p class="details">
           <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
           <span v-if="pub.entryTags?.JOURNAL">{{ pub.entryTags.JOURNAL }}</span>
@@ -61,20 +85,35 @@ const publications = ref([])
 const loading = ref(true)
 const error = ref(null)
 const searchQuery = ref('')
+const showOnlyFirstLast = ref(false)
+const showAllAuthors = ref(false)
 
 const filteredPublications = computed(() => {
-  if (!searchQuery.value) return publications.value
+  let filtered = publications.value
   
-  const query = searchQuery.value.toLowerCase()
-  return publications.value.filter(pub => {
-    return (
-      pub.entryTags?.TITLE?.toLowerCase().includes(query) ||
-      pub.entryTags?.AUTHOR?.toLowerCase().includes(query) ||
-      pub.entryTags?.JOURNAL?.toLowerCase().includes(query) ||
-      pub.entryTags?.YEAR?.toString().includes(query) ||
-      pub.citationKey?.toLowerCase().includes(query)
-    )
-  })
+  // Filter by first/last author if enabled
+  if (showOnlyFirstLast.value) {
+    filtered = filtered.filter(pub => {
+      const { isFirst, isLast } = getAuthorshipPosition(pub.entryTags?.AUTHOR)
+      return isFirst || isLast
+    })
+  }
+  
+  // Apply search filter
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase()
+    filtered = filtered.filter(pub => {
+      return (
+        pub.entryTags?.TITLE?.toLowerCase().includes(query) ||
+        pub.entryTags?.AUTHOR?.toLowerCase().includes(query) ||
+        pub.entryTags?.JOURNAL?.toLowerCase().includes(query) ||
+        pub.entryTags?.YEAR?.toString().includes(query) ||
+        pub.citationKey?.toLowerCase().includes(query)
+      )
+    })
+  }
+  
+  return filtered
 })
 
 function formatTitle(title) {
@@ -83,17 +122,57 @@ function formatTitle(title) {
   return title.replace(/[{}]/g, '')
 }
 
-function formatAuthors(authors) {
+function getAuthorshipPosition(authors) {
+  if (!authors) return { isFirst: false, isLast: false }
+  
+  // Remove curly braces and split by 'and'
+  const authorList = authors.replace(/[{}]/g, '').split(' and ').map(a => a.trim())
+  
+  // Check for Bernt Popp in various formats
+  const targetNames = ['Popp, Bernt', 'Bernt Popp', 'Popp, B.', 'B. Popp', 'Popp, B', 'B Popp']
+  
+  const firstAuthor = authorList[0]
+  const lastAuthor = authorList[authorList.length - 1]
+  
+  const isFirst = targetNames.some(name => firstAuthor.includes(name))
+  const isLast = targetNames.some(name => lastAuthor.includes(name))
+  
+  return { isFirst, isLast }
+}
+
+function highlightTargetAuthor(author) {
+  // Check for Bernt Popp in various formats and wrap with highlighting span
+  const targetPatterns = [
+    /Popp,\s*Bernt/g,
+    /Bernt\s+Popp/g,
+    /Popp,\s*B\.?/g,
+    /B\.?\s+Popp/g
+  ]
+  
+  let highlighted = author
+  targetPatterns.forEach(pattern => {
+    highlighted = highlighted.replace(pattern, match => `<span class="author-highlight">${match}</span>`)
+  })
+  
+  return highlighted
+}
+
+function formatAuthors(authors, showAll = false) {
   if (!authors) return ''
   // Remove curly braces and split by 'and'
-  const authorList = authors.replace(/[{}]/g, '').split(' and ')
+  const authorList = authors.replace(/[{}]/g, '').split(' and ').map(a => a.trim())
   
-  // Format: show all authors for short lists, otherwise show first 3 + et al.
-  if (authorList.length <= 4) {
-    return authorList.join(', ')
+  let formattedAuthors
+  
+  if (showAll || authorList.length <= 4) {
+    // Show all authors
+    formattedAuthors = authorList.map(highlightTargetAuthor).join(', ')
   } else {
-    return authorList.slice(0, 3).join(', ') + ', et al.'
+    // Show first 3 + et al.
+    formattedAuthors = authorList.slice(0, 3).map(highlightTargetAuthor).join(', ') + ', et al.'
   }
+  
+  return formattedAuthors
 }
 
 onMounted(async () => {
@@ -135,6 +214,26 @@ onMounted(async () => {
   margin-bottom: 2rem;
 }
 
+.filter-toggles {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-toggles label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+}
+
+.filter-toggles input[type="checkbox"] {
+  cursor: pointer;
+}
+
 .search-input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -155,6 +254,49 @@ onMounted(async () => {
   margin-top: 0.5rem;
   font-size: 0.875rem;
   color: var(--vp-c-text-2);
+}
+
+.filter-active {
+  color: var(--vp-c-brand);
+  font-weight: 500;
+}
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.authorship-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tag.first-author {
+  background: var(--vp-c-success-soft);
+  color: var(--vp-c-success);
+}
+
+.tag.last-author {
+  background: var(--vp-c-info-soft);
+  color: var(--vp-c-info);
+}
+
+.tag.sole-author {
+  background: var(--vp-c-warning-soft);
+  color: var(--vp-c-warning);
 }
 
 .loading, .error {
@@ -189,8 +331,9 @@ onMounted(async () => {
 .title {
   font-size: 1.125rem;
   font-weight: 600;
-  margin: 0 0 0.5rem 0;
+  margin: 0;
   color: var(--vp-c-text-1);
+  flex: 1;
 }
 
 .authors {
@@ -232,5 +375,30 @@ onMounted(async () => {
 .link:hover {
   color: var(--vp-c-brand-dark);
   text-decoration: underline;
+}
+
+:deep(.author-highlight) {
+  text-decoration: underline;
+  text-decoration-color: var(--vp-c-brand);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  color: var(--vp-c-brand);
+}
+
+@media (max-width: 768px) {
+  .title-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .authorship-tags {
+    margin-bottom: 0.5rem;
+  }
+  
+  .tag {
+    font-size: 0.625rem;
+    padding: 0.2rem 0.5rem;
+  }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="hero-wrapper">
     <div class="hero-container">
       <div class="hero-content">
-        <p class="greeting">Hi, I'm Dr. med. Bernt Popp!</p>
+        <p class="greeting">Hi, I'm Bernt Popp!</p>
         <h1 class="title">
           GENETICIST &<br><span class="highlight">RESEARCHER</span>
         </h1>
