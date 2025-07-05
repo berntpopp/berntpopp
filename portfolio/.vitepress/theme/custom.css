@@ -110,3 +110,17 @@ main:has(h1[id="about-me"]) .vp-doc > p:last-child em {
   font-style: normal;
   font-weight: 500;
 }
+
+/* Photography page specific styles */
+.VPDoc:has(.photography-gallery) .content {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.VPDoc:has(.photography-gallery) .content-container {
+  max-width: 100% !important;
+}
+
+.VPDoc:has(.photography-gallery) .vp-doc {
+  padding: 0 !important;
+}

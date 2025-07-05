@@ -101,17 +101,13 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Publications', link: '/publications' },
       { text: 'CV', link: '/cv' },
+      { text: 'Photography', link: '/photography' },
       { text: 'About', link: '/about' },
       { text: 'Impressum', link: '/impressum' }
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/berntpopp' },
-    ],
-    
-    // Add search if needed
-    search: {
-      provider: 'local'
-    }
+    ]
   },
   
   // Build-time data

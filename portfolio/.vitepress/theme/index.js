@@ -4,6 +4,7 @@ import Layout from './Layout.vue' // Import your custom layout
 import PublicationList from './components/PublicationList.vue'
 import CVViewer from './components/CVViewer.vue'
 import CVEntry from './components/CVEntry.vue'
+import Photography from './components/Photography.vue'
 import './custom.css'
 
 export default {
@@ -14,5 +15,6 @@ export default {
     app.component('PublicationList', PublicationList)
     app.component('CVViewer', CVViewer)
     app.component('CVEntry', CVEntry)
+    app.component('Photography', Photography)
   }
 }

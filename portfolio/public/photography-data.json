@@ -1,0 +1,53 @@
+{
+  "gallery": {
+    "title": "Underwater Photography",
+    "description": "Diving beneath the surface to capture the majesty of marine life – from graceful rays dancing in formation to the gentle giants of the deep.",
+    "photos": [
+      {
+        "filename": "DSC00985-topaz-denoise-sharpen.jpg",
+        "title": "School of Mobula Rays",
+        "alt": "Massive aggregation of mobula rays swimming in formation underwater",
+        "description": "Dozens of mobula rays moving in perfect synchrony through murky blue waters. Captured from the side while freediving, their white undersides create a mesmerizing pattern against the darker sea.",
+        "location": "Isla ceralvo, Gulf of California",
+        "category": "rays"
+      },
+      {
+        "filename": "DSC02133-topaz-rawdenoise-sharpen-denoise.jpg",
+        "title": "Humpback Whale in Sunlight",
+        "alt": "Humpback whale calf swimming near surface with sunlight filtering through water",
+        "description": "A majestic humpback whale glides through crystal-clear waters, sunbeams dancing across its textured skin. The whale's distinctive long pectoral fins stretch gracefully as it moves through its liquid realm.",
+        "location": "Moorea, French Polynesia",
+        "category": "whales"
+      },
+      {
+        "filename": "DSC02467-topaz-sharpen-denoise.jpg",
+        "title": "Mother and Calf Silhouette",
+        "alt": "Humpback whale mother and calf silhouetted against surface light",
+        "description": "An intimate moment between a humpback mother and her male calf swimming down towards her waiting below.",
+        "location": "Moorea, French Polynesia",
+        "category": "whales"
+      },
+      {
+        "filename": "DSC02636-topaz-rawdenoise-sharpen-denoise.jpg",
+        "title": "Humpback's Graceful Dive",
+        "alt": "Humpback whale tail fluke raised above water in deep blue ocean",
+        "description": "The iconic moment of a humpback whale sleeping - its magnificent tail fluke captured while freediving. The distinctive white markings on the underside of the flukes are like fingerprints, unique to each individual whale.",
+        "location": "Moorea, French Polynesia",
+        "category": "whales"
+      },
+      {
+        "filename": "DSC03656-topaz-sharpen.jpg",
+        "title": "Sperm Whale before diving",
+        "alt": "Sperm whale diving into dark waters in black and white",
+        "description": "A sperm whale shortly before its dive into the mysterious depths, its massive form barely illuminated by filtered sunlight. This gentle giant, capable of diving over 2,000 meters, starts its journey through the abyss.",
+        "location": "Dominica, Caribbean",
+        "category": "whales"
+      }
+    ],
+    "categories": {
+      "all": "All Photos",
+      "whales": "Whales",
+      "rays": "Rays"
+    }
+  }
+}

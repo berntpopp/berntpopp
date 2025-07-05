@@ -36,6 +36,13 @@
       "type": "WebPage",
       "breadcrumb": true,
       "noindex": false
+    },
+    "/photography": {
+      "title": "Photography",
+      "description": "Photography portfolio by Dr. Bernt Popp - Capturing nature, architecture, and moments through the lens. Visual storytelling and artistic expression.",
+      "keywords": ["Bernt Popp photography", "nature photography", "visual portfolio", "artistic photography", "Berlin photographer"],
+      "type": "CollectionPage",
+      "breadcrumb": true
     }
   }
 }
