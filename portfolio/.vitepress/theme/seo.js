@@ -1,5 +1,5 @@
 // Auto-generated SEO configuration
-// Generated on: 2025-07-05T15:02:33.065Z
+// Generated on: 2025-07-05T15:23:39.539Z
 
 export const seoConfig = {
   "site": {
@@ -77,6 +77,19 @@ export const seoConfig = {
       "type": "WebPage",
       "breadcrumb": true,
       "noindex": false
+    },
+    "/photography": {
+      "title": "Photography",
+      "description": "Photography portfolio by Dr. Bernt Popp - Capturing nature, architecture, and moments through the lens. Visual storytelling and artistic expression.",
+      "keywords": [
+        "Bernt Popp photography",
+        "nature photography",
+        "visual portfolio",
+        "artistic photography",
+        "Berlin photographer"
+      ],
+      "type": "CollectionPage",
+      "breadcrumb": true
     }
   },
   "structuredData": {
@@ -277,6 +290,26 @@ export const seoConfig = {
               "position": 2,
               "name": "Impressum / Legal Notice",
               "item": "https://berntpopp.com/impressum"
+            }
+          ]
+        }
+      },
+      "/photography": {
+        "breadcrumb": {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://berntpopp.com"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Photography",
+              "item": "https://berntpopp.com/photography"
             }
           ]
         }
