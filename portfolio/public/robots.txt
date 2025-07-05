@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+User-agent: Googlebot-Scholar
+Allow: /publications
+Allow: /cv
+
+Sitemap: https://berntpopp.com/sitemap.xml

@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "@id": "{{siteUrl}}/#physician",
+  "name": "{{person.name}}",
+  "medicalSpecialty": "{{organization.medicalSpecialty}}",
+  "availableService": "{{organization.availableServices}}",
+  "areaServed": {
+    "@type": "{{organization.areaServed.type}}",
+    "name": "{{organization.areaServed.name}}"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{person.address.streetAddress}}",
+    "addressLocality": "{{person.address.addressLocality}}",
+    "postalCode": "{{person.address.postalCode}}",
+    "addressCountry": "{{person.address.addressCountry}}"
+  },
+  "telephone": "{{person.telephone}}",
+  "email": "{{person.email}}"
+}

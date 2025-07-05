@@ -1,0 +1,160 @@
+{
+  "site": {
+    "url": "https://berntpopp.com",
+    "title": "Dr. Bernt Popp",
+    "titleTemplate": "%s | Dr. Bernt Popp - Human Geneticist",
+    "description": "Dr. med. Bernt Popp is a board-certified geneticist at Charité Berlin specializing in rare diseases, neurodevelopmental disorders, and clinical genomics.",
+    "author": "Dr. med. Bernt Popp",
+    "locale": "en_US",
+    "alternateLocales": ["de_DE"],
+    "type": "website",
+    "image": "/b2_round.png",
+    "twitterHandle": "@berntpopp"
+  },
+  "person": {
+    "name": "Dr. med. Bernt Popp",
+    "alternateName": "Bernt Popp",
+    "honorificPrefix": "Dr. med.",
+    "jobTitle": "Senior Physician & Human Geneticist",
+    "description": "Board-certified geneticist specializing in rare diseases, neurodevelopmental disorders, and clinical genomics",
+    "image": "/b2_round.png",
+    "email": "bernt.popp.md@gmail.com",
+    "telephone": "+49-162-1086590",
+    "address": {
+      "streetAddress": "Chaußeestr. 58D",
+      "addressLocality": "Berlin",
+      "postalCode": "10115",
+      "addressCountry": "DE"
+    },
+    "worksFor": {
+      "name": "BIH Charité – Universitätsmedizin Berlin",
+      "url": "https://www.charite.de",
+      "type": "MedicalOrganization"
+    },
+    "alumniOf": [
+      {
+        "name": "Friedrich-Alexander-Universität Erlangen-Nürnberg",
+        "type": "CollegeOrUniversity"
+      }
+    ],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=Uvhu3t0AAAAJ",
+      "https://orcid.org/0000-0002-3679-1081",
+      "https://github.com/berntpopp",
+      "https://www.linkedin.com/in/berntpopp/"
+    ],
+    "knowsAbout": [
+      "Human Genetics",
+      "Rare Diseases",
+      "Neurodevelopmental Disorders",
+      "Clinical Genomics",
+      "Bioinformatics",
+      "High-throughput Sequencing",
+      "Kidney Genetics",
+      "Clinical Exome Sequencing",
+      "Variant Interpretation"
+    ],
+    "credentials": [
+      {
+        "name": "Board Certification in Human Genetics",
+        "category": "Medical Specialty"
+      },
+      {
+        "name": "Dr. med.",
+        "category": "Doctoral Degree",
+        "year": "2015"
+      }
+    ],
+    "awards": [
+      {
+        "name": "GfH-Promotionspreis",
+        "year": "2017",
+        "organization": "German Society of Human Genetics"
+      },
+      {
+        "name": "SYNLAB Award",
+        "year": "2019",
+        "event": "EuroDysmorpho"
+      }
+    ]
+  },
+  "organization": {
+    "medicalSpecialty": "Medical Genetics",
+    "availableServices": [
+      "Genetic Counseling",
+      "Clinical Genetics Consultation",
+      "Rare Disease Diagnostics"
+    ],
+    "areaServed": {
+      "name": "Berlin",
+      "type": "City"
+    }
+  },
+  "sitemap": {
+    "enabled": true,
+    "changefreq": {
+      "home": "weekly",
+      "publications": "monthly",
+      "cv": "monthly",
+      "about": "monthly",
+      "impressum": "yearly"
+    },
+    "priority": {
+      "home": 1.0,
+      "publications": 0.9,
+      "cv": 0.9,
+      "about": 0.8,
+      "impressum": 0.3
+    }
+  },
+  "robots": {
+    "rules": [
+      {
+        "userAgent": "*",
+        "allow": ["/"],
+        "disallow": []
+      },
+      {
+        "userAgent": "Googlebot-Scholar",
+        "allow": ["/publications", "/cv"]
+      }
+    ],
+    "sitemap": true,
+    "crawlDelay": 0
+  },
+  "keywords": {
+    "primary": [
+      "Bernt Popp",
+      "Dr. Bernt Popp",
+      "human geneticist",
+      "medical geneticist"
+    ],
+    "secondary": [
+      "rare diseases specialist",
+      "Charité Berlin geneticist",
+      "clinical genomics expert",
+      "neurodevelopmental disorders",
+      "kidney genetics"
+    ],
+    "research": [
+      "SysNDD",
+      "HNF1B database",
+      "AutoCaSc",
+      "kidney genetics",
+      "variant curation"
+    ],
+    "local": [
+      "Genetiker Berlin",
+      "Humangenetiker Berlin",
+      "geneticist Berlin",
+      "rare diseases Berlin"
+    ]
+  },
+  "academicSEO": {
+    "googleScholar": {
+      "enabled": true,
+      "authorEmail": "bernt.popp.md@gmail.com",
+      "institution": "BIH Charité – Universitätsmedizin Berlin"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "pages": {
+    "/": {
+      "title": "Home",
+      "description": "Dr. med. Bernt Popp - Senior Physician and board-certified human geneticist at Charité Berlin. Expert in rare diseases, clinical genomics, and neurodevelopmental disorders.",
+      "keywords": ["Bernt Popp", "human geneticist", "Charité Berlin", "medical genetics", "rare diseases"],
+      "type": "WebPage",
+      "breadcrumb": false
+    },
+    "/publications": {
+      "title": "Publications",
+      "description": "Scientific publications by Dr. Bernt Popp on human genetics, rare diseases, neurodevelopmental disorders, and clinical genomics. Over 100 peer-reviewed articles.",
+      "keywords": ["Bernt Popp publications", "genetics research", "rare disease papers", "clinical genomics articles"],
+      "type": "CollectionPage",
+      "breadcrumb": true,
+      "academicMeta": true
+    },
+    "/cv": {
+      "title": "Curriculum Vitae",
+      "description": "Professional CV of Dr. Bernt Popp - Education, clinical experience, research positions, and achievements in human genetics and rare disease diagnostics.",
+      "keywords": ["Bernt Popp CV", "geneticist resume", "medical genetics career", "Charité physician"],
+      "type": "ProfilePage",
+      "breadcrumb": true
+    },
+    "/about": {
+      "title": "About",
+      "description": "Learn about Dr. Bernt Popp's journey in human genetics, from Romania to becoming a leading geneticist in Berlin. Personal interests and professional philosophy.",
+      "keywords": ["about Bernt Popp", "geneticist background", "medical career story"],
+      "type": "AboutPage",
+      "breadcrumb": true
+    },
+    "/impressum": {
+      "title": "Impressum / Legal Notice",
+      "description": "Legal information and imprint for berntpopp.com",
+      "keywords": ["impressum", "legal notice", "contact"],
+      "type": "WebPage",
+      "breadcrumb": true,
+      "noindex": false
+    }
+  }
+}

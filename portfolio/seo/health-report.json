@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-07-05T14:19:20.048Z",
+  "checks": {
+    "sitemap": true,
+    "robots": true,
+    "structuredData": true,
+    "vitepressConfig": true
+  },
+  "pages": {
+    "/": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 172,
+      "hasKeywords": true,
+      "hasBreadcrumb": false
+    },
+    "/publications": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 161,
+      "hasKeywords": true,
+      "hasBreadcrumb": true
+    },
+    "/cv": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 152,
+      "hasKeywords": true,
+      "hasBreadcrumb": true
+    },
+    "/about": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 160,
+      "hasKeywords": true,
+      "hasBreadcrumb": true
+    },
+    "/impressum": {
+      "hasTitle": true,
+      "hasDescription": true,
+      "descriptionLength": 47,
+      "hasKeywords": true,
+      "hasBreadcrumb": true
+    }
+  }
+}

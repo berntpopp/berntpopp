@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{siteUrl}}/#person",
+  "name": "{{person.name}}",
+  "alternateName": "{{person.alternateName}}",
+  "honorificPrefix": "{{person.honorificPrefix}}",
+  "jobTitle": "{{person.jobTitle}}",
+  "description": "{{person.description}}",
+  "image": "{{siteUrl}}{{person.image}}",
+  "url": "{{siteUrl}}",
+  "email": "{{person.email}}",
+  "telephone": "{{person.telephone}}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{person.address.streetAddress}}",
+    "addressLocality": "{{person.address.addressLocality}}",
+    "postalCode": "{{person.address.postalCode}}",
+    "addressCountry": "{{person.address.addressCountry}}"
+  },
+  "worksFor": {
+    "@type": "{{person.worksFor.type}}",
+    "name": "{{person.worksFor.name}}",
+    "url": "{{person.worksFor.url}}"
+  },
+  "alumniOf": "{{person.alumniOf}}",
+  "sameAs": "{{person.sameAs}}",
+  "knowsAbout": "{{person.knowsAbout}}",
+  "hasCredential": "{{person.credentials}}",
+  "award": "{{person.awards}}"
+}

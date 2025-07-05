@@ -3,9 +3,13 @@
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
 import Hero from './components/Hero.vue'
+import { useSeo } from './useSeo.js'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
+
+// Initialize SEO enhancement
+useSeo()
 </script>
 
 <template>

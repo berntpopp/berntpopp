@@ -5,14 +5,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "docs:dev": "vitepress dev --host",
-    "docs:build": "vitepress build",
+    "docs:build": "npm run seo:generate && vitepress build",
     "docs:preview": "vitepress preview --host",
     "lint": "npm run lint:js && npm run lint:md",
     "lint:js": "eslint . --ext .js,.mjs,.cjs,.vue",
     "lint:md": "markdownlint '**/*.md' --ignore node_modules --ignore .vitepress/dist",
     "lint:fix": "npm run lint:js:fix && npm run lint:md:fix",
     "lint:js:fix": "eslint . --ext .js,.mjs,.cjs,.vue --fix",
-    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore .vitepress/dist --fix"
+    "lint:md:fix": "markdownlint '**/*.md' --ignore node_modules --ignore .vitepress/dist --fix",
+    "seo:generate": "node scripts/generate-seo.js",
+    "seo:check": "npm run seo:generate && cat seo/health-report.json"
   },
   "keywords": [],
   "author": "",
@@ -29,5 +31,6 @@
   },
   "dependencies": {
     "bibtex-parser-js": "^0.0.2"
-  }
+  },
+  "type": "module"
 }
