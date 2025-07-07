@@ -45,7 +45,7 @@ They may not publish papers, but they contribute to the cause by proving that li
 
 ## 💬 Let's Connect
 
-I believe the best science happens in conversation. I believe that the best science happens during conversation. I'd be delighted to hear from you if you're a fellow researcher, a patient advocate, a diver, or simply interested in genetics. Science is a team sport, and the most exciting discoveries often come from unexpected collaborations.
+I believe the best science happens in conversation. I'd be delighted to hear from you if you're a fellow researcher, a patient advocate, a diver, or simply interested in genetics. Science is a team sport, and the most exciting discoveries often come from unexpected collaborations.
 
 Find me on:
 
