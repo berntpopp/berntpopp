@@ -1,5 +1,5 @@
 // Auto-generated SEO configuration
-// Generated on: 2026-01-05T02:44:08.551Z
+// Generated on: 2026-01-12T02:41:22.245Z
 
 export const seoConfig = {
   "site": {
