@@ -22,28 +22,28 @@
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   organization: {
     type: String,
-    default: ''
+    default: '',
   },
   department: {
     type: String,
-    default: ''
+    default: '',
   },
   period: {
     type: String,
-    default: ''
+    default: '',
   },
   location: {
     type: String,
-    default: ''
+    default: '',
   },
   details: {
     type: [String, Array],
-    default: null
-  }
+    default: null,
+  },
 })
 </script>
 
@@ -127,7 +127,7 @@ defineProps({
 }
 
 .details-list li:before {
-  content: "•";
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--vp-c-brand);
@@ -137,7 +137,7 @@ defineProps({
   .entry-header {
     flex-direction: column;
   }
-  
+
   .entry-period {
     align-self: flex-start;
   }

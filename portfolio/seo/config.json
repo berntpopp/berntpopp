@@ -123,12 +123,7 @@
     "crawlDelay": 0
   },
   "keywords": {
-    "primary": [
-      "Bernt Popp",
-      "Dr.med. Bernt Popp",
-      "human geneticist",
-      "medical geneticist"
-    ],
+    "primary": ["Bernt Popp", "Dr.med. Bernt Popp", "human geneticist", "medical geneticist"],
     "secondary": [
       "rare diseases specialist",
       "Charité Berlin geneticist",
@@ -136,13 +131,7 @@
       "neurodevelopmental disorders",
       "kidney genetics"
     ],
-    "research": [
-      "SysNDD",
-      "HNF1B database",
-      "AutoCaSc",
-      "kidney genetics",
-      "variant curation"
-    ],
+    "research": ["SysNDD", "HNF1B database", "AutoCaSc", "kidney genetics", "variant curation"],
     "local": [
       "Genetiker Berlin",
       "Humangenetiker Berlin",

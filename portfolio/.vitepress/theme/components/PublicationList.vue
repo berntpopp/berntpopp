@@ -1,25 +1,19 @@
 <template>
   <div class="publication-list">
     <div class="controls">
-      <input 
-        v-model="searchQuery" 
-        type="text" 
-        placeholder="Search publications..." 
+      <input
+        v-model="searchQuery"
+        type="text"
+        placeholder="Search publications..."
         class="search-input"
-      >
+      />
       <div class="filter-toggles">
         <label>
-          <input 
-            v-model="showOnlyFirstLast" 
-            type="checkbox"
-          >
+          <input v-model="showOnlyFirstLast" type="checkbox" />
           Show only first/last author publications
         </label>
         <label>
-          <input 
-            v-model="showAllAuthors" 
-            type="checkbox"
-          >
+          <input v-model="showAllAuthors" type="checkbox" />
           Show all authors
         </label>
       </div>
@@ -28,21 +22,35 @@
         <span v-if="showOnlyFirstLast" class="filter-active">(filtered)</span>
       </div>
     </div>
-    
+
     <div v-if="loading" class="loading">Loading publications...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
     <div v-else class="publications">
-      <div 
-        v-for="(pub, index) in filteredPublications" 
-        :key="index" 
-        class="publication-item"
-      >
+      <div v-for="(pub, index) in filteredPublications" :key="index" class="publication-item">
         <div class="title-row">
           <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
           <div class="authorship-tags">
-            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="tag first-author">First Author</span>
-            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast && !getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="tag last-author">Last Author</span>
-            <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst && getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="tag sole-author">Sole Author</span>
+            <span
+              v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst"
+              class="tag first-author"
+              >First Author</span
+            >
+            <span
+              v-if="
+                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast &&
+                !getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst
+              "
+              class="tag last-author"
+              >Last Author</span
+            >
+            <span
+              v-if="
+                getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst &&
+                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast
+              "
+              class="tag sole-author"
+              >Sole Author</span
+            >
           </div>
         </div>
         <!-- eslint-disable-next-line vue/no-v-html -->
@@ -64,12 +72,7 @@
           >
             DOI
           </a>
-          <a
-            v-if="pub.entryTags?.URL"
-            :href="pub.entryTags.URL"
-            target="_blank"
-            class="link"
-          >
+          <a v-if="pub.entryTags?.URL" :href="pub.entryTags.URL" target="_blank" class="link">
             URL
           </a>
         </div>
@@ -91,19 +94,19 @@ const showAllAuthors = ref(false)
 
 const filteredPublications = computed(() => {
   let filtered = publications.value
-  
+
   // Filter by first/last author if enabled
   if (showOnlyFirstLast.value) {
-    filtered = filtered.filter(pub => {
+    filtered = filtered.filter((pub) => {
       const { isFirst, isLast } = getAuthorshipPosition(pub.entryTags?.AUTHOR)
       return isFirst || isLast
     })
   }
-  
+
   // Apply search filter
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
-    filtered = filtered.filter(pub => {
+    filtered = filtered.filter((pub) => {
       return (
         pub.entryTags?.TITLE?.toLowerCase().includes(query) ||
         pub.entryTags?.AUTHOR?.toLowerCase().includes(query) ||
@@ -113,7 +116,7 @@ const filteredPublications = computed(() => {
       )
     })
   }
-  
+
   return filtered
 })
 
@@ -125,46 +128,50 @@ function formatTitle(title) {
 
 function getAuthorshipPosition(authors) {
   if (!authors) return { isFirst: false, isLast: false }
-  
+
   // Remove curly braces and split by 'and'
-  const authorList = authors.replace(/[{}]/g, '').split(' and ').map(a => a.trim())
-  
+  const authorList = authors
+    .replace(/[{}]/g, '')
+    .split(' and ')
+    .map((a) => a.trim())
+
   // Check for Bernt Popp in various formats
   const targetNames = ['Popp, Bernt', 'Bernt Popp', 'Popp, B.', 'B. Popp', 'Popp, B', 'B Popp']
-  
+
   const firstAuthor = authorList[0]
   const lastAuthor = authorList[authorList.length - 1]
-  
-  const isFirst = targetNames.some(name => firstAuthor.includes(name))
-  const isLast = targetNames.some(name => lastAuthor.includes(name))
-  
+
+  const isFirst = targetNames.some((name) => firstAuthor.includes(name))
+  const isLast = targetNames.some((name) => lastAuthor.includes(name))
+
   return { isFirst, isLast }
 }
 
 function highlightTargetAuthor(author) {
   // Check for Bernt Popp in various formats and wrap with highlighting span
-  const targetPatterns = [
-    /Popp,\s*Bernt/g,
-    /Bernt\s+Popp/g,
-    /Popp,\s*B\.?/g,
-    /B\.?\s+Popp/g
-  ]
-  
+  const targetPatterns = [/Popp,\s*Bernt/g, /Bernt\s+Popp/g, /Popp,\s*B\.?/g, /B\.?\s+Popp/g]
+
   let highlighted = author
-  targetPatterns.forEach(pattern => {
-    highlighted = highlighted.replace(pattern, match => `<span class="author-highlight">${match}</span>`)
+  targetPatterns.forEach((pattern) => {
+    highlighted = highlighted.replace(
+      pattern,
+      (match) => `<span class="author-highlight">${match}</span>`
+    )
   })
-  
+
   return highlighted
 }
 
 function formatAuthors(authors, showAll = false) {
   if (!authors) return ''
   // Remove curly braces and split by 'and'
-  const authorList = authors.replace(/[{}]/g, '').split(' and ').map(a => a.trim())
-  
+  const authorList = authors
+    .replace(/[{}]/g, '')
+    .split(' and ')
+    .map((a) => a.trim())
+
   let formattedAuthors
-  
+
   if (showAll || authorList.length <= 4) {
     // Show all authors
     formattedAuthors = authorList.map(highlightTargetAuthor).join(', ')
@@ -172,7 +179,7 @@ function formatAuthors(authors, showAll = false) {
     // Show first 3 + et al.
     formattedAuthors = authorList.slice(0, 3).map(highlightTargetAuthor).join(', ') + ', et al.'
   }
-  
+
   return formattedAuthors
 }
 
@@ -185,10 +192,10 @@ onMounted(async () => {
     }
     const bibText = await response.text()
     console.log('Bib file loaded, parsing...')
-    
+
     const parsed = BibtexParser.toJSON(bibText)
     console.log(`Parsed ${parsed.length} publications`)
-    
+
     // Sort by year (descending)
     publications.value = parsed.sort((a, b) => {
       const yearA = parseInt(a.entryTags?.YEAR) || 0
@@ -231,7 +238,7 @@ onMounted(async () => {
   cursor: pointer;
 }
 
-.filter-toggles input[type="checkbox"] {
+.filter-toggles input[type='checkbox'] {
   cursor: pointer;
 }
 
@@ -300,7 +307,8 @@ onMounted(async () => {
   color: var(--vp-c-warning);
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: var(--vp-c-text-2);
@@ -392,11 +400,11 @@ onMounted(async () => {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .authorship-tags {
     margin-bottom: 0.5rem;
   }
-  
+
   .tag {
     font-size: 0.625rem;
     padding: 0.2rem 0.5rem;

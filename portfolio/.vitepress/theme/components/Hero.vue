@@ -3,11 +3,10 @@
     <div class="hero-container">
       <div class="hero-content">
         <p class="greeting">Hi, I'm Bernt Popp!</p>
-        <h1 class="title">
-          GENETICIST &<br><span class="highlight">RESEARCHER</span>
-        </h1>
+        <h1 class="title">GENETICIST &<br /><span class="highlight">RESEARCHER</span></h1>
         <p class="description">
-          A board-certified geneticist and senior physician with expertise in human genetics, rare diseases, bioinformatics, and high-throughput sequencing data analysis.
+          A board-certified geneticist and senior physician with expertise in human genetics, rare
+          diseases, bioinformatics, and high-throughput sequencing data analysis.
         </p>
         <div class="actions">
           <a href="/publications" class="button primary">Publications</a>
@@ -18,7 +17,7 @@
         </div>
       </div>
       <div class="hero-image-container">
-        <img src="/b1_square_nobg.png" alt="Dr.med. Bernt Popp" class="hero-image">
+        <img src="/b1_square_nobg.png" alt="Dr.med. Bernt Popp" class="hero-image" />
         <div class="vertical-divider" />
         <div class="horizontal-divider" />
       </div>
@@ -51,18 +50,18 @@
 
 .vertical-divider {
   position: absolute;
-  right: 10%;  /* Adjust to match where the image edge is (since image is 80% width) */
-  top: 30%;  /* Start higher up */
+  right: 10%; /* Adjust to match where the image edge is (since image is 80% width) */
+  top: 30%; /* Start higher up */
   width: 1px;
-  height: 80%;  /* Extend more towards bottom */
+  height: 80%; /* Extend more towards bottom */
   background-color: #000;
 }
 
 .horizontal-divider {
   position: absolute;
   bottom: 0;
-  left: -20%;  /* Extend more to the left */
-  right: -20%;  /* Stop before the right edge */
+  left: -20%; /* Extend more to the left */
+  right: -20%; /* Stop before the right edge */
   height: 1px;
   background-color: #000;
 }
@@ -157,20 +156,20 @@
     text-align: center;
     padding: 4rem 1rem;
   }
-  
+
   .vertical-divider {
     display: none;
   }
-  
+
   .actions {
     justify-content: center;
   }
-  
+
   .hero-image {
     max-width: 250px;
     margin-bottom: 2rem;
   }
-  
+
   .title {
     font-size: 3rem;
   }
