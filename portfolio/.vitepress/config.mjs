@@ -84,9 +84,7 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: '' }],
 
     // Favicon
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/dna-helix.svg' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/bp-favicon.svg' }],
 
     // Google Fonts
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
