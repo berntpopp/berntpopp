@@ -11,7 +11,6 @@
 
       <!-- 2. The Title (Typography) -->
       <div class="card card-title">
-        <div class="meta-tag">01 // IDENTITY</div>
         <h1 class="giant-type">HUMAN<br /><span class="outline">GENETICIST</span></h1>
         <p class="role-scroller">
           <span>PHYSICIAN</span>
@@ -24,7 +23,7 @@
 
       <!-- 3. The Mission (Intro) -->
       <div class="card card-mission">
-        <div class="meta-tag">02 // MISSION</div>
+        <div class="meta-tag">01 // MISSION</div>
         <p class="mission-text">
           Decoding the fundamentals of life through clinical genomics, rare disease research, and
           bioinformatics. <br />
@@ -36,7 +35,7 @@
 
       <!-- 4. The Science (Stats) -->
       <a href="/publications" class="card card-science interactive">
-        <div class="meta-tag">03 // SCIENCE</div>
+        <div class="meta-tag">02 // SCIENCE</div>
         <div class="stat-number">80+</div>
         <div class="stat-label">Publications</div>
         <div class="hover-reveal">
@@ -46,7 +45,7 @@
 
       <!-- 5. The Art (Photography) -->
       <a href="/photography" class="card card-art interactive">
-        <div class="meta-tag">04 // ART</div>
+        <div class="meta-tag">03 // ART</div>
         <div class="art-preview">
           <!-- Placeholder for art - could be a shark/ocean image -->
           <div class="art-circle"></div>
@@ -342,6 +341,16 @@
 
   .giant-type {
     font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  .role-scroller {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .role-scroller .separator {
+    display: none;
   }
 }
 </style>

@@ -1,12 +1,22 @@
 <template>
   <div class="dock-wrapper">
-    <nav class="dock-container">
-      <a href="/" class="dock-item" :class="{ active: currentPath === '/' }">
+    <nav class="dock-container" aria-label="Main navigation">
+      <a
+        href="/"
+        class="dock-item"
+        :class="{ active: currentPath === '/' }"
+        :aria-current="currentPath === '/' ? 'page' : undefined"
+      >
         <span class="icon">01</span>
         <span class="label">Home</span>
       </a>
       <div class="divider"></div>
-      <a href="/about" class="dock-item" :class="{ active: currentPath.includes('/about') }">
+      <a
+        href="/about"
+        class="dock-item"
+        :class="{ active: currentPath.includes('/about') }"
+        :aria-current="currentPath.includes('/about') ? 'page' : undefined"
+      >
         <span class="icon">02</span>
         <span class="label">Story</span>
       </a>
@@ -14,6 +24,7 @@
         href="/publications"
         class="dock-item"
         :class="{ active: currentPath.includes('/publications') }"
+        :aria-current="currentPath.includes('/publications') ? 'page' : undefined"
       >
         <span class="icon">03</span>
         <span class="label">Science</span>
@@ -22,13 +33,29 @@
         href="/photography"
         class="dock-item"
         :class="{ active: currentPath.includes('/photography') }"
+        :aria-current="currentPath.includes('/photography') ? 'page' : undefined"
       >
         <span class="icon">04</span>
         <span class="label">Art</span>
       </a>
-      <a href="/cv" class="dock-item" :class="{ active: currentPath.includes('/cv') }">
+      <a
+        href="/cv"
+        class="dock-item"
+        :class="{ active: currentPath.includes('/cv') }"
+        :aria-current="currentPath.includes('/cv') ? 'page' : undefined"
+      >
         <span class="icon">05</span>
         <span class="label">CV</span>
+      </a>
+      <div class="divider"></div>
+      <a
+        href="/impressum"
+        class="dock-item secondary"
+        :class="{ active: currentPath.includes('/impressum') }"
+        :aria-current="currentPath.includes('/impressum') ? 'page' : undefined"
+      >
+        <span class="icon">i</span>
+        <span class="label">Legal</span>
       </a>
     </nav>
   </div>
@@ -125,6 +152,26 @@ const currentPath = computed(() =>
   background-color: var(--vp-c-accent);
 }
 
+/* Secondary dock items (Legal) */
+.dock-item.secondary {
+  min-width: 48px;
+  padding: 0.5rem 0.75rem;
+  opacity: 0.7;
+}
+
+.dock-item.secondary:hover {
+  opacity: 1;
+}
+
+.dock-item.secondary .label {
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.dock-item.secondary .icon {
+  font-style: italic;
+}
+
 .icon {
   font-family: var(--vp-font-family-mono);
   font-size: 0.65rem;
@@ -162,6 +209,11 @@ const currentPath = computed(() =>
   }
 
   .dock-item {
+    min-width: auto;
+    padding: 0.5rem;
+  }
+
+  .dock-item.secondary {
     min-width: auto;
     padding: 0.5rem;
   }

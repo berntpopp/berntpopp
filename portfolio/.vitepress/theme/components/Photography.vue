@@ -1,12 +1,12 @@
 <template>
-  <div class="photography-wrapper">
-    <!-- Dark Mode Forced Wrapper -->
-    <div class="dark-canvas">
-      <div class="header">
-        <h1 class="title">Visuals</h1>
-        <p class="subtitle">
+  <div class="story-wrapper">
+    <div class="story-container">
+      <div class="story-header">
+        <div class="meta-tag">THE ART</div>
+        <h1 class="story-title">Visuals &<br />Moments</h1>
+        <div class="story-subtitle">
           Capturing the silence of the underwater world and the noise of the land.
-        </p>
+        </div>
 
         <div v-if="galleryData.categories" class="filter-bar">
           <button
@@ -34,10 +34,21 @@
         </div>
       </div>
     </div>
+    <Dock />
 
     <!-- Lightbox -->
     <Transition name="fade">
-      <div v-if="lightboxOpen" class="lightbox" @click="closeLightbox">
+      <div
+        v-if="lightboxOpen"
+        class="lightbox"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="currentPhoto?.title || 'Photo lightbox'"
+        @click="closeLightbox"
+        @touchstart="onTouchStart"
+        @touchmove="onTouchMove"
+        @touchend="onTouchEnd"
+      >
         <div class="lightbox-content" @click.stop>
           <img
             :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
@@ -49,14 +60,59 @@
           </div>
         </div>
 
-        <button class="close-btn" @click="closeLightbox">✕</button>
+        <div class="lightbox-counter">
+          {{ currentPhotoIndex + 1 }} / {{ filteredPhotos.length }}
+        </div>
+
+        <button
+          ref="prevBtn"
+          class="nav-btn nav-btn-prev"
+          :disabled="currentPhotoIndex <= 0"
+          aria-label="Previous photo"
+          @click.stop="navigatePrev"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <button
+          ref="nextBtn"
+          class="nav-btn nav-btn-next"
+          :disabled="currentPhotoIndex >= filteredPhotos.length - 1"
+          aria-label="Next photo"
+          @click.stop="navigateNext"
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <button ref="closeBtn" class="close-btn" aria-label="Close lightbox" @click="closeLightbox">
+          &#x2715;
+        </button>
       </div>
     </Transition>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue'
+import Dock from './Dock.vue'
 
 const galleryData = ref({
   title: 'Photography',
@@ -68,6 +124,14 @@ const galleryData = ref({
 const selectedCategory = ref('all')
 const lightboxOpen = ref(false)
 const currentPhoto = ref(null)
+const currentPhotoIndex = ref(-1)
+
+const closeBtn = ref(null)
+const prevBtn = ref(null)
+const nextBtn = ref(null)
+
+let touchStartX = 0
+let touchEndX = 0
 
 const filteredPhotos = computed(() => {
   if (selectedCategory.value === 'all') {
@@ -81,26 +145,82 @@ onMounted(async () => {
     const response = await fetch('/photography-data.json')
     const data = await response.json()
     galleryData.value = data.gallery
-  } catch (error) {
-    console.error('Failed to load photography data:', error)
+  } catch (err) {
+    console.error('Failed to load photography data:', err)
   }
   window.addEventListener('keydown', handleKeydown)
 })
 
 const openLightbox = (photo) => {
+  const idx = filteredPhotos.value.findIndex((p) => p.filename === photo.filename)
+  currentPhotoIndex.value = idx
   currentPhoto.value = photo
   lightboxOpen.value = true
   document.body.style.overflow = 'hidden'
+  nextTick(() => {
+    closeBtn.value?.focus()
+  })
 }
 
 const closeLightbox = () => {
   lightboxOpen.value = false
   currentPhoto.value = null
+  currentPhotoIndex.value = -1
   document.body.style.overflow = ''
 }
 
+const navigateNext = () => {
+  if (currentPhotoIndex.value < filteredPhotos.value.length - 1) {
+    currentPhotoIndex.value++
+    currentPhoto.value = filteredPhotos.value[currentPhotoIndex.value]
+  }
+}
+
+const navigatePrev = () => {
+  if (currentPhotoIndex.value > 0) {
+    currentPhotoIndex.value--
+    currentPhoto.value = filteredPhotos.value[currentPhotoIndex.value]
+  }
+}
+
 const handleKeydown = (e) => {
+  if (!lightboxOpen.value) return
+
   if (e.key === 'Escape') closeLightbox()
+  else if (e.key === 'ArrowRight') navigateNext()
+  else if (e.key === 'ArrowLeft') navigatePrev()
+  else if (e.key === 'Tab') {
+    // Focus trap: cycle through close, prev, next
+    e.preventDefault()
+    const focusable = [closeBtn.value, prevBtn.value, nextBtn.value].filter(
+      (el) => el && !el.disabled
+    )
+    if (focusable.length === 0) return
+    const currentIdx = focusable.indexOf(document.activeElement)
+    const nextIdx = e.shiftKey
+      ? (currentIdx - 1 + focusable.length) % focusable.length
+      : (currentIdx + 1) % focusable.length
+    focusable[nextIdx]?.focus()
+  }
+}
+
+const onTouchStart = (e) => {
+  touchStartX = e.changedTouches[0].screenX
+}
+
+const onTouchMove = (e) => {
+  touchEndX = e.changedTouches[0].screenX
+}
+
+const onTouchEnd = () => {
+  const diff = touchStartX - touchEndX
+  if (Math.abs(diff) > 50) {
+    if (diff > 0) {
+      navigateNext()
+    } else {
+      navigatePrev()
+    }
+  }
 }
 
 onUnmounted(() => {
@@ -111,40 +231,51 @@ onUnmounted(() => {
 
 <style scoped>
 /* Force Dark Theme for this component */
-.photography-wrapper {
+.story-wrapper {
   background-color: #050505;
   min-height: 100vh;
-  /* Removed hacked full-width */
   width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8rem; /* Space for dock */
   color: #fff;
-  padding-bottom: 6rem; /* Space for dock */
 }
 
-.dark-canvas {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
+.story-container {
+  max-width: 1400px; /* Wide for photos */
+  width: 100%;
+  padding: 6rem 1.5rem;
 }
 
-.header {
+.story-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 }
 
-.title {
+.meta-tag {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: #666; /* Subtle in dark mode */
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.story-title {
   font-family: var(--vp-font-family-headings);
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
 }
 
-.subtitle {
-  font-family: var(--vp-font-family-mono);
-  font-size: 0.9rem;
+.story-subtitle {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.25rem;
   color: #888;
-  max-width: 400px;
-  margin: 0 auto 3rem;
   line-height: 1.6;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 /* Filter */
@@ -152,10 +283,11 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  margin-top: 3rem;
   border-top: 1px solid #222;
   border-bottom: 1px solid #222;
   padding: 1rem 0;
-  display: inline-flex; /* center the bar itself */
+  display: inline-flex;
 }
 
 .filter-item {
@@ -179,12 +311,12 @@ onUnmounted(() => {
 .masonry-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem; /* More breathing room */
+  gap: 2rem;
 }
 
 .grid-item {
   position: relative;
-  aspect-ratio: 3/2; /* Classic photo ratio */
+  aspect-ratio: 3/2;
   overflow: hidden;
   cursor: zoom-in;
   filter: brightness(0.9);
@@ -274,6 +406,56 @@ onUnmounted(() => {
   margin-top: 0.5rem;
 }
 
+/* Lightbox Counter */
+.lightbox-counter {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.1em;
+}
+
+/* Nav Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.nav-btn-prev {
+  left: 2rem;
+}
+
+.nav-btn-next {
+  right: 2rem;
+}
+
 .close-btn {
   position: absolute;
   top: 2rem;
@@ -305,6 +487,19 @@ onUnmounted(() => {
 @media (max-width: 600px) {
   .masonry-grid {
     grid-template-columns: 1fr;
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-btn-prev {
+    left: 1rem;
+  }
+
+  .nav-btn-next {
+    right: 1rem;
   }
 }
 </style>
