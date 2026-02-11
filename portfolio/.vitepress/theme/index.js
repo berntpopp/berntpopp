@@ -10,11 +10,11 @@ import './custom.css'
 export default {
   ...DefaultTheme,
   Layout, // Register it
-  enhanceApp({ app, router, siteData }) {
+  enhanceApp({ app }) {
     // Register components globally
     app.component('PublicationList', PublicationList)
     app.component('CVViewer', CVViewer)
     app.component('CVEntry', CVEntry)
     app.component('Photography', Photography)
-  }
+  },
 }

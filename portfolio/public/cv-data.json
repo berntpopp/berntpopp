@@ -28,9 +28,7 @@
       "department": "Human Genetics",
       "period": "07/2022 - Present",
       "location": "Berlin, Germany",
-      "details": [
-        "Improving genetic diagnostics workflows"
-      ]
+      "details": ["Improving genetic diagnostics workflows"]
     },
     {
       "title": "Senior Physician & Head of Genetics Outpatient Clinic",
@@ -70,10 +68,7 @@
       "department": "Institute of Human Genetics",
       "period": "2013 - 2018",
       "location": "Erlangen, Germany",
-      "details": [
-        "Initial residency in human genetics",
-        "Established bioinformatics workflows"
-      ]
+      "details": ["Initial residency in human genetics", "Established bioinformatics workflows"]
     }
   ],
   "education": [
@@ -184,7 +179,5 @@
     { "language": "English", "level": "Fluent" },
     { "language": "Romanian", "level": "Basic" }
   ],
-  "memberships": [
-    "German Society of Human Genetics (GfH)"
-  ]
+  "memberships": ["German Society of Human Genetics (GfH)"]
 }

@@ -85,10 +85,7 @@
       "https://fonts.gstatic.com",
       "https://scholar.google.com"
     ],
-    "dnsPrefetch": [
-      "https://orcid.org",
-      "https://github.com"
-    ],
+    "dnsPrefetch": ["https://orcid.org", "https://github.com"],
     "resourceHints": {
       "preload": [
         {

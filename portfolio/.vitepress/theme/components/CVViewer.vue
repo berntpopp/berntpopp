@@ -23,18 +23,8 @@
             >
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
-              <line
-                x1="16"
-                y1="13"
-                x2="8"
-                y2="13"
-              />
-              <line
-                x1="16"
-                y1="17"
-                x2="8"
-                y2="17"
-              />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
               <polyline points="10 9 9 9 8 9" />
             </svg>
             Download PDF (English)
@@ -53,18 +43,8 @@
             >
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />
-              <line
-                x1="16"
-                y1="13"
-                x2="8"
-                y2="13"
-              />
-              <line
-                x1="16"
-                y1="17"
-                x2="8"
-                y2="17"
-              />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
               <polyline points="10 9 9 9 8 9" />
             </svg>
             Download PDF (Deutsch)
@@ -81,8 +61,10 @@
               <span class="icon">📧</span>
               <div>
                 <a :href="`mailto:${cvData.personalInfo.email}`">{{ cvData.personalInfo.email }}</a>
-                <br>
-                <a :href="`mailto:${cvData.personalInfo.alternativeEmail}`">{{ cvData.personalInfo.alternativeEmail }}</a>
+                <br />
+                <a :href="`mailto:${cvData.personalInfo.alternativeEmail}`">{{
+                  cvData.personalInfo.alternativeEmail
+                }}</a>
               </div>
             </div>
             <div class="contact-item">
@@ -91,11 +73,15 @@
             </div>
             <div class="contact-item">
               <span class="icon">🌐</span>
-              <a :href="cvData.personalInfo.website" target="_blank">{{ cvData.personalInfo.website }}</a>
+              <a :href="cvData.personalInfo.website" target="_blank">{{
+                cvData.personalInfo.website
+              }}</a>
             </div>
             <div class="contact-item">
               <span class="icon">📚</span>
-              <a :href="`https://orcid.org/${cvData.personalInfo.orcid}`" target="_blank">ORCID {{ cvData.personalInfo.orcid }}</a>
+              <a :href="`https://orcid.org/${cvData.personalInfo.orcid}`" target="_blank"
+                >ORCID {{ cvData.personalInfo.orcid }}</a
+              >
             </div>
             <div class="contact-item">
               <span class="icon">📍</span>
@@ -113,7 +99,7 @@
         <!-- Professional Experience -->
         <section class="cv-section">
           <h2>Professional Experience</h2>
-          <CVEntry 
+          <CVEntry
             v-for="(job, index) in cvData.experience"
             :key="index"
             :title="job.title"
@@ -128,7 +114,7 @@
         <!-- Education -->
         <section class="cv-section">
           <h2>Education</h2>
-          <CVEntry 
+          <CVEntry
             v-for="(edu, index) in cvData.education"
             :key="index"
             :title="edu.degree"
@@ -151,7 +137,9 @@
               </div>
               <p class="organization">{{ award.organization }}</p>
               <p class="description">{{ award.description }}</p>
-              <p v-if="award.projectNumber" class="project-number">Project #{{ award.projectNumber }}</p>
+              <p v-if="award.projectNumber" class="project-number">
+                Project #{{ award.projectNumber }}
+              </p>
             </div>
           </div>
         </section>
@@ -164,12 +152,9 @@
               <h3>{{ project.name }}</h3>
               <p class="role">{{ project.role }}</p>
               <p class="description">{{ project.description }}</p>
-              <a
-                v-if="project.url"
-                :href="project.url"
-                target="_blank"
-                class="project-link"
-              >View Project →</a>
+              <a v-if="project.url" :href="project.url" target="_blank" class="project-link"
+                >View Project →</a
+              >
             </div>
           </div>
         </section>
@@ -193,7 +178,9 @@
             <div class="skill-category">
               <h3>Programming</h3>
               <ul>
-                <li v-for="(skill, index) in cvData.skills.programming" :key="index">{{ skill }}</li>
+                <li v-for="(skill, index) in cvData.skills.programming" :key="index">
+                  {{ skill }}
+                </li>
               </ul>
             </div>
             <div class="skill-category">
@@ -219,7 +206,9 @@
             <div>
               <h2>Professional Memberships</h2>
               <ul>
-                <li v-for="(membership, index) in cvData.memberships" :key="index">{{ membership }}</li>
+                <li v-for="(membership, index) in cvData.memberships" :key="index">
+                  {{ membership }}
+                </li>
               </ul>
             </div>
           </div>
@@ -228,7 +217,10 @@
         <!-- Selected Publications Note -->
         <section class="cv-section">
           <h2>Publications</h2>
-          <p>For a complete list of {{ publications }} publications, please visit the <router-link to="/publications">Publications</router-link> page.</p>
+          <p>
+            For a complete list of {{ publications }} publications, please visit the
+            <router-link to="/publications">Publications</router-link> page.
+          </p>
           <p class="publication-stats">
             <span v-if="firstAuthorCount > 0">{{ firstAuthorCount }} first author</span>
             <span v-if="firstAuthorCount > 0 && lastAuthorCount > 0"> | </span>
@@ -273,7 +265,8 @@ onMounted(async () => {
   padding: 2rem 0;
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 4rem 2rem;
   font-size: 1.125rem;
@@ -510,7 +503,7 @@ onMounted(async () => {
 }
 
 .skill-category li:before {
-  content: "▸";
+  content: '▸';
   position: absolute;
   left: 0;
   color: var(--vp-c-brand);
@@ -545,21 +538,21 @@ onMounted(async () => {
   .cv-header {
     flex-direction: column;
   }
-  
+
   .cv-actions {
     width: 100%;
   }
-  
+
   .cv-link {
     justify-content: center;
     flex: 1;
   }
-  
+
   .two-column {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  
+
   .contact-grid {
     grid-template-columns: 1fr;
   }

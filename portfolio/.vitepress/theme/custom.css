@@ -11,7 +11,9 @@
 }
 
 /* Make headings bolder for better hierarchy */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 700;
 }
 
@@ -68,7 +70,7 @@ h1, h2, h3 {
 }
 
 /* About Page Styles */
-.vp-doc h1[id="about-me"] {
+.vp-doc h1[id='about-me'] {
   font-size: 3rem;
   font-weight: 800;
   margin-bottom: 3rem;
@@ -79,26 +81,26 @@ h1, h2, h3 {
 }
 
 /* Style About page content container */
-main:has(h1[id="about-me"]) .vp-doc {
+main:has(h1[id='about-me']) .vp-doc {
   max-width: 800px;
   margin: 0 auto;
 }
 
 /* About page paragraph styling */
-main:has(h1[id="about-me"]) .vp-doc p {
+main:has(h1[id='about-me']) .vp-doc p {
   font-size: 1.125rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
 }
 
 /* About page section headings */
-main:has(h1[id="about-me"]) .vp-doc h2 {
+main:has(h1[id='about-me']) .vp-doc h2 {
   font-size: 1.75rem;
   margin: 3rem 0 1.5rem;
 }
 
 /* Final quote styling on About page */
-main:has(h1[id="about-me"]) .vp-doc > p:last-child em {
+main:has(h1[id='about-me']) .vp-doc > p:last-child em {
   display: block;
   text-align: center;
   font-size: 1.25rem;

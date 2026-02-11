@@ -5,11 +5,11 @@
       <p class="gallery-description">
         {{ galleryData.description }}
       </p>
-      
+
       <!-- Category Filter -->
       <div v-if="galleryData.categories" class="category-filter">
-        <button 
-          v-for="(label, key) in galleryData.categories" 
+        <button
+          v-for="(label, key) in galleryData.categories"
           :key="key"
           :class="['category-btn', { active: selectedCategory === key }]"
           @click="selectedCategory = key"
@@ -20,17 +20,13 @@
     </div>
 
     <div class="photo-grid">
-      <div 
-        v-for="photo in filteredPhotos" 
+      <div
+        v-for="photo in filteredPhotos"
         :key="photo.filename"
         class="photo-item"
         @click="openLightbox(photo)"
       >
-        <img 
-          :src="`/photography/${photo.filename}`" 
-          :alt="photo.alt"
-          loading="lazy"
-        >
+        <img :src="`/photography/${photo.filename}`" :alt="photo.alt" loading="lazy" />
         <div class="photo-overlay">
           <span class="photo-title">{{ photo.title }}</span>
         </div>
@@ -76,11 +72,11 @@
             <path d="M9 18l6-6-6-6" />
           </svg>
         </button>
-        <img 
-          :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''" 
+        <img
+          :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
           :alt="currentPhoto?.alt"
           @click.stop
-        >
+        />
         <div v-if="currentPhoto" class="lightbox-caption">
           {{ currentPhoto.title }}
           <span v-if="currentPhoto.description" class="lightbox-description">
@@ -102,7 +98,7 @@ const galleryData = ref({
   title: 'Photography',
   description: 'A visual journey through the lens',
   photos: [],
-  categories: {}
+  categories: {},
 })
 
 const selectedCategory = ref('all')
@@ -114,7 +110,7 @@ const filteredPhotos = computed(() => {
   if (selectedCategory.value === 'all') {
     return galleryData.value.photos
   }
-  return galleryData.value.photos.filter(photo => photo.category === selectedCategory.value)
+  return galleryData.value.photos.filter((photo) => photo.category === selectedCategory.value)
 })
 
 // Load gallery data
@@ -130,7 +126,7 @@ onMounted(async () => {
 })
 
 const openLightbox = (photo) => {
-  const index = filteredPhotos.value.findIndex(p => p.filename === photo.filename)
+  const index = filteredPhotos.value.findIndex((p) => p.filename === photo.filename)
   currentPhotoIndex.value = index
   currentPhoto.value = photo
   lightboxOpen.value = true
@@ -149,14 +145,15 @@ const nextPhoto = () => {
 }
 
 const prevPhoto = () => {
-  currentPhotoIndex.value = (currentPhotoIndex.value - 1 + filteredPhotos.value.length) % filteredPhotos.value.length
+  currentPhotoIndex.value =
+    (currentPhotoIndex.value - 1 + filteredPhotos.value.length) % filteredPhotos.value.length
   currentPhoto.value = filteredPhotos.value[currentPhotoIndex.value]
 }
 
 const handleKeydown = (e) => {
   if (!lightboxOpen.value) return
-  
-  switch(e.key) {
+
+  switch (e.key) {
     case 'Escape':
       closeLightbox()
       break
@@ -168,7 +165,6 @@ const handleKeydown = (e) => {
       break
   }
 }
-
 
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
@@ -268,7 +264,7 @@ onUnmounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
   padding: 2rem 1rem 1rem;
   transform: translateY(100%);
   transition: transform 0.3s ease;
@@ -390,15 +386,15 @@ onUnmounted(() => {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
   }
-  
+
   .gallery-header h1 {
     font-size: 2rem;
   }
-  
+
   .lightbox {
     padding: 1rem;
   }
-  
+
   .lightbox-caption {
     bottom: 1rem;
     padding: 0 1rem;

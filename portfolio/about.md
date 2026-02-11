@@ -54,4 +54,4 @@ Find me on:
 - 💻 [GitHub](https://github.com/berntpopp) - Where code meets chromosomes
 - 📧 Drop me a line at bernt.popp.md[at]gmail.com
 
-*Remember: We're all just billions of years of evolution learning to understand itself. How cool is that?*
+_Remember: We're all just billions of years of evolution learning to understand itself. How cool is that?_
