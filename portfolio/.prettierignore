@@ -1,0 +1,10 @@
+node_modules
+.vitepress/dist
+.vitepress/cache
+.vitepress/theme/seo.js
+public/sitemap.xml
+public/robots.txt
+seo/generated-schemas.json
+seo/health-report.json
+seo/metrics.json
+package-lock.json

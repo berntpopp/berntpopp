@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowJs": true,
+    "checkJs": true,
+    "noEmit": true,
+    "strict": false,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./.vitepress/*"]
+    }
+  },
+  "include": [".vitepress/**/*.js", ".vitepress/**/*.vue", "scripts/**/*.js"],
+  "exclude": ["node_modules", ".vitepress/dist", ".vitepress/cache"]
+}
