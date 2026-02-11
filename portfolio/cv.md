@@ -1,3 +1,5 @@
-# Curriculum Vitae
+---
+layout: false
+---
 
 <CVViewer />

@@ -45,6 +45,9 @@ docs/.vitepress/cache/
 # Optional stylelint cache
 .stylelintcache
 
+# Lighthouse reports
+lighthouse-reports/
+
 # Temporary files
 *.tmp
 *.temp

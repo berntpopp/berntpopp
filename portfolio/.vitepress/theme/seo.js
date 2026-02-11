@@ -1,10 +1,10 @@
 // Auto-generated SEO configuration
-// Generated on: 2026-02-11T20:33:57.111Z
+// Generated on: 2026-02-11T23:21:46.660Z
 
 export const seoConfig = {
   "site": {
     "url": "https://berntpopp.com",
-    "title": "Dr.med. Bernt Popp",
+    "title": "Bernt Popp",
     "titleTemplate": "%s | Dr.med. Bernt Popp - Human Geneticist",
     "description": "Dr. med. Bernt Popp is a board-certified geneticist at Charité Berlin specializing in rare diseases, neurodevelopmental disorders, and clinical genomics.",
     "author": "Dr. med. Bernt Popp",

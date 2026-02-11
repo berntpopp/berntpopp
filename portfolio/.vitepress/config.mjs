@@ -84,23 +84,28 @@ export default defineConfig({
     ['link', { rel: 'canonical', href: '' }],
 
     // Favicon
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/dna-helix.svg' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
-    ['link', { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/bp-favicon.svg' }],
 
-    // Google Fonts
+    // Google Fonts (non-render-blocking via preload + onload swap)
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [
       'link',
       {
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap',
-        rel: 'stylesheet',
+        rel: 'preload',
+        as: 'style',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap',
+        onload: "this.onload=null;this.rel='stylesheet'",
       },
+    ],
+    [
+      'noscript',
+      {},
+      '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">',
     ],
 
     // Preload critical images
-    ['link', { rel: 'preload', as: 'image', href: site.image }],
+    ['link', { rel: 'preload', as: 'image', href: '/portrait.webp', type: 'image/webp' }],
   ].filter(Boolean),
 
   themeConfig: {

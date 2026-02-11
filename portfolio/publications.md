@@ -1,3 +1,5 @@
-# Publications
+---
+layout: false
+---
 
 <PublicationList />

@@ -1,89 +1,121 @@
 <template>
-  <div class="publication-list">
-    <div class="controls">
-      <input
-        v-model="searchQuery"
-        type="text"
-        placeholder="Search publications..."
-        class="search-input"
-      />
-      <div class="filter-toggles">
-        <label>
-          <input v-model="showOnlyFirstLast" type="checkbox" />
-          Show only first/last author publications
-        </label>
-        <label>
-          <input v-model="showAllAuthors" type="checkbox" />
-          Show all authors
-        </label>
+  <main class="story-wrapper">
+    <div class="story-container">
+      <div class="story-header">
+        <div class="meta-tag">THE SCIENCE</div>
+        <h1 class="story-title">Selected<br />Publications</h1>
+        <div class="story-subtitle">
+          {{ filteredPublications.length }} works on neurodevelopmental disorders, rare tumors, and
+          bioinformatics.
+        </div>
       </div>
-      <div class="stats">
-        Showing {{ filteredPublications.length }} of {{ publications.length }} publications
-        <span v-if="showOnlyFirstLast" class="filter-active">(filtered)</span>
-      </div>
-    </div>
 
-    <div v-if="loading" class="loading">Loading publications...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else class="publications">
-      <div v-for="(pub, index) in filteredPublications" :key="index" class="publication-item">
-        <div class="title-row">
-          <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
-          <div class="authorship-tags">
-            <span
-              v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst"
-              class="tag first-author"
-              >First Author</span
-            >
-            <span
-              v-if="
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast &&
-                !getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst
-              "
-              class="tag last-author"
-              >Last Author</span
-            >
-            <span
-              v-if="
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst &&
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast
-              "
-              class="tag sole-author"
-              >Sole Author</span
-            >
+      <div class="controls">
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="SEARCH DATABASE..."
+          class="search-input"
+        />
+
+        <div class="filters">
+          <button
+            class="filter-btn"
+            :class="{ active: showOnlyFirstLast }"
+            @click="showOnlyFirstLast = !showOnlyFirstLast"
+          >
+            [ KEY AUTHORSHIPS ]
+          </button>
+          <button
+            class="filter-btn"
+            :class="{ active: showAllAuthors }"
+            @click="showAllAuthors = !showAllAuthors"
+          >
+            [ SHOW ALL AUTHORS ]
+          </button>
+        </div>
+      </div>
+
+      <div v-if="loading" class="loading">INITIALIZING DATABASE...</div>
+      <div v-else-if="error" class="error">SYSTEM ERROR: {{ error }}</div>
+      <template v-else>
+        <div v-if="filteredPublications.length > 0" class="summary-bar">
+          Showing {{ displayedCount }} of {{ filteredPublications.length }} publications
+          <span v-if="hasMore" class="load-hint">— scroll to load more</span>
+        </div>
+
+        <div class="publications-grid">
+          <div v-for="group in displayedYearGroups" :key="group.year" class="year-group">
+            <h2 class="year-header">{{ group.year }}</h2>
+            <div v-for="(pub, index) in group.publications" :key="index" class="pub-row">
+              <div class="pub-year">{{ pub.entryTags?.YEAR || 'ND' }}</div>
+
+              <div class="pub-content">
+                <h3 class="pub-title">
+                  {{ formatTitle(pub.entryTags?.TITLE) || 'Untitled' }}
+                  <span class="pub-meta-tags">
+                    <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="tag"
+                      >FIRST</span
+                    >
+                    <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="tag"
+                      >LAST</span
+                    >
+                  </span>
+                </h3>
+
+                <!-- eslint-disable-next-line vue/no-v-html -->
+                <p
+                  class="pub-authors"
+                  v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)"
+                />
+
+                <div class="pub-journal">
+                  {{ pub.entryTags?.JOURNAL || 'Preprint/Other' }}
+                  <span v-if="pub.entryTags?.VOLUME">• Vol {{ pub.entryTags.VOLUME }}</span>
+                </div>
+
+                <div class="pub-links">
+                  <a
+                    v-if="pub.entryTags?.DOI"
+                    :href="`https://doi.org/${pub.entryTags.DOI}`"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-item"
+                  >
+                    DOI &nearr;
+                  </a>
+                  <a
+                    v-if="pub.entryTags?.URL"
+                    :href="pub.entryTags.URL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link-item"
+                  >
+                    URL &nearr;
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)" />
-        <p class="details">
-          <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
-          <span v-if="pub.entryTags?.JOURNAL">{{ pub.entryTags.JOURNAL }}</span>
-          <span v-if="pub.entryTags?.YEAR"> ({{ pub.entryTags.YEAR }})</span>
-          <span v-if="pub.entryTags?.VOLUME">, {{ pub.entryTags.VOLUME }}</span>
-          <span v-if="pub.entryTags?.NUMBER">({{ pub.entryTags.NUMBER }})</span>
-          <span v-if="pub.entryTags?.PAGES">: {{ pub.entryTags.PAGES }}</span>
-        </p>
-        <div class="links">
-          <a
-            v-if="pub.entryTags?.DOI"
-            :href="`https://doi.org/${pub.entryTags.DOI}`"
-            target="_blank"
-            class="link"
-          >
-            DOI
-          </a>
-          <a v-if="pub.entryTags?.URL" :href="pub.entryTags.URL" target="_blank" class="link">
-            URL
-          </a>
+
+        <div v-if="hasMore" ref="loadMoreTrigger" class="load-more-trigger">
+          <span class="loader-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
         </div>
-      </div>
+      </template>
     </div>
-  </div>
+    <Dock />
+  </main>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import BibtexParser from 'bibtex-parser-js'
+import Dock from './Dock.vue'
 
 const publications = ref([])
 const loading = ref(true)
@@ -91,11 +123,14 @@ const error = ref(null)
 const searchQuery = ref('')
 const showOnlyFirstLast = ref(false)
 const showAllAuthors = ref(false)
+const displayedYears = ref(3)
+const loadMoreTrigger = ref(null)
+
+let observer = null
 
 const filteredPublications = computed(() => {
   let filtered = publications.value
 
-  // Filter by first/last author if enabled
   if (showOnlyFirstLast.value) {
     filtered = filtered.filter((pub) => {
       const { isFirst, isLast } = getAuthorshipPosition(pub.entryTags?.AUTHOR)
@@ -103,7 +138,6 @@ const filteredPublications = computed(() => {
     })
   }
 
-  // Apply search filter
   if (searchQuery.value) {
     const query = searchQuery.value.toLowerCase()
     filtered = filtered.filter((pub) => {
@@ -120,22 +154,101 @@ const filteredPublications = computed(() => {
   return filtered
 })
 
+const publicationsByYear = computed(() => {
+  const groups = {}
+  filteredPublications.value.forEach((pub) => {
+    const year = pub.entryTags?.YEAR || 'Unknown'
+    if (!groups[year]) {
+      groups[year] = []
+    }
+    groups[year].push(pub)
+  })
+  return groups
+})
+
+const sortedYearGroups = computed(() => {
+  return Object.keys(publicationsByYear.value)
+    .sort((a, b) => {
+      if (a === 'Unknown') return 1
+      if (b === 'Unknown') return -1
+      return parseInt(b) - parseInt(a)
+    })
+    .map((year) => ({
+      year,
+      publications: publicationsByYear.value[year],
+    }))
+})
+
+const displayedYearGroups = computed(() => {
+  return sortedYearGroups.value.slice(0, displayedYears.value)
+})
+
+const displayedCount = computed(() => {
+  return displayedYearGroups.value.reduce((sum, g) => sum + g.publications.length, 0)
+})
+
+const hasMore = computed(() => {
+  return displayedYears.value < sortedYearGroups.value.length
+})
+
+// Reset displayed years when filters change
+watch([searchQuery, showOnlyFirstLast], () => {
+  displayedYears.value = 3
+})
+
+function loadMore() {
+  if (hasMore.value) {
+    displayedYears.value += 2
+  }
+}
+
+function setupObserver() {
+  if (observer) {
+    observer.disconnect()
+  }
+  if (!loadMoreTrigger.value) return
+
+  observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        loadMore()
+      }
+    },
+    { rootMargin: '200px' }
+  )
+  observer.observe(loadMoreTrigger.value)
+}
+
+watch(
+  () => loadMoreTrigger.value,
+  (el) => {
+    if (el) {
+      nextTick(() => setupObserver())
+    }
+  }
+)
+
+watch(hasMore, (val) => {
+  if (val) {
+    nextTick(() => setupObserver())
+  } else if (observer) {
+    observer.disconnect()
+  }
+})
+
 function formatTitle(title) {
   if (!title) return ''
-  // Remove curly braces used for BibTeX formatting
   return title.replace(/[{}]/g, '')
 }
 
 function getAuthorshipPosition(authors) {
   if (!authors) return { isFirst: false, isLast: false }
 
-  // Remove curly braces and split by 'and'
   const authorList = authors
     .replace(/[{}]/g, '')
     .split(' and ')
     .map((a) => a.trim())
 
-  // Check for Bernt Popp in various formats
   const targetNames = ['Popp, Bernt', 'Bernt Popp', 'Popp, B.', 'B. Popp', 'Popp, B', 'B Popp']
 
   const firstAuthor = authorList[0]
@@ -148,7 +261,6 @@ function getAuthorshipPosition(authors) {
 }
 
 function highlightTargetAuthor(author) {
-  // Check for Bernt Popp in various formats and wrap with highlighting span
   const targetPatterns = [/Popp,\s*Bernt/g, /Bernt\s+Popp/g, /Popp,\s*B\.?/g, /B\.?\s+Popp/g]
 
   let highlighted = author
@@ -164,7 +276,6 @@ function highlightTargetAuthor(author) {
 
 function formatAuthors(authors, showAll = false) {
   if (!authors) return ''
-  // Remove curly braces and split by 'and'
   const authorList = authors
     .replace(/[{}]/g, '')
     .split(' and ')
@@ -173,10 +284,8 @@ function formatAuthors(authors, showAll = false) {
   let formattedAuthors
 
   if (showAll || authorList.length <= 4) {
-    // Show all authors
     formattedAuthors = authorList.map(highlightTargetAuthor).join(', ')
   } else {
-    // Show first 3 + et al.
     formattedAuthors = authorList.slice(0, 3).map(highlightTargetAuthor).join(', ') + ', et al.'
   }
 
@@ -185,229 +294,316 @@ function formatAuthors(authors, showAll = false) {
 
 onMounted(async () => {
   try {
-    console.log('Fetching publications...')
     const response = await fetch('/bp.bib')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const bibText = await response.text()
-    console.log('Bib file loaded, parsing...')
-
     const parsed = BibtexParser.toJSON(bibText)
-    console.log(`Parsed ${parsed.length} publications`)
 
-    // Sort by year (descending)
     publications.value = parsed.sort((a, b) => {
       const yearA = parseInt(a.entryTags?.YEAR) || 0
       const yearB = parseInt(b.entryTags?.YEAR) || 0
       return yearB - yearA
     })
   } catch (e) {
-    console.error('Error loading publications:', e)
+    console.error(e)
     error.value = 'Failed to load publications: ' + e.message
   } finally {
     loading.value = false
   }
 })
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
+})
 </script>
 
 <style scoped>
-.publication-list {
-  max-width: 900px;
+.story-wrapper {
+  background-color: var(--vp-c-bg);
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 8rem; /* Space for dock */
+}
+
+.story-container {
+  max-width: 900px; /* Slightly wider for data */
+  width: 100%;
+  padding: 6rem 1.5rem;
+}
+
+.story-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.meta-tag {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--vp-c-accent-soft);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.story-title {
+  font-family: var(--vp-font-family-headings);
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--vp-c-text-1);
+}
+
+.story-subtitle {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.25rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  max-width: 500px;
   margin: 0 auto;
-  padding: 2rem 0;
 }
 
+/* Controls */
 .controls {
-  margin-bottom: 2rem;
-}
-
-.filter-toggles {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filter-toggles label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--vp-c-text-2);
-  cursor: pointer;
-}
-
-.filter-toggles input[type='checkbox'] {
-  cursor: pointer;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding: 1rem 0;
+  font-family: var(--vp-font-family-mono);
   font-size: 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  transition: all 0.2s;
+  color: var(--vp-c-text-1);
+  border-radius: 0;
+  text-align: center;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--vp-c-brand);
-  background: var(--vp-c-bg);
+  border-bottom-color: var(--vp-c-accent);
 }
 
-.stats {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--vp-c-text-2);
-}
-
-.filter-active {
-  color: var(--vp-c-brand);
-  font-weight: 500;
-}
-
-.title-row {
+.filters {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.authorship-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-shrink: 0;
-}
-
-.tag {
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.tag.first-author {
-  background: var(--vp-c-success-soft);
-  color: var(--vp-c-success);
-}
-
-.tag.last-author {
-  background: var(--vp-c-info-soft);
-  color: var(--vp-c-info);
-}
-
-.tag.sole-author {
-  background: var(--vp-c-warning-soft);
-  color: var(--vp-c-warning);
-}
-
-.loading,
-.error {
-  text-align: center;
-  padding: 2rem;
-  color: var(--vp-c-text-2);
-}
-
-.error {
-  color: var(--vp-c-danger);
-}
-
-.publications {
-  display: flex;
-  flex-direction: column;
   gap: 2rem;
+  justify-content: center;
 }
 
-.publication-item {
-  padding: 1.5rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  border: 1px solid var(--vp-c-divider);
-  transition: all 0.2s;
-}
-
-.publication-item:hover {
-  border-color: var(--vp-c-brand);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--vp-c-text-1);
-  flex: 1;
-}
-
-.authors {
-  margin: 0 0 0.5rem 0;
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
   color: var(--vp-c-text-2);
-  font-size: 0.95rem;
-}
-
-.details {
-  margin: 0 0 0.75rem 0;
-  color: var(--vp-c-text-3);
-  font-size: 0.875rem;
-}
-
-.entry-type {
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand);
-  padding: 0.125rem 0.375rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-right: 0.5rem;
-}
-
-.links {
-  display: flex;
-  gap: 1rem;
-}
-
-.link {
-  font-size: 0.875rem;
-  color: var(--vp-c-brand);
-  text-decoration: none;
-  font-weight: 500;
+  cursor: pointer;
   transition: color 0.2s;
 }
 
-.link:hover {
-  color: var(--vp-c-brand-dark);
-  text-decoration: underline;
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--vp-c-accent);
+}
+
+/* Summary Bar */
+.summary-bar {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  color: var(--vp-c-text-2);
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.load-hint {
+  color: var(--vp-c-text-2);
+}
+
+/* Grid */
+.publications-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Year Groups */
+.year-group {
+  margin-bottom: 1rem;
+}
+
+.year-header {
+  font-family: var(--vp-font-family-headings);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  padding: 1.5rem 0 1rem;
+  border-bottom: 2px solid var(--vp-c-accent);
+  margin-bottom: 0.5rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--vp-c-bg);
+  z-index: 10;
+}
+
+.pub-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+  transition: all 0.2s;
+}
+
+.pub-row:hover {
+  transform: translateX(10px);
+}
+
+.pub-year {
+  font-family: var(--vp-font-family-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  padding-top: 5px;
+}
+
+.pub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pub-title {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  color: var(--vp-c-text-1);
+}
+
+.pub-meta-tags {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.tag {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.6rem;
+  border: 1px solid var(--vp-c-divider);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  color: var(--vp-c-text-2);
+}
+
+.pub-authors {
+  font-size: 0.95rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+.pub-journal {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--vp-c-text-2);
+  letter-spacing: 0.05em;
+  margin-top: 0.25rem;
+}
+
+.pub-links {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link-item {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--vp-c-accent-soft);
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+
+.link-item:hover {
+  border-bottom-color: var(--vp-c-accent);
 }
 
 :deep(.author-highlight) {
-  text-decoration: underline;
-  text-decoration-color: var(--vp-c-brand);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
+  color: var(--vp-c-text-1);
   font-weight: 600;
-  color: var(--vp-c-brand);
+  border-bottom: 1px solid var(--vp-c-divider);
 }
 
-@media (max-width: 768px) {
-  .title-row {
-    flex-direction: column;
+/* Load More Trigger */
+.load-more-trigger {
+  display: flex;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.loader-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loader-dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--vp-c-text-2);
+  animation: loader-pulse 1.4s infinite ease-in-out both;
+}
+
+.loader-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.loader-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes loader-pulse {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0.3;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .pub-row {
+    grid-template-columns: 1fr;
     gap: 0.5rem;
   }
 
-  .authorship-tags {
-    margin-bottom: 0.5rem;
+  .year-header {
+    font-size: 1.5rem;
   }
+}
+</style>
 
-  .tag {
-    font-size: 0.625rem;
-    padding: 0.2rem 0.5rem;
-  }
+<!-- Dark mode overrides (unscoped to work with .dark on <html>) -->
+<style>
+.dark .pub-row {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 </style>
