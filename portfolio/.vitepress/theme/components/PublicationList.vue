@@ -1,5 +1,5 @@
 <template>
-  <div class="story-wrapper">
+  <main class="story-wrapper">
     <div class="story-container">
       <div class="story-header">
         <div class="meta-tag">THE SCIENCE</div>
@@ -46,7 +46,7 @@
 
         <div class="publications-grid">
           <div v-for="group in displayedYearGroups" :key="group.year" class="year-group">
-            <div class="year-header">{{ group.year }}</div>
+            <h2 class="year-header">{{ group.year }}</h2>
             <div v-for="(pub, index) in group.publications" :key="index" class="pub-row">
               <div class="pub-year">{{ pub.entryTags?.YEAR || 'ND' }}</div>
 
@@ -109,7 +109,7 @@
       </template>
     </div>
     <Dock />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -346,7 +346,7 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
@@ -406,7 +406,7 @@ onUnmounted(() => {
   padding: 0;
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   cursor: pointer;
   transition: color 0.2s;
 }
@@ -420,7 +420,7 @@ onUnmounted(() => {
 .summary-bar {
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   text-align: center;
   margin-bottom: 2rem;
   letter-spacing: 0.05em;
@@ -428,7 +428,7 @@ onUnmounted(() => {
 }
 
 .load-hint {
-  opacity: 0.6;
+  color: var(--vp-c-text-2);
 }
 
 /* Grid */
@@ -465,10 +465,6 @@ onUnmounted(() => {
   transition: all 0.2s;
 }
 
-:global(.dark) .pub-row {
-  border-bottom-color: rgba(255, 255, 255, 0.15);
-}
-
 .pub-row:hover {
   transform: translateX(10px);
 }
@@ -477,7 +473,7 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   padding-top: 5px;
 }
 
@@ -522,7 +518,7 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   letter-spacing: 0.05em;
   margin-top: 0.25rem;
 }
@@ -537,7 +533,7 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 0.75rem;
   text-decoration: none;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   text-transform: uppercase;
   border-bottom: 1px solid transparent;
 }
@@ -568,7 +564,7 @@ onUnmounted(() => {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--vp-c-text-3);
+  background-color: var(--vp-c-text-2);
   animation: loader-pulse 1.4s infinite ease-in-out both;
 }
 
@@ -602,5 +598,12 @@ onUnmounted(() => {
   .year-header {
     font-size: 1.5rem;
   }
+}
+</style>
+
+<!-- Dark mode overrides (unscoped to work with .dark on <html>) -->
+<style>
+.dark .pub-row {
+  border-bottom-color: rgba(255, 255, 255, 0.15);
 }
 </style>

@@ -1,10 +1,13 @@
 <template>
-  <div class="bento-wrapper">
+  <main class="bento-wrapper">
     <div class="bento-grid">
       <!-- 1. The Protagonist (Portrait) -->
       <div class="card card-portrait">
         <div class="image-wrapper">
-          <img src="/portrait.png" alt="Bernt Popp" class="portrait-img" />
+          <picture>
+            <source srcset="/portrait.webp" type="image/webp" />
+            <img src="/portrait.png" alt="Bernt Popp" class="portrait-img" fetchpriority="high" />
+          </picture>
           <div class="overlay-gradient"></div>
         </div>
       </div>
@@ -53,7 +56,7 @@
         <div class="art-label">Photography</div>
       </a>
     </div>
-  </div>
+  </main>
 </template>
 
 <style scoped>
@@ -118,7 +121,6 @@
   color: var(--vp-c-text-2);
   margin-bottom: 1rem;
   letter-spacing: 0.1em;
-  opacity: 0.7;
 }
 
 /* 1. Portrait */
@@ -172,7 +174,7 @@
 .outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--vp-c-text-1);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 .role-scroller {
@@ -202,7 +204,7 @@
   font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
   text-decoration: none;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   margin-top: auto;
   display: inline-block;
 }
@@ -215,10 +217,6 @@
   justify-content: center;
   text-decoration: none;
   color: inherit;
-}
-
-:global(.dark) .card-science {
-  background: #1e1e1e;
 }
 
 .stat-number {
@@ -234,6 +232,7 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   margin-top: 0.5rem;
+  color: var(--vp-c-text-1);
 }
 
 /* 5. Art */
@@ -244,6 +243,11 @@
   text-decoration: none;
   position: relative;
   justify-content: space-between;
+}
+
+/* Art card always has dark bg, so meta-tag needs light color in all modes */
+.card-art .meta-tag {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .art-label {
@@ -301,17 +305,17 @@
   color: var(--vp-c-accent);
 }
 
-/* Responsive */
+/* Responsive: Tablet landscape / small laptop */
 @media (max-width: 1024px) {
   .bento-grid {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     gap: 1rem;
     height: auto;
+    max-height: none;
     grid-template-areas:
-      'portrait portrait'
-      'title    title'
-      'mission  mission'
+      'portrait title'
+      'portrait mission'
       'science  art'
       'social   social';
   }
@@ -323,10 +327,39 @@
   }
 
   .card-portrait {
-    height: 60vh;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  .giant-type {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    white-space: normal;
   }
 }
 
+/* Responsive: Tablet portrait (Surface Pro, iPad, Zenbook) */
+@media (max-width: 912px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'title    title'
+      'portrait portrait'
+      'mission  mission'
+      'science  art'
+      'social   social';
+  }
+
+  .card-portrait {
+    height: 45vh;
+    max-height: 500px;
+  }
+
+  .giant-type {
+    font-size: clamp(3rem, 7vw, 5rem);
+  }
+}
+
+/* Responsive: Mobile */
 @media (max-width: 600px) {
   .bento-grid {
     grid-template-columns: 1fr;
@@ -339,8 +372,15 @@
       'social';
   }
 
+  .card-portrait {
+    height: 50vh;
+    max-height: 400px;
+  }
+
   .giant-type {
-    font-size: clamp(3rem, 13vw, 5rem);
+    font-size: clamp(2rem, 11vw, 4rem);
+    white-space: normal;
+    word-break: break-word;
   }
 
   .role-scroller {
@@ -352,5 +392,29 @@
   .role-scroller .separator {
     display: none;
   }
+}
+</style>
+
+<!-- Dark mode overrides (unscoped to work with .dark on <html>) -->
+<style>
+.dark .bento-wrapper .meta-tag {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .card-science {
+  background: #1e1e1e;
+}
+
+.dark .card-science .meta-tag {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .card-science .stat-number,
+.dark .card-science .stat-label {
+  color: #ffffff;
+}
+
+.dark .card-science .hover-reveal span {
+  color: rgba(255, 255, 255, 0.75);
 }
 </style>

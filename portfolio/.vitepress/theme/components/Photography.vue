@@ -1,5 +1,5 @@
 <template>
-  <div class="story-wrapper">
+  <main class="story-wrapper">
     <div class="story-container">
       <div class="story-header">
         <div class="meta-tag">THE ART</div>
@@ -27,7 +27,13 @@
           class="grid-item"
           @click="openLightbox(photo)"
         >
-          <img :src="`/photography/${photo.filename}`" :alt="photo.alt" loading="lazy" />
+          <picture>
+            <source
+              :srcset="`/photography/${photo.filename.replace(/\.jpg$/, '.webp')}`"
+              type="image/webp"
+            />
+            <img :src="`/photography/${photo.filename}`" :alt="photo.alt" loading="lazy" />
+          </picture>
           <div class="item-overlay">
             <span class="view-icon">+</span>
           </div>
@@ -50,10 +56,17 @@
         @touchend="onTouchEnd"
       >
         <div class="lightbox-content" @click.stop>
-          <img
-            :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
-            :alt="currentPhoto?.alt"
-          />
+          <picture>
+            <source
+              v-if="currentPhoto"
+              :srcset="`/photography/${currentPhoto.filename.replace(/\.jpg$/, '.webp')}`"
+              type="image/webp"
+            />
+            <img
+              :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
+              :alt="currentPhoto?.alt"
+            />
+          </picture>
           <div class="lightbox-meta">
             <h3>{{ currentPhoto?.title }}</h3>
             <p>{{ currentPhoto?.description }}</p>
@@ -107,7 +120,7 @@
         </button>
       </div>
     </Transition>
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -256,7 +269,7 @@ onUnmounted(() => {
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: #666; /* Subtle in dark mode */
+  color: #999;
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
@@ -293,7 +306,7 @@ onUnmounted(() => {
 .filter-item {
   background: none;
   border: none;
-  color: #666;
+  color: #999;
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   text-transform: uppercase;

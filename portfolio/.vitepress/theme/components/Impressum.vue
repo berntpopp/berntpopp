@@ -1,5 +1,5 @@
 <template>
-  <div class="story-wrapper">
+  <main class="story-wrapper">
     <div class="story-container">
       <div class="story-header">
         <div class="meta-tag">LEGAL NOTICE</div>
@@ -245,7 +245,7 @@
       </div>
     </div>
     <Dock />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -280,7 +280,7 @@ const lang = ref('de')
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
@@ -318,7 +318,7 @@ const lang = ref('de')
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   cursor: pointer;
   transition: all 0.2s;
   border-radius: 4px;
@@ -330,8 +330,8 @@ const lang = ref('de')
 }
 
 .lang-btn.active {
-  color: var(--vp-c-accent);
-  border-color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
+  border-color: var(--vp-c-accent-soft);
 }
 
 /* Legal Content */
@@ -364,7 +364,7 @@ const lang = ref('de')
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -378,14 +378,14 @@ const lang = ref('de')
 }
 
 .legal-block a {
-  color: var(--vp-c-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
+  color: var(--vp-c-accent-soft);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
 }
 
 .legal-block a:hover {
-  border-bottom-color: var(--vp-c-accent);
+  color: var(--vp-c-text-1);
 }
 
 .copyright {
@@ -394,7 +394,7 @@ const lang = ref('de')
   border-top: 1px solid var(--vp-c-divider);
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
-  color: var(--vp-c-text-3);
+  color: var(--vp-c-text-2);
   text-align: center;
   letter-spacing: 0.05em;
 }

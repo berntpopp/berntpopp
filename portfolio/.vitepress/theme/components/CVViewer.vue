@@ -1,5 +1,5 @@
 <template>
-  <div class="story-wrapper">
+  <main class="story-wrapper">
     <div class="story-container">
       <div class="story-header">
         <div class="meta-tag">CURRICULUM VITAE</div>
@@ -74,7 +74,7 @@
       </div>
     </div>
     <Dock />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -218,7 +218,7 @@ onMounted(async () => {
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
@@ -317,7 +317,7 @@ onMounted(async () => {
 .entry-location::before {
   content: '//';
   margin-right: 1rem;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
 }
 
 .entry-title {
@@ -376,7 +376,7 @@ onMounted(async () => {
 .project-link {
   font-family: var(--vp-font-family-mono);
   font-size: 0.85rem;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -457,7 +457,7 @@ onMounted(async () => {
     padding-right: 0;
     border-bottom: 1px solid var(--vp-c-divider);
     padding-bottom: 0.5rem;
-    color: var(--vp-c-accent);
+    color: var(--vp-c-accent-soft);
   }
 
   .cv-entry {

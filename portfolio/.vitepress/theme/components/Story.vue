@@ -1,5 +1,5 @@
 <template>
-  <div class="story-wrapper">
+  <main class="story-wrapper">
     <div class="story-container">
       <div class="story-header">
         <div class="meta-tag">THE STORY</div>
@@ -77,7 +77,7 @@
       </div>
     </div>
     <Dock />
-  </div>
+  </main>
 </template>
 
 <script setup>
@@ -109,7 +109,7 @@ import Dock from './Dock.vue'
   font-family: var(--vp-font-family-mono);
   font-size: 0.8rem;
   letter-spacing: 0.15em;
-  color: var(--vp-c-accent);
+  color: var(--vp-c-accent-soft);
   margin-bottom: 1.5rem;
   text-transform: uppercase;
 }
