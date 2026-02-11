@@ -1,34 +1,36 @@
 <template>
-  <div class="photography-gallery">
-    <div class="gallery-header">
-      <h1>{{ galleryData.title }}</h1>
-      <p class="gallery-description">
-        {{ galleryData.description }}
-      </p>
+  <div class="photography-wrapper">
+    <!-- Dark Mode Forced Wrapper -->
+    <div class="dark-canvas">
+      <div class="header">
+        <h1 class="title">Visuals</h1>
+        <p class="subtitle">
+          Capturing the silence of the underwater world and the noise of the land.
+        </p>
 
-      <!-- Category Filter -->
-      <div v-if="galleryData.categories" class="category-filter">
-        <button
-          v-for="(label, key) in galleryData.categories"
-          :key="key"
-          :class="['category-btn', { active: selectedCategory === key }]"
-          @click="selectedCategory = key"
-        >
-          {{ label }}
-        </button>
+        <div v-if="galleryData.categories" class="filter-bar">
+          <button
+            v-for="(label, key) in galleryData.categories"
+            :key="key"
+            :class="['filter-item', { active: selectedCategory === key }]"
+            @click="selectedCategory = key"
+          >
+            {{ label }}
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="photo-grid">
-      <div
-        v-for="photo in filteredPhotos"
-        :key="photo.filename"
-        class="photo-item"
-        @click="openLightbox(photo)"
-      >
-        <img :src="`/photography/${photo.filename}`" :alt="photo.alt" loading="lazy" />
-        <div class="photo-overlay">
-          <span class="photo-title">{{ photo.title }}</span>
+      <div class="masonry-grid">
+        <div
+          v-for="photo in filteredPhotos"
+          :key="photo.filename"
+          class="grid-item"
+          @click="openLightbox(photo)"
+        >
+          <img :src="`/photography/${photo.filename}`" :alt="photo.alt" loading="lazy" />
+          <div class="item-overlay">
+            <span class="view-icon">+</span>
+          </div>
         </div>
       </div>
     </div>
@@ -36,56 +38,18 @@
     <!-- Lightbox -->
     <Transition name="fade">
       <div v-if="lightboxOpen" class="lightbox" @click="closeLightbox">
-        <button class="lightbox-close" aria-label="Close" @click="closeLightbox">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
-        <button class="lightbox-prev" aria-label="Previous photo" @click.stop="prevPhoto">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button class="lightbox-next" aria-label="Next photo" @click.stop="nextPhoto">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
-        <img
-          :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
-          :alt="currentPhoto?.alt"
-          @click.stop
-        />
-        <div v-if="currentPhoto" class="lightbox-caption">
-          {{ currentPhoto.title }}
-          <span v-if="currentPhoto.description" class="lightbox-description">
-            {{ currentPhoto.description }}
-          </span>
-          <span v-if="currentPhoto.location" class="lightbox-location">
-            📍 {{ currentPhoto.location }}
-          </span>
+        <div class="lightbox-content" @click.stop>
+          <img
+            :src="currentPhoto ? `/photography/${currentPhoto.filename}` : ''"
+            :alt="currentPhoto?.alt"
+          />
+          <div class="lightbox-meta">
+            <h3>{{ currentPhoto?.title }}</h3>
+            <p>{{ currentPhoto?.description }}</p>
+          </div>
         </div>
+
+        <button class="close-btn" @click="closeLightbox">✕</button>
       </div>
     </Transition>
   </div>
@@ -96,7 +60,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 
 const galleryData = ref({
   title: 'Photography',
-  description: 'A visual journey through the lens',
+  description: '',
   photos: [],
   categories: {},
 })
@@ -104,7 +68,6 @@ const galleryData = ref({
 const selectedCategory = ref('all')
 const lightboxOpen = ref(false)
 const currentPhoto = ref(null)
-const currentPhotoIndex = ref(0)
 
 const filteredPhotos = computed(() => {
   if (selectedCategory.value === 'all') {
@@ -113,7 +76,6 @@ const filteredPhotos = computed(() => {
   return galleryData.value.photos.filter((photo) => photo.category === selectedCategory.value)
 })
 
-// Load gallery data
 onMounted(async () => {
   try {
     const response = await fetch('/photography-data.json')
@@ -126,8 +88,6 @@ onMounted(async () => {
 })
 
 const openLightbox = (photo) => {
-  const index = filteredPhotos.value.findIndex((p) => p.filename === photo.filename)
-  currentPhotoIndex.value = index
   currentPhoto.value = photo
   lightboxOpen.value = true
   document.body.style.overflow = 'hidden'
@@ -139,31 +99,8 @@ const closeLightbox = () => {
   document.body.style.overflow = ''
 }
 
-const nextPhoto = () => {
-  currentPhotoIndex.value = (currentPhotoIndex.value + 1) % filteredPhotos.value.length
-  currentPhoto.value = filteredPhotos.value[currentPhotoIndex.value]
-}
-
-const prevPhoto = () => {
-  currentPhotoIndex.value =
-    (currentPhotoIndex.value - 1 + filteredPhotos.value.length) % filteredPhotos.value.length
-  currentPhoto.value = filteredPhotos.value[currentPhotoIndex.value]
-}
-
 const handleKeydown = (e) => {
-  if (!lightboxOpen.value) return
-
-  switch (e.key) {
-    case 'Escape':
-      closeLightbox()
-      break
-    case 'ArrowRight':
-      nextPhoto()
-      break
-    case 'ArrowLeft':
-      prevPhoto()
-      break
-  }
+  if (e.key === 'Escape') closeLightbox()
 }
 
 onUnmounted(() => {
@@ -173,195 +110,185 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.photography-gallery {
+/* Force Dark Theme for this component */
+.photography-wrapper {
+  background-color: #050505;
+  min-height: 100vh;
+  /* Removed hacked full-width */
   width: 100%;
-  padding: 2rem 0;
+  color: #fff;
+  padding-bottom: 6rem; /* Space for dock */
 }
 
-.gallery-header {
+.dark-canvas {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.header {
   text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 1rem;
+  margin-bottom: 4rem;
 }
 
-.gallery-header h1 {
-  font-size: 2.5rem;
+.title {
+  font-family: var(--vp-font-family-headings);
+  font-size: 3.5rem;
   margin-bottom: 1rem;
-  color: var(--vp-c-text-1);
+  letter-spacing: -0.02em;
 }
 
-.gallery-description {
-  font-size: 1.125rem;
-  color: var(--vp-c-text-2);
-  max-width: 600px;
-  margin: 0 auto 2rem;
+.subtitle {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  color: #888;
+  max-width: 400px;
+  margin: 0 auto 3rem;
   line-height: 1.6;
 }
 
-/* Category Filter */
-.category-filter {
+/* Filter */
+.filter-bar {
   display: flex;
-  gap: 0.75rem;
   justify-content: center;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  gap: 2rem;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+  padding: 1rem 0;
+  display: inline-flex; /* center the bar itself */
 }
 
-.category-btn {
-  padding: 0.5rem 1.25rem;
-  border: 2px solid var(--vp-c-divider);
-  background: transparent;
-  border-radius: 24px;
-  color: var(--vp-c-text-2);
-  font-size: 0.875rem;
-  font-weight: 500;
+.filter-item {
+  background: none;
+  border: none;
+  color: #666;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.3s;
+  letter-spacing: 0.1em;
 }
 
-.category-btn:hover {
-  border-color: var(--vp-c-brand);
-  color: var(--vp-c-brand);
+.filter-item:hover,
+.filter-item.active {
+  color: #fff;
 }
 
-.category-btn.active {
-  background: var(--vp-c-brand);
-  border-color: var(--vp-c-brand);
-  color: white;
-}
-
-.photo-grid {
+/* Grid */
+.masonry-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem; /* More breathing room */
 }
 
-.photo-item {
+.grid-item {
   position: relative;
+  aspect-ratio: 3/2; /* Classic photo ratio */
   overflow: hidden;
-  border-radius: 8px;
-  cursor: pointer;
-  background: var(--vp-c-bg-soft);
-  aspect-ratio: 4/3;
+  cursor: zoom-in;
+  filter: brightness(0.9);
+  transition: all 0.4s ease;
+  border-radius: 4px;
 }
 
-.photo-item img {
+.grid-item:hover {
+  filter: brightness(1.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.grid-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  transition: transform 0.6s ease;
 }
 
-.photo-item:hover img {
+.grid-item:hover img {
   transform: scale(1.05);
 }
 
-.photo-overlay {
+.item-overlay {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-  padding: 2rem 1rem 1rem;
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.photo-item:hover .photo-overlay {
-  transform: translateY(0);
+.view-icon {
+  font-size: 2rem;
+  font-weight: 300;
 }
 
-.photo-title {
-  color: white;
-  font-weight: 500;
-  font-size: 1.125rem;
+.grid-item:hover .item-overlay {
+  opacity: 1;
 }
 
-/* Lightbox styles */
+/* Lightbox */
 .lightbox {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 9999;
-  padding: 2rem;
+  align-items: center;
 }
 
-.lightbox img {
+.lightbox-content {
+  position: relative;
   max-width: 90vw;
-  max-height: 80vh;
-  object-fit: contain;
+  max-height: 90vh;
 }
 
-.lightbox-close,
-.lightbox-prev,
-.lightbox-next {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: white;
-  padding: 0.75rem;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s ease;
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  display: block;
 }
 
-.lightbox-close:hover,
-.lightbox-prev:hover,
-.lightbox-next:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.lightbox-close {
-  top: 1rem;
-  right: 1rem;
-}
-
-.lightbox-prev {
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-next {
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.lightbox-caption {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
+.lightbox-meta {
   text-align: center;
-  font-size: 1.125rem;
-  font-weight: 500;
+  margin-top: 1rem;
 }
 
-.lightbox-description {
-  display: block;
-  font-size: 0.875rem;
+.lightbox-meta h3 {
+  font-family: var(--vp-font-family-base);
   font-weight: 400;
+  margin: 0;
+}
+
+.lightbox-meta p {
+  color: #666;
+  font-size: 0.9rem;
   margin-top: 0.5rem;
-  opacity: 0.8;
 }
 
-.lightbox-location {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 400;
-  margin-top: 0.25rem;
-  opacity: 0.6;
+.close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+  opacity: 1;
 }
 
 /* Transitions */
@@ -375,29 +302,9 @@ onUnmounted(() => {
   opacity: 0;
 }
 
-/* Dark mode adjustments */
-.dark .photo-item {
-  background: var(--vp-c-bg-soft);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .photo-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-
-  .gallery-header h1 {
-    font-size: 2rem;
-  }
-
-  .lightbox {
-    padding: 1rem;
-  }
-
-  .lightbox-caption {
-    bottom: 1rem;
-    padding: 0 1rem;
+@media (max-width: 600px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>

@@ -1,177 +1,347 @@
 <template>
-  <div class="hero-wrapper">
-    <div class="hero-container">
-      <div class="hero-content">
-        <p class="greeting">Hi, I'm Bernt Popp!</p>
-        <h1 class="title">GENETICIST &<br /><span class="highlight">RESEARCHER</span></h1>
-        <p class="description">
-          A board-certified geneticist and senior physician with expertise in human genetics, rare
-          diseases, bioinformatics, and high-throughput sequencing data analysis.
+  <div class="bento-wrapper">
+    <div class="bento-grid">
+      <!-- 1. The Protagonist (Portrait) -->
+      <div class="card card-portrait">
+        <div class="image-wrapper">
+          <img src="/portrait.png" alt="Bernt Popp" class="portrait-img" />
+          <div class="overlay-gradient"></div>
+        </div>
+      </div>
+
+      <!-- 2. The Title (Typography) -->
+      <div class="card card-title">
+        <div class="meta-tag">01 // IDENTITY</div>
+        <h1 class="giant-type">HUMAN<br /><span class="outline">GENETICIST</span></h1>
+        <p class="role-scroller">
+          <span>PHYSICIAN</span>
+          <span class="separator">/</span>
+          <span>RESEARCHER</span>
+          <span class="separator">/</span>
+          <span>EXPLORER</span>
         </p>
-        <div class="actions">
-          <a href="/publications" class="button primary">Publications</a>
-          <a href="/cv" class="button secondary">View CV</a>
-        </div>
-        <div class="social-icons">
-          <!-- Social links will be styled from the nav -->
-        </div>
       </div>
-      <div class="hero-image-container">
-        <img src="/b1_square_nobg.png" alt="Dr.med. Bernt Popp" class="hero-image" />
-        <div class="vertical-divider" />
-        <div class="horizontal-divider" />
+
+      <!-- 3. The Mission (Intro) -->
+      <div class="card card-mission">
+        <div class="meta-tag">02 // MISSION</div>
+        <p class="mission-text">
+          Decoding the fundamentals of life through clinical genomics, rare disease research, and
+          bioinformatics. <br />
+          <br />
+          <em>"Nothing in biology makes sense except in the light of evolution."</em>
+        </p>
+        <a href="/about" class="arrow-link">The Journey &rarr;</a>
       </div>
+
+      <!-- 4. The Science (Stats) -->
+      <a href="/publications" class="card card-science interactive">
+        <div class="meta-tag">03 // SCIENCE</div>
+        <div class="stat-number">80+</div>
+        <div class="stat-label">Publications</div>
+        <div class="hover-reveal">
+          <span>View Index &rarr;</span>
+        </div>
+      </a>
+
+      <!-- 5. The Art (Photography) -->
+      <a href="/photography" class="card card-art interactive">
+        <div class="meta-tag">04 // ART</div>
+        <div class="art-preview">
+          <!-- Placeholder for art - could be a shark/ocean image -->
+          <div class="art-circle"></div>
+        </div>
+        <div class="art-label">Photography</div>
+      </a>
     </div>
   </div>
 </template>
 
 <style scoped>
-.hero-wrapper {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-}
-
-.hero-container {
+/* Reset & Wrapper */
+.bento-wrapper {
+  width: 100vw;
+  height: 100dvh; /* Force exact viewport height */
+  background-color: var(--vp-c-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 2rem;
+  box-sizing: border-box;
+  overflow: hidden; /* Lock scroll */
+  position: relative;
+  /* Removed top padding adjustment as nav is gone */
+}
+
+/* The Grid */
+.bento-grid {
+  display: grid;
+  width: 100%;
+  max-width: 1400px; /* Reduced max-width to keep things tight */
+  height: 85vh; /* Leave space for dock */
+  max-height: 800px;
+  grid-template-columns: 1fr 1.2fr 0.8fr; /* Adjusted ratios */
+  grid-template-rows: 1.2fr 1fr 1fr;
+  gap: 1.5rem;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  grid-template-areas:
+    'portrait title title'
+    'portrait mission science'
+    'portrait mission art';
+}
+
+/* Generic Card Styles */
+.card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 4px; /* Slight roundness */
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card.interactive:hover {
+  background: var(--vp-c-bg);
+  border-color: var(--vp-c-text-1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+
+/* Utility: Meta Tag (Monospace) */
+.meta-tag {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  color: var(--vp-c-text-2);
+  margin-bottom: 1rem;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+}
+
+/* 1. Portrait */
+.card-portrait {
+  grid-area: portrait;
+  padding: 0;
+  border: none;
+  background: black; /* Framing */
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
   position: relative;
 }
 
-.hero-content {
-  flex: 1;
-  max-width: 550px;
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.1);
 }
 
-.vertical-divider {
-  position: absolute;
-  right: 10%; /* Adjust to match where the image edge is (since image is 80% width) */
-  top: 30%; /* Start higher up */
-  width: 1px;
-  height: 80%; /* Extend more towards bottom */
-  background-color: #000;
-}
-
-.horizontal-divider {
+.overlay-gradient {
   position: absolute;
   bottom: 0;
-  left: -20%; /* Extend more to the left */
-  right: -20%; /* Stop before the right edge */
-  height: 1px;
-  background-color: #000;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
 }
 
-/* Dark mode: use brand color for dividers */
-:global(.dark) .vertical-divider,
-:global(.dark) .horizontal-divider {
-  background-color: var(--vp-c-brand);
+/* 2. Title */
+.card-title {
+  grid-area: title;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding-left: 0;
 }
 
-.greeting {
-  font-size: 1.25rem;
-  font-weight: 500;
+.giant-type {
+  font-family: var(--vp-font-family-headings);
+  font-size: clamp(3.5rem, 6.5vw, 7.5rem); /* Fluid with caps */
+  line-height: 0.9;
+  color: var(--vp-c-text-1);
+  margin: 0 0 1rem 0;
+  white-space: nowrap; /* Force single line if possible, or break gracefully */
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 2px var(--vp-c-text-1);
+  opacity: 0.3;
+}
+
+.role-scroller {
+  font-family: var(--vp-font-family-mono);
+  font-size: 1rem;
   color: var(--vp-c-text-2);
-}
-
-.title {
-  font-size: 4.5rem;
-  font-weight: 900;
-  line-height: 1.1;
-  letter-spacing: -0.05em;
-  margin: 0.5rem 0;
-  color: #2c3e50;
-}
-
-.title .highlight {
-  color: var(--vp-c-brand);
-}
-
-.description {
-  font-size: 1.1rem;
-  color: var(--vp-c-text-2);
-  max-width: 500px;
-  margin: 1.5rem 0;
-  line-height: 1.6;
-}
-
-.actions {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
-}
-
-.button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  display: inline-block;
-  text-align: center;
-}
-
-.button.primary {
-  background-color: #2c3e50;
-  color: white;
-}
-.button.primary:hover {
-  background-color: #425a74;
-}
-
-.button.secondary {
-  background-color: transparent;
-  color: var(--vp-c-brand);
-  border: 2px solid var(--vp-c-brand);
-}
-.button.secondary:hover {
-  background-color: var(--vp-c-brand-soft);
-}
-
-.hero-image-container {
-  flex: 1;
-  display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
-  padding-right: 0;
 }
 
-.hero-image {
-  max-width: 80%;
-  height: auto;
-  object-fit: cover;
-  position: relative;
-  z-index: 1;
+/* 3. Mission */
+.card-mission {
+  grid-area: mission;
+  justify-content: space-between;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .hero-container {
-    flex-direction: column-reverse;
-    text-align: center;
-    padding: 4rem 1rem;
+.mission-text {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 90%;
+  color: var(--vp-c-text-1);
+}
+
+.arrow-link {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--vp-c-accent);
+  margin-top: auto;
+  display: inline-block;
+}
+
+/* 4. Science */
+.card-science {
+  grid-area: science;
+  background: #f5f5f7; /* Slight contrast */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+:global(.dark) .card-science {
+  background: #1e1e1e;
+}
+
+.stat-number {
+  font-family: var(--vp-font-family-headings);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--vp-c-text-1);
+}
+
+.stat-label {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+/* 5. Art */
+.card-art {
+  grid-area: art;
+  background: #1a1a1a;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  justify-content: space-between;
+}
+
+.art-label {
+  font-family: var(--vp-font-family-headings);
+  font-size: 1.5rem;
+  z-index: 2;
+}
+
+.art-circle {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--vp-c-accent);
+  filter: blur(40px);
+  opacity: 0.6;
+  transition: all 0.5s ease;
+}
+
+.card-art:hover .art-circle {
+  transform: scale(1.5);
+  opacity: 0.8;
+}
+
+/* 6. Social */
+.card-social {
+  grid-area: social;
+  background: transparent;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.social-item {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--vp-c-text-1);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+
+.social-item:hover {
+  border-bottom-color: var(--vp-c-accent);
+  color: var(--vp-c-accent);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    height: auto;
+    grid-template-areas:
+      'portrait portrait'
+      'title    title'
+      'mission  mission'
+      'science  art'
+      'social   social';
   }
 
-  .vertical-divider {
-    display: none;
+  .bento-wrapper {
+    height: auto;
+    overflow-y: auto;
+    padding-bottom: 6rem; /* Space for dock */
   }
 
-  .actions {
-    justify-content: center;
+  .card-portrait {
+    height: 60vh;
+  }
+}
+
+@media (max-width: 600px) {
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'title'
+      'portrait'
+      'mission'
+      'science'
+      'art'
+      'social';
   }
 
-  .hero-image {
-    max-width: 250px;
-    margin-bottom: 2rem;
-  }
-
-  .title {
-    font-size: 3rem;
+  .giant-type {
+    font-size: clamp(3rem, 13vw, 5rem);
   }
 }
 </style>

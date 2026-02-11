@@ -1,20 +1,52 @@
 /* .vitepress/theme/custom.css */
 :root {
-  /* Brand color from screenshot */
-  --vp-c-brand: #6a3ffb;
-  --vp-c-brand-light: #8b64ff;
-  --vp-c-brand-dark: #552ee1;
-  --vp-c-brand-soft: rgba(106, 63, 251, 0.1);
+  /* 
+    Avant-Garde Palette 
+    Base: Deepest Charcoal & Paper White
+    Accent: Digital Blue
+  */
+  --vp-c-brand: #1a1a1a;
+  --vp-c-brand-light: #333333;
+  --vp-c-brand-dark: #000000;
+  --vp-c-brand-soft: rgba(0, 0, 0, 0.02);
 
-  /* Set the global font for a modern feel */
+  --vp-c-accent: #2962ff;
+
+  /* Typography */
   --vp-font-family-base: 'Inter', sans-serif;
+  --vp-font-family-headings: 'Playfair Display', serif;
+  --vp-font-family-mono: 'JetBrains Mono', monospace;
 }
 
-/* Make headings bolder for better hierarchy */
+/* Base Texture: Noise Overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* Typography Hierarchy */
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--vp-font-family-headings);
   font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 700;
+  /* Playfair Bold */
 }
 
 /* Remove the default VitePress hero and content on the homepage */
@@ -36,6 +68,98 @@ h3 {
 .VPNav {
   background-color: var(--vp-c-bg);
   border-bottom: 1px solid var(--vp-c-divider);
+}
+
+/* HIDE NAVBAR GLOBALLY (Avant-Garde Mode) */
+/* We replaced the top bar with the Floating Dock */
+.VPNav {
+  display: none !important;
+}
+
+/* HIDE DEFAULT CONTENT ON HOME (Single Screen Fix) */
+/* We want ONLY our Bento Grid to show */
+.home-page .VPHome,
+.home-page .VPContent,
+.home-page .VPFooter {
+  display: none !important;
+}
+
+/* EDITORIAL PAGE STYLES (Story, etc) */
+.editorial-page .vp-doc {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.editorial-page h1 {
+  font-family: var(--vp-font-family-headings);
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  margin-bottom: 4rem;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.editorial-page h2 {
+  font-family: var(--vp-font-family-mono);
+  font-size: 1.1rem;
+  /* Increased from 0.85rem */
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  /* Darker for better contrast */
+}
+
+.editorial-page p {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--vp-c-text-1);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.editorial-page ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.editorial-page li {
+  font-family: var(--vp-font-family-mono);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--vp-c-brand);
+}
+
+.editorial-page a {
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  border-bottom: 1px solid var(--vp-c-divider);
+  transition: all 0.2s;
+}
+
+.editorial-page a:hover {
+  border-color: var(--vp-c-accent);
+  color: var(--vp-c-accent);
+}
+
+.editorial-page em {
+  font-family: var(--vp-font-family-headings);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--vp-c-text-2);
+  display: block;
+  margin: 4rem auto;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
 }
 
 /* Ensure consistent navbar width across all pages */

@@ -1,3 +1,1 @@
-# Curriculum Vitae
-
 <CVViewer />

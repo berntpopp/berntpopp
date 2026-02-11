@@ -1,80 +1,84 @@
 <template>
   <div class="publication-list">
+    <div class="header-row">
+      <h1 class="page-title">Science</h1>
+      <div class="stats-counter">
+        <span class="count">{{ filteredPublications.length }}</span>
+        <span class="label">PUBLICATIONS</span>
+      </div>
+    </div>
+
     <div class="controls">
       <input
         v-model="searchQuery"
         type="text"
-        placeholder="Search publications..."
+        placeholder="SEARCH DATABASE..."
         class="search-input"
       />
-      <div class="filter-toggles">
-        <label>
-          <input v-model="showOnlyFirstLast" type="checkbox" />
-          Show only first/last author publications
-        </label>
-        <label>
-          <input v-model="showAllAuthors" type="checkbox" />
-          Show all authors
-        </label>
-      </div>
-      <div class="stats">
-        Showing {{ filteredPublications.length }} of {{ publications.length }} publications
-        <span v-if="showOnlyFirstLast" class="filter-active">(filtered)</span>
+
+      <div class="filters">
+        <button
+          class="filter-btn"
+          :class="{ active: showOnlyFirstLast }"
+          @click="showOnlyFirstLast = !showOnlyFirstLast"
+        >
+          [ KEY AUTHORSHIPS ]
+        </button>
+        <button
+          class="filter-btn"
+          :class="{ active: showAllAuthors }"
+          @click="showAllAuthors = !showAllAuthors"
+        >
+          [ SHOW ALL AUTHORS ]
+        </button>
       </div>
     </div>
 
-    <div v-if="loading" class="loading">Loading publications...</div>
-    <div v-else-if="error" class="error">{{ error }}</div>
-    <div v-else class="publications">
-      <div v-for="(pub, index) in filteredPublications" :key="index" class="publication-item">
-        <div class="title-row">
-          <h3 class="title">{{ formatTitle(pub.entryTags?.TITLE) || 'No title' }}</h3>
-          <div class="authorship-tags">
-            <span
-              v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst"
-              class="tag first-author"
-              >First Author</span
-            >
-            <span
-              v-if="
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast &&
-                !getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst
-              "
-              class="tag last-author"
-              >Last Author</span
-            >
-            <span
-              v-if="
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst &&
-                getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast
-              "
-              class="tag sole-author"
-              >Sole Author</span
-            >
+    <div v-if="loading" class="loading">INITIALIZING DATABASE...</div>
+    <div v-else-if="error" class="error">SYSTEM ERROR: {{ error }}</div>
+    <div v-else class="publications-grid">
+      <div v-for="(pub, index) in filteredPublications" :key="index" class="pub-row">
+        <div class="pub-year">{{ pub.entryTags?.YEAR || 'ND' }}</div>
+
+        <div class="pub-content">
+          <div class="pub-header">
+            <h3 class="pub-title">{{ formatTitle(pub.entryTags?.TITLE) || 'Untitled' }}</h3>
+            <div class="pub-meta">
+              <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isFirst" class="meta-tag"
+                >FIRST</span
+              >
+              <span v-if="getAuthorshipPosition(pub.entryTags?.AUTHOR).isLast" class="meta-tag"
+                >LAST</span
+              >
+            </div>
           </div>
-        </div>
-        <!-- eslint-disable-next-line vue/no-v-html -->
-        <p class="authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)" />
-        <p class="details">
-          <span v-if="pub.entryType" class="entry-type">{{ pub.entryType }}</span>
-          <span v-if="pub.entryTags?.JOURNAL">{{ pub.entryTags.JOURNAL }}</span>
-          <span v-if="pub.entryTags?.YEAR"> ({{ pub.entryTags.YEAR }})</span>
-          <span v-if="pub.entryTags?.VOLUME">, {{ pub.entryTags.VOLUME }}</span>
-          <span v-if="pub.entryTags?.NUMBER">({{ pub.entryTags.NUMBER }})</span>
-          <span v-if="pub.entryTags?.PAGES">: {{ pub.entryTags.PAGES }}</span>
-        </p>
-        <div class="links">
-          <a
-            v-if="pub.entryTags?.DOI"
-            :href="`https://doi.org/${pub.entryTags.DOI}`"
-            target="_blank"
-            class="link"
-          >
-            DOI
-          </a>
-          <a v-if="pub.entryTags?.URL" :href="pub.entryTags.URL" target="_blank" class="link">
-            URL
-          </a>
+
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <p class="pub-authors" v-html="formatAuthors(pub.entryTags?.AUTHOR, showAllAuthors)" />
+
+          <div class="pub-journal">
+            {{ pub.entryTags?.JOURNAL || 'Preprint/Other' }}
+            <span v-if="pub.entryTags?.VOLUME">• Vol {{ pub.entryTags.VOLUME }}</span>
+          </div>
+
+          <div class="pub-links">
+            <a
+              v-if="pub.entryTags?.DOI"
+              :href="`https://doi.org/${pub.entryTags.DOI}`"
+              target="_blank"
+              class="link-item"
+            >
+              DOI &nearr;
+            </a>
+            <a
+              v-if="pub.entryTags?.URL"
+              :href="pub.entryTags.URL"
+              target="_blank"
+              class="link-item"
+            >
+              URL &nearr;
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -122,20 +126,17 @@ const filteredPublications = computed(() => {
 
 function formatTitle(title) {
   if (!title) return ''
-  // Remove curly braces used for BibTeX formatting
   return title.replace(/[{}]/g, '')
 }
 
 function getAuthorshipPosition(authors) {
   if (!authors) return { isFirst: false, isLast: false }
 
-  // Remove curly braces and split by 'and'
   const authorList = authors
     .replace(/[{}]/g, '')
     .split(' and ')
     .map((a) => a.trim())
 
-  // Check for Bernt Popp in various formats
   const targetNames = ['Popp, Bernt', 'Bernt Popp', 'Popp, B.', 'B. Popp', 'Popp, B', 'B Popp']
 
   const firstAuthor = authorList[0]
@@ -148,7 +149,6 @@ function getAuthorshipPosition(authors) {
 }
 
 function highlightTargetAuthor(author) {
-  // Check for Bernt Popp in various formats and wrap with highlighting span
   const targetPatterns = [/Popp,\s*Bernt/g, /Bernt\s+Popp/g, /Popp,\s*B\.?/g, /B\.?\s+Popp/g]
 
   let highlighted = author
@@ -164,7 +164,6 @@ function highlightTargetAuthor(author) {
 
 function formatAuthors(authors, showAll = false) {
   if (!authors) return ''
-  // Remove curly braces and split by 'and'
   const authorList = authors
     .replace(/[{}]/g, '')
     .split(' and ')
@@ -173,10 +172,8 @@ function formatAuthors(authors, showAll = false) {
   let formattedAuthors
 
   if (showAll || authorList.length <= 4) {
-    // Show all authors
     formattedAuthors = authorList.map(highlightTargetAuthor).join(', ')
   } else {
-    // Show first 3 + et al.
     formattedAuthors = authorList.slice(0, 3).map(highlightTargetAuthor).join(', ') + ', et al.'
   }
 
@@ -185,25 +182,19 @@ function formatAuthors(authors, showAll = false) {
 
 onMounted(async () => {
   try {
-    console.log('Fetching publications...')
     const response = await fetch('/bp.bib')
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
     const bibText = await response.text()
-    console.log('Bib file loaded, parsing...')
-
     const parsed = BibtexParser.toJSON(bibText)
-    console.log(`Parsed ${parsed.length} publications`)
 
-    // Sort by year (descending)
     publications.value = parsed.sort((a, b) => {
       const yearA = parseInt(a.entryTags?.YEAR) || 0
       const yearB = parseInt(b.entryTags?.YEAR) || 0
       return yearB - yearA
     })
   } catch (e) {
-    console.error('Error loading publications:', e)
     error.value = 'Failed to load publications: ' + e.message
   } finally {
     loading.value = false
@@ -213,201 +204,205 @@ onMounted(async () => {
 
 <style scoped>
 .publication-list {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 4rem 1.5rem;
+  font-family: var(--vp-font-family-mono);
 }
 
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  border-bottom: 2px solid var(--vp-c-text-1);
+  padding-bottom: 1rem;
+}
+
+.page-title {
+  font-family: var(--vp-font-family-headings);
+  font-size: 4rem;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.stats-counter {
+  text-align: right;
+  font-family: var(--vp-font-family-mono);
+}
+
+.stats-counter .count {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stats-counter .label {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Controls */
 .controls {
-  margin-bottom: 2rem;
-}
-
-.filter-toggles {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-}
-
-.filter-toggles label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  color: var(--vp-c-text-2);
-  cursor: pointer;
-}
-
-.filter-toggles input[type='checkbox'] {
-  cursor: pointer;
+  gap: 1.5rem;
+  margin-bottom: 4rem;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding: 1rem 0;
+  font-family: var(--vp-font-family-mono);
   font-size: 1rem;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  background: var(--vp-c-bg-soft);
-  transition: all 0.2s;
+  color: var(--vp-c-text-1);
+  border-radius: 0;
 }
 
 .search-input:focus {
   outline: none;
-  border-color: var(--vp-c-brand);
-  background: var(--vp-c-bg);
+  border-bottom-color: var(--vp-c-accent);
 }
 
-.stats {
-  margin-top: 0.5rem;
-  font-size: 0.875rem;
+.filters {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.8rem;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--vp-c-accent);
+}
+
+/* Grid */
+.publications-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.pub-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+  transition: background 0.2s;
+}
+
+.pub-row:hover {
+  background: var(--vp-c-bg-soft);
+}
+
+.pub-year {
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--vp-c-text-2);
+  opacity: 0.5;
 }
 
-.filter-active {
-  color: var(--vp-c-brand);
-  font-weight: 500;
+.pub-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.title-row {
+.pub-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  margin-bottom: 0.5rem;
 }
 
-.authorship-tags {
+.pub-title {
+  font-family: var(--vp-font-family-base);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  color: var(--vp-c-text-1);
+}
+
+.pub-meta {
   display: flex;
   gap: 0.5rem;
   flex-shrink: 0;
 }
 
-.tag {
-  padding: 0.25rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 600;
+.meta-tag {
+  font-size: 0.7rem;
+  border: 1px solid var(--vp-c-text-2);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  color: var(--vp-c-text-2);
+}
+
+.pub-authors {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pub-journal {
+  font-size: 0.8rem;
   text-transform: uppercase;
+  color: var(--vp-c-text-3);
   letter-spacing: 0.05em;
 }
 
-.tag.first-author {
-  background: var(--vp-c-success-soft);
-  color: var(--vp-c-success);
-}
-
-.tag.last-author {
-  background: var(--vp-c-info-soft);
-  color: var(--vp-c-info);
-}
-
-.tag.sole-author {
-  background: var(--vp-c-warning-soft);
-  color: var(--vp-c-warning);
-}
-
-.loading,
-.error {
-  text-align: center;
-  padding: 2rem;
-  color: var(--vp-c-text-2);
-}
-
-.error {
-  color: var(--vp-c-danger);
-}
-
-.publications {
+.pub-links {
+  margin-top: 0.5rem;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-.publication-item {
-  padding: 1.5rem;
-  background: var(--vp-c-bg-soft);
-  border-radius: 12px;
-  border: 1px solid var(--vp-c-divider);
-  transition: all 0.2s;
-}
-
-.publication-item:hover {
-  border-color: var(--vp-c-brand);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin: 0;
-  color: var(--vp-c-text-1);
-  flex: 1;
-}
-
-.authors {
-  margin: 0 0 0.5rem 0;
-  color: var(--vp-c-text-2);
-  font-size: 0.95rem;
-}
-
-.details {
-  margin: 0 0 0.75rem 0;
-  color: var(--vp-c-text-3);
-  font-size: 0.875rem;
-}
-
-.entry-type {
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand);
-  padding: 0.125rem 0.375rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-right: 0.5rem;
-}
-
-.links {
-  display: flex;
-  gap: 1rem;
-}
-
-.link {
-  font-size: 0.875rem;
-  color: var(--vp-c-brand);
+.link-item {
+  font-size: 0.8rem;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  color: var(--vp-c-accent);
+  text-transform: uppercase;
 }
 
-.link:hover {
-  color: var(--vp-c-brand-dark);
+.link-item:hover {
   text-decoration: underline;
 }
 
 :deep(.author-highlight) {
-  text-decoration: underline;
-  text-decoration-color: var(--vp-c-brand);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 2px;
-  font-weight: 600;
-  color: var(--vp-c-brand);
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  border-bottom: 1px solid var(--vp-c-text-1);
 }
 
-@media (max-width: 768px) {
-  .title-row {
+/* Responsive */
+@media (max-width: 600px) {
+  .header-row {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .pub-row {
+    grid-template-columns: 1fr; /* Stack year on top */
     gap: 0.5rem;
   }
 
-  .authorship-tags {
-    margin-bottom: 0.5rem;
-  }
-
-  .tag {
-    font-size: 0.625rem;
-    padding: 0.2rem 0.5rem;
+  .pub-year {
+    font-size: 0.9rem;
   }
 }
 </style>
